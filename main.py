@@ -117,7 +117,7 @@ def daymap(begin, end, col):
             max = len(habit)
         lis.append(habit)
         
-    lis.append(overall)
+    lis.append("overall")
     
     nums = []
     
