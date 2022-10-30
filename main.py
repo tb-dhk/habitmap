@@ -125,6 +125,10 @@ def daymap(begin, end, col):
         start = st
         if habit != "stepno":
             if habit == "overall":
+                string = "overall"
+                while len(string) < max + 4:
+                    string = " " + string
+                string += " "
                 num = statistics.mean(nums)
                 match num:
                     case 0:
@@ -137,7 +141,7 @@ def daymap(begin, end, col):
                         string += color("▓▓", col)
                     case 4:
                         string += color("██", col)
-                print(string)
+                print()
             else:
                 string = "    " + habit
                 while len(string) < max + 4:
