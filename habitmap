@@ -25,11 +25,11 @@ comms = """
     -r, --remove    [habit]                                             remove a habit.
     -t, --track     [habit] [day] [stepno]                              add or edit a record.
 
-    -l, --list                                                          list all habits
-    -d, --day       [day]                   ([color])                   view day heatmap for all habits      
+    -l, --list                                                          list all habits.
+    -d, --day       [day]                   ([color])                   view day heatmap for all habits.      
     -y, --year      [habit] [year]          ([color])                   view year heatmap for habit.
 
-    -h, --help                                                          see all commands.
+    -h, --help                                                          see all commands and explanations.
     -s, --steps     [number]                                            set the default number of steps in heatmap (number from 1-4)                                                                    
 """
 
@@ -58,12 +58,19 @@ help = """
         [stepno]: a number from 0 to the default step number
 
         seeing data:
+        
+        -d, --day [day] ([color]): view day heatmap for all habits.
+        displays a single bar of each habit's data on [day], optionally in [color]
+        
+        [day]: any day.
+        [color]: any hex code (no preceding "#")
 
-        -y, --year [habit] [year] (-c [colour] -s [steps]): displays a heatmap.
-        displays a calendar heatmap of the data in [habit] for [year], optionally in [colour].
+        -y, --year [habit] [year] ([color]): displays a heatmap.
+        displays a calendar heatmap of the data in [habit] for [year], optionally in [color].
 
         [habit]: name of an existing habit.
         [year]: any valid integer from 1 to 9999 (based on python's datetime module's limits)
+        [color]: any hex code (no preceding "#")
 
         miscellaneous:
 
