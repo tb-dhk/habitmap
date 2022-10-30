@@ -1,6 +1,7 @@
 import os
 import json
 import datetime as dt
+import statistics
 from colors import color
 
 os.chdir(os.path.dirname(os.path.realpath(__file__)))
@@ -109,20 +110,31 @@ def daymap(begin, end, col):
                 end = dt.date.fromisoformat(begin)
     
     max = 0
+    lis = []
+    
     for habit in dic:
         if len(habit) > max:
             max = len(habit)
-
-    for habit in dic:
+        lis.append(habit)
+        
+    lis.append(overall)
+    
+    nums = []
+    
+    for habit in lis:
         start = st
         if habit != "stepno":
-            string = "    " + habit
-            while len(string) < max + 4:
-                string = " " + string
-            string += " "
-            while start <= end:
-                date = (start.year, start.month, start.day)
-                num = dic[habit][str(date[0])][date[1]-1][date[2]-1]
+            if habit == "overall":
+                num = statistics.mean(nums)
+            else:
+                string = "    " + habit
+                while len(string) < max + 4:
+                    string = " " + string
+                string += " "
+                while start <= end:
+                    date = (start.year, start.month, start.day)
+                    num = dic[habit][str(date[0])][date[1]-1][date[2]-1]
+                    nums.append(num)
                 match num:
                     case 0:
                         string += color("  ", col)
