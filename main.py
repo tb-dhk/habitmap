@@ -135,6 +135,7 @@ def daymap(begin, end, col):
                     date = (start.year, start.month, start.day)
                     num = dic[habit][str(date[0])][date[1]-1][date[2]-1]
                     nums.append(num)
+                    start += dt.timedelta(days=1)
                 match num:
                     case 0:
                         string += color("  ", col)
@@ -146,7 +147,7 @@ def daymap(begin, end, col):
                         string += color("▓▓", col)
                     case 4:
                         string += color("██", col)
-                start += dt.timedelta(days=1)
+                    
                 print(string)
     
 
