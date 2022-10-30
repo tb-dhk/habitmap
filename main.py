@@ -137,6 +137,7 @@ def daymap(begin, end, col):
                         string += color("▓▓", col)
                     case 4:
                         string += color("██", col)
+                print(string)
             else:
                 string = "    " + habit
                 while len(string) < max + 4:
