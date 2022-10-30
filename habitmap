@@ -1,7 +1,6 @@
 #!/usr/bin/python3
 
 import main
-import heatmap
 
 import os
 import json
