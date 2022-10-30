@@ -30,13 +30,13 @@ def newyear(json, habit, year):
         else:
             for x in range(nmth[x]):
                 json[habit][str(year)][-1].append(0)
-    print(f"habit '{habit}' added.")
+    print(f"    habit '{habit}' added.")
 
 def add(json, habit):
     if habit == "stepno":
-        print("invalid name.")
+        print("    invalid name.")
     elif habit in json:
-        print(f"habit '{habit}' already exists.")
+        print(f"    habit '{habit}' already exists.")
     else:
         tyr = dt.date.today().year
         newyear(json, habit, tyr)
@@ -57,7 +57,7 @@ def track(json, habit, day, ono):
                 try:
                     dat = dt.date.fromisoformat(day)
                 except:
-                    print("invalid day. the 'day' argument must either be 'tdy', 'yst', or a date in ISO format (YYYY-MM-DD).")
+                    print("    invalid day. the 'day' argument must either be 'tdy', 'yst', or a date in ISO format (YYYY-MM-DD).")
                     exit()
                 else:
                     date = (dat.year, dat.month, dat.day)
@@ -68,14 +68,14 @@ def track(json, habit, day, ono):
         if stepno != 4:
             no = step_to4[stepno-1][ono]
             json[habit][str(date[0])][date[1]-1][date[2]-1] = no
-            print(f"value of habit {habit} on {date[0]}-{date[1]}-{date[2]} changed to {ono} of {stepno} ({no} in 4-step).")
+            print(f"    value of habit {habit} on {date[0]}-{date[1]}-{date[2]} changed to {ono} of {stepno} ({no} in 4-step).")
         else:
             json[habit][str(date[0])][date[1]-1][date[2]-1] = ono
-            print(f"value of habit {habit} on {date[0]}-{date[1]}-{date[2]} changed to {ono} of {stepno}.")
+            print(f"    value of habit {habit} on {date[0]}-{date[1]}-{date[2]} changed to {ono} of {stepno}.")
     elif habit not in json:
-        print("invalid habit.")
+        print("    invalid habit.")
     elif ono > stepno or ono < 0:
-        print("invalid stepno.")
+        print("    invalid stepno.")
 
 def daymap(begin, end, col):
     col = "#" + col
@@ -91,7 +91,7 @@ def daymap(begin, end, col):
             try:
                 st = dt.date.fromisoformat(begin)
             except:
-                print("invalid day. the 'day' argument must either be 'tdy', 'yst', or a date in ISO format (YYYY-MM-DD).")
+                print("    invalid day. the 'day' argument must either be 'tdy', 'yst', or a date in ISO format (YYYY-MM-DD).")
                 exit()
 
     match end:
@@ -103,7 +103,7 @@ def daymap(begin, end, col):
             try:
                 dat = dt.date.fromisoformat(end)
             except:
-                print("invalid day. the 'day' argument must either be 'tdy', 'yst', or a date in ISO format (YYYY-MM-DD).")
+                print("    invalid day. the 'day' argument must either be 'tdy', 'yst', or a date in ISO format (YYYY-MM-DD).")
                 exit()
             else:
                 end = dt.date.fromisoformat(begin)
@@ -116,8 +116,8 @@ def daymap(begin, end, col):
     for habit in dic:
         start = st
         if habit != "stepno":
-            string = habit
-            while len(string) < max:
+            string = "    " + habit
+            while len(string) < max + 4:
                 string = " " + string
             string += " "
             while start <= end:
