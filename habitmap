@@ -26,8 +26,8 @@ comms = """
     -t, --track     [habit] [day] [stepno]                              add or edit a record.
 
     -l, --list                                                          list all habits
-    -d, --day       [day]                                               
-    -y, --year      [habit] [year]                                      view heatmap for habit.
+    -d, --day       [day]                   ([color])                   view day heatmap for all habits      
+    -y, --year      [habit] [year]          ([color])                   view year heatmap for habit.
 
     -h, --help                                                          see all commands.
     -s, --steps     [number]                                            set the default number of steps in heatmap (number from 1-4)                                                                    
