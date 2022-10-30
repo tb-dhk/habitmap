@@ -129,7 +129,7 @@ def daymap(begin, end, col):
                 while len(string) < max + 4:
                     string = " " + string
                 string += " "
-                num = statistics.mean(nums)
+                num = round(statistics.mean(nums))
                 match num:
                     case 0:
                         string += color("  ", col)
