@@ -157,9 +157,8 @@ def daymap(begin, end, col):
                             string += color("▓▓", col)
                         case 4:
                             string += color("██", col)
-                    start += dt.timedelta(days=1)
-                    
-                print(string)
+                    start += dt.timedelta(days=1) 
+                    print(string)
     
 
 def yearmap(habit, year, col):
