@@ -139,6 +139,7 @@ def daymap(begin, end, col):
     
 
 def yearmap(habit, year, col):
+    col = "#" + col
     stat = dic[habit][str(year)]
     yearindow = [[], [], [], [], [], [], []]
     strings = []
