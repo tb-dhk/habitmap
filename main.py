@@ -129,19 +129,22 @@ def daymap(begin, end, col):
                 while len(string) < max + 4:
                     string = " " + string
                 string += " "
-                num = round(statistics.mean(nums))
-                match num:
-                    case 0:
-                        string += color("  ", col)
-                    case 1:
-                        string += color("░░", col)
-                    case 2:
-                        string += color("▒▒", col)
-                    case 3:
-                        string += color("▓▓", col)
-                    case 4:
-                        string += color("██", col)
-                print(string)
+                if len(nums) == 0:
+                    print("    you have no habits. please add a habit and try again.")
+                else:
+                    num = round(statistics.mean(nums))
+                    match num:
+                        case 0:
+                            string += color("  ", col)
+                        case 1:
+                            string += color("░░", col)
+                        case 2:
+                            string += color("▒▒", col)
+                        case 3:
+                            string += color("▓▓", col)
+                        case 4:
+                            string += color("██", col)
+                    print(string)
             else:
                 string = "    " + habit
                 while len(string) < max + 4:

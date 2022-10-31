@@ -116,10 +116,10 @@ else:
                     print(habit)
         case "-d" | "-day":
             match len(sys.argv):
-                case 3:
-                    main.daymap(sys.argv[2], sys.argv[2], "000000")
                 case 4:
-                    main.daymap(sys.argv[2], *sys.argv[2:4])
+                    main.daymap(*sys.argv[2:4], "000000")
+                case 5:
+                    main.daymap(*sys.argv[2:5])
                 case _:
                     print("not enough arguments.")
         case "-y" | "-year":
