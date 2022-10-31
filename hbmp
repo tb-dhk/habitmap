@@ -18,28 +18,34 @@ if not dic:
     dic["stepno"] = 4
 
 comms = """
+    usage: hbmp [command] [argument]
+    
     list of arguments:
 
-    -e, --e.g.      [args]                      ([optional] [args])     description
-
+    command:
+    -a, --arg.      [args]                      ([optional] [args])     description
+    
+    habit:
     -a, --add       [name]                                              add a new habit (if not already existing).
     -r, --remove    [habit]                                             remove a habit.
     -t, --track     [day]                       ([habit] [stepno])      add or edit a record.
 
+    map:
     -l, --list                                                          list all habits.
     -d, --day       [start] [end]               ([color])               view heatmap for all habits from one day to another.
     -m, --month     [start] [end]               ([color])               view heatmap for all habits from the start of a month to the beginning of another.
     -y, --year      [habit] [year]              ([color])               view year heatmap for habit.
     -b, --bydur     [start] [end] [duration]
 
-    -h, --help                                                          see all commands and explanations.
-    -s, --steps     [number]                                            set the default number of steps in heatmap (number from 1-4)
+    help:                                                               see all commands and explanations.
+
+    steps:          [number]                                            set the default number of steps in heatmap (number from 1-4)
 """
 
 help = """
     commands:
 
-        changing data:
+        habit:
 
         -a, --add [name]: add a new habit.
         adds a new habit with name [name] to the database.
@@ -61,7 +67,7 @@ help = """
         [habit]: name of an existing habit.
         [stepno]: a number from 0 to the default step number
 
-        seeing data:
+        map:
         
         -d, --day [start] [end] ([color]): view day heatmap for all habits.
         displays a single bar of each habit's data on [day], optionally in [color]
@@ -86,7 +92,7 @@ help = """
         [start], [end]: either "tdy", "yst", or a date in ISO format (YYYY-MM-DD).
         [duration]: either "week", "month" or "year"
 
-        miscellaneous:
+        misc:
 
         -h, --help: see this message.
 
@@ -115,55 +121,66 @@ if len(sys.argv) == 1:
     print(comms)
 else:
     match sys.argv[1]:
-        case "-a" | "--add":
-            try:
-                main.add(dic, sys.argv[2])
-            except:
-                print("not enough arguments.")
-        case "-h" | "--help":
-            print(help)
-        case "-l" | "--list":
-            for habit in dic:
-                if habit != "stepno":
-                    print(habit)
-        case "-d" | "-day":
-            match len(sys.argv):
-                case 4:
-                    main.daymap(*sys.argv[2:4], "FFFFFF", dic)
-                case 5:
-                    main.daymap(*sys.argv[2:5], dic)
-                case _:
-                    print("not enough arguments.")
-        case "-m" | "-month":
-            match len(sys.argv):
-                case 4:
-                    main.monthmap(*sys.argv[2:4], "FFFFFF", dic)
-                case 5:
-                    main.monthmap(*sys.argv[2:5], dic)
-                case _:
-                    print("not enough arguments.")
-        case "-y" | "-year":
-            match len(sys.argv):
-                case 4:
-                    main.yearmap(*sys.argv[2:4], "FFFFFF")
-                case 5:
-                    main.yearmap(*sys.argv[2:5])
-                case _:
-                    print("not enough arguments.")
-        case "-r" | "--remove":
-            try:
-                if sys.argv[2] == "stepno":
-                    print("stepno cannot be deleted.")
-                else:
+        case "habit":
+            match sys.argv[2]:
+                case "-a" | "--add":
                     try:
-                        del dic[sys.argv[2]]
+                        main.add(dic, sys.argv[2])
                     except:
-                        print("not found")
+                        print("not enough arguments.")
+                case "-r" | "--remove":
+                    try:
+                        if sys.argv[2] == "stepno":
+                            print("stepno cannot be deleted.")
+                        else:
+                            try:
+                                del dic[sys.argv[2]]
+                            except:
+                                print("not found")
+                            else:
+                                print(f"{sys.argv[2]} deleted.")
+                    except:
+                        print("not enough arguments.")
+                case "-t" | "--track":
+                    if len(sys.argv) == 3:
+                        main.multitrack(dic, sys.argv[2])
+                    elif len(sys.argv) == 5:
+                        main.track(dic, *sys.argv[2:5])
                     else:
-                        print(f"{sys.argv[2]} deleted.")
-            except:
-                print("not enough arguments.")
-        case "-s" | "--steps":
+                        print("not enough arguments.")
+        case "map":
+            match sys.argv[2]:
+                case "-l" | "--list":
+                    for habit in dic:
+                        if habit != "stepno":
+                            print(habit)
+                case "-d" | "-day":
+                    match len(sys.argv):
+                        case 4:
+                            main.daymap(*sys.argv[2:4], "FFFFFF", dic)
+                        case 5:
+                            main.daymap(*sys.argv[2:5], dic)
+                        case _:
+                            print("not enough arguments.")
+                case "-m" | "-month":
+                    match len(sys.argv):
+                        case 4:
+                            main.monthmap(*sys.argv[2:4], "FFFFFF", dic)
+                        case 5:
+                            main.monthmap(*sys.argv[2:5], dic)
+                        case _:
+                            print("not enough arguments.")
+                case "-y" | "-year":
+                    match len(sys.argv):
+                        case 4:
+                            main.yearmap(*sys.argv[2:4], "FFFFFF")
+                        case 5:
+                            main.yearmap(*sys.argv[2:5])
+                        case _:
+                            print("not enough arguments.")
+        case "help":
+            print(help)
+        case "steps":
             if len(sys.argv) == 3: 
                 try:
                     new = int(sys.argv[2])
@@ -173,13 +190,6 @@ else:
                     print("invalid number.")
                 else:
                     dic["stepno"] = new
-            else:
-                print("not enough arguments.")
-        case "-t" | "--track":
-            if len(sys.argv) == 3:
-                main.multitrack(dic, sys.argv[2])
-            elif len(sys.argv) == 5:
-                main.track(dic, *sys.argv[2:5])
             else:
                 print("not enough arguments.")
         case _:
