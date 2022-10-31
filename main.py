@@ -206,25 +206,23 @@ def daymap(begin, end, col, json):
                     while len(string) < max + 4:
                         string = " " + string
                     string += " "
-                    while start <= end:
-                        date = (start.year, start.month, start.day)
-                        try:
-                            num = json[habit][str(date[0])][date[1]-1][date[2]-1]
-                        except:
-                            newyear(json, habit, date[0])
-                            num = 0
-                        nums.append(num)
-                        match num:
-                            case 0:
-                                string += color("  ", col)
-                            case 1:
-                                string += color("░░", col)
-                            case 2:
-                                string += color("▒▒", col)
-                            case 3:
-                                string += color("▓▓", col)
-                            case 4:
-                                string += color("██", col) 
+                    try:
+                        num = json[habit][str(date[0])][date[1]-1][date[2]-1]
+                    except:
+                        newyear(json, habit, date[0])
+                        num = 0
+                    nums.append(num)
+                    match num:
+                        case 0:
+                            string += color("  ", col)
+                        case 1:
+                            string += color("░░", col)
+                        case 2:
+                            string += color("▒▒", col)
+                        case 3:
+                            string += color("▓▓", col)
+                        case 4:
+                            string += color("██", col) 
             strings[habit] = string
         start += dt.timedelta(days=1)
 
