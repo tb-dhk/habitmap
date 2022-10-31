@@ -146,7 +146,7 @@ def daymap(begin, end, col, json):
         date = (start.year, start.month, start.day)
         nums = []
         for habit in lis:
-            string = ""
+            string = strings["habit"]
             if habit != "stepno":
                 if habit == "overall":
                     string = "overall"
