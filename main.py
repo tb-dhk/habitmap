@@ -90,11 +90,7 @@ def multitrack(json, day):
 
     for habit in lis:
         if habit != "stepno":
-            string = habit
-            while len(string) < max:
-                string = " " + string
-
-            ono = input("    " + string + "? ")
+            ono = input("    " + habit + "? ")
             track(json, day, habit, ono)
     
 
