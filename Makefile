@@ -1,2 +1,2 @@
 install:
-	chmod +x habit-map
+	chmod +x hbmp
