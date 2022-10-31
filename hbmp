@@ -148,6 +148,9 @@ else:
                         main.track(dic, *sys.argv[3:6])
                     else:
                         print("not enough arguments.")
+                case _:
+                    print("invalid command.")
+
         case "map":
             match sys.argv[2]:
                 case "-l" | "--list":
@@ -178,6 +181,8 @@ else:
                             main.yearmap(*sys.argv[3:6])
                         case _:
                             print("not enough arguments.")
+                case _:
+                    print("invalid command.")
         case "help":
             print(help)
         case "steps":
