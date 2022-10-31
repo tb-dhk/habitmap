@@ -167,7 +167,6 @@ def daymap(begin, end, col, json):
                         case 4:
                             string += color("██", col)
                 elif habit in ["yy", "mm", "dd"]:
-                    start = st
                     string = habit
                     while len(string) < max + 4:
                         string = " " + string
@@ -201,7 +200,6 @@ def daymap(begin, end, col, json):
                             else:
                                 string += "  "
                 else:
-                    start = st
                     string = "    " + habit
                     while len(string) < max + 4:
                         string = " " + string
