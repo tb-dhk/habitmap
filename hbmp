@@ -27,7 +27,7 @@ comms = """
     -t, --track     [day]                   ([habit] [stepno])          add or edit a record.
 
     -l, --list                                                          list all habits.
-    -d, --day       [day] [start]           ([color])                   view heatmap for all habits from one day to another.      
+    -d, --day       [start] [end]           ([color])                   view heatmap for all habits from one day to another.      
     -y, --year      [habit] [year]          ([color])                   view year heatmap for habit.
 
     -h, --help                                                          see all commands and explanations.
@@ -65,6 +65,12 @@ help = """
         displays a single bar of each habit's data on [day], optionally in [color]
         
         [start], [end]: any day.
+        [color]: any hex code (no preceding "#")
+
+        -m, --month [start] [end] ([color]): view day heatmap for all habits over a few months.
+        displays a single bar of each habit's data on [day], optionally in [color]
+        
+        [start], [end]: any month in ISO format (date without day, YYYY-MM).
         [color]: any hex code (no preceding "#")
 
         -y, --year [habit] [year] ([color]): displays a heatmap.
