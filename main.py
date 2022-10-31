@@ -10,7 +10,7 @@ os.chdir(os.path.dirname(os.path.realpath(__file__)))
 
 try:
     # dic = json.load(open(os.getcwd()+'/stats.json'))
-    sett = json.load(open(os.getcwd()+'/settings.json'))
+    sett = json.load(open(os.getcwd()+'/config.toml'))
     stepno = sett["stepno"]
 except:
     stepno = 4

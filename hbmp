@@ -16,7 +16,7 @@ except:
     dic = {}
 
 try:
-    sett = toml.load(open(os.getcwd()+'/settings.toml'))
+    sett = toml.load(open(os.getcwd()+'/config.toml'))
 except:
     sett = {}
 
