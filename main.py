@@ -80,7 +80,6 @@ def track(json, habit, day, ono):
         print("    invalid stepno.")
 
 def daymap(begin, end, col, json):
-    print(begin, end)
     col = "#" + col
     tdy = dt.date.today()
     yst = dt.date.today() - dt.timedelta(days=1)
@@ -191,6 +190,7 @@ def daymap(begin, end, col, json):
                     string = " " + string
                 string += " "
                 while start <= end:
+                    print(start, end)
                     date = (start.year, start.month, start.day)
                     if date[0] not in dic[habit]:
                         newyear(json, habit, date[0])
