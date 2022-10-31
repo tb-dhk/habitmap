@@ -110,7 +110,7 @@ def daymap(begin, end, col):
                 end = dt.date.fromisoformat(begin)
     
     max = 0
-    lis = []
+    lis = ["yy", "mm", "dd"]
     
     for habit in dic:
         if len(habit) > max:
@@ -120,33 +120,52 @@ def daymap(begin, end, col):
     lis.append("overall")
     
     nums = []
-    
+    if len(nums) == 0:
+        print("    you have no habits. please add a habit and try again.")
+        exit()
+
     for habit in lis:
-        start = st
-        print(lis, habit)
         if habit != "stepno":
             if habit == "overall":
                 string = "overall"
                 while len(string) < max + 4:
                     string = " " + string
                 string += " "
-                if len(nums) == 0:
-                    print("    you have no habits. please add a habit and try again.")
-                else:
-                    num = round(statistics.mean(nums))
-                    match num:
-                        case 0:
-                            string += color("  ", col)
-                        case 1:
-                            string += color("░░", col)
-                        case 2:
-                            string += color("▒▒", col)
-                        case 3:
-                            string += color("▓▓", col)
-                        case 4:
-                            string += color("██", col)
+                num = round(statistics.mean(nums))
+                match num:
+                    case 0:
+                        string += color("  ", col)
+                    case 1:
+                        string += color("░░", col)
+                    case 2:
+                        string += color("▒▒", col)
+                    case 3:
+                        string += color("▓▓", col)
+                    case 4:
+                        string += color("██", col)
+                print(string)
+            elif habit in ["yy", "mm", "dd"]:
+                start = st
+                string = habit
+                while len(string) < max + 4:
+                    string = " " + string
+                string += " "
+                while start <= end:
+                    date = (start.year, start.month, start.day)
+                    match habit:
+                        case "yy":
+                            string += str(start.year)[-2:]
+                        case "mm":
+                            if start.month < 10:
+                                string += "0" + str(start.month)
+                            else:
+                                string += str(start.month)
+                        case "dd":
+                            string += str(start.day)
+                    start += dt.timedelta(days=1)  
                 print(string)
             else:
+                start = st
                 string = "    " + habit
                 while len(string) < max + 4:
                     string = " " + string
