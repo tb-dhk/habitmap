@@ -171,7 +171,7 @@ def daymap(begin, end, col, json):
                             else:
                                 string += "  "
                         case "dd":
-                            if start.day == 1:
+                            if start.day == 1 or start == st:
                                 string += "01"
                             elif start.day == 5:
                                 string += "05"
