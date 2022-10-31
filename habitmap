@@ -174,5 +174,5 @@ else:
 
 td = dt.date.today()
 for habit in dic:
-    print(dic[habit][td.year][td.month][td.day])
+    print(dic[habit][str(td.year)][td.month-1][td.day-1])
 open(os.getcwd()+"/stats.json", "w").write(json.dumps(dic, indent=4))
