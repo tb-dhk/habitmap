@@ -9,8 +9,9 @@ from colors import color
 os.chdir(os.path.dirname(os.path.realpath(__file__)))
 
 try:
-    dic = json.load(open(os.getcwd()+'/stats.json'))
-    stepno = dic["stepno"]
+    # dic = json.load(open(os.getcwd()+'/stats.json'))
+    sett = json.load(open(os.getcwd()+'/settings.json'))
+    stepno = sett["stepno"]
 except:
     stepno = 4
 
@@ -90,9 +91,8 @@ def multitrack(json, day):
         lis.append(habit)
 
     for habit in lis:
-        if habit != "stepno":
-            ono = input("    " + habit + "? ")
-            track(json, day, habit, ono)
+        ono = input("    " + habit + "? ")
+        track(json, day, habit, ono)
     
 
 def daymap(begin, end, col, json):
@@ -146,76 +146,75 @@ def daymap(begin, end, col, json):
         date = (start.year, start.month, start.day)
         nums = []
         for habit in lis:
-            if habit != "stepno":
-                try:
-                    string = strings[habit]
-                except:
-                    string = habit
-                    while len(string) < max:
-                        string = " " + string
-                    string = "    " + string + " "
+            try:
+                string = strings[habit]
+            except:
+                string = habit
+                while len(string) < max:
+                    string = " " + string
+                string = "    " + string + " "
 
-                if habit == "overall":
-                    num = math.floor(statistics.mean(nums))
-                    match num:
-                        case 0:
-                            string += color("  ", col)
-                        case 1:
-                            string += color("░░", col)
-                        case 2:
-                            string += color("▒▒", col)
-                        case 3:
-                            string += color("▓▓", col)
-                        case 4:
-                            string += color("██", col)
-                elif habit in ["yy", "mm", "dd"]:
-                    match habit:
-                        case "yy":
-                            if (start.month == 1 and start.day == 1) or start == st or start == end:
-                                if start.year < 10:
-                                    string += "0" + str(start.year)
-                                else:
-                                    string += str(start.year)[-2:]
+            if habit == "overall":
+                num = math.floor(statistics.mean(nums))
+                match num:
+                    case 0:
+                        string += color("  ", col)
+                    case 1:
+                        string += color("░░", col)
+                    case 2:
+                        string += color("▒▒", col)
+                    case 3:
+                        string += color("▓▓", col)
+                    case 4:
+                        string += color("██", col)
+            elif habit in ["yy", "mm", "dd"]:
+                match habit:
+                    case "yy":
+                        if (start.month == 1 and start.day == 1) or start == st or start == end:
+                            if start.year < 10:
+                                string += "0" + str(start.year)
                             else:
-                                string += "  "
-                        case "mm":
-                            if start.day == 1 or start == st or start == end:
-                                if start.month < 10:
-                                    string += "0" + str(start.month)
-                                else:
-                                    string += str(start.month)
+                                string += str(start.year)[-2:]
+                        else:
+                            string += "  "
+                    case "mm":
+                        if start.day == 1 or start == st or start == end:
+                            if start.month < 10:
+                                string += "0" + str(start.month)
                             else:
-                                string += "  "
-                        case "dd":
-                            if start.day == 1:
-                                string += "01"
-                            elif start.day == 5:
-                                string += "05"
-                            elif start.day == 30 and calendar.monthrange(start.year, start.month)[1] == 30 and start != st and start != end:
-                                string += "  "
-                            elif start.day % 5 == 0 or start == st or start == end:
-                                string += str(start.day)
-                            else:
-                                string += "  "
-                else:
-                    try:
-                        num = json[habit][str(date[0])][date[1]-1][date[2]-1]
-                    except:
-                        newyear(json, habit, date[0])
-                        num = 0
-                    nums.append(num)
-                    match num:
-                        case 0:
-                            string += color("  ", col)
-                        case 1:
-                            string += color("░░", col)
-                        case 2:
-                            string += color("▒▒", col)
-                        case 3:
-                            string += color("▓▓", col)
-                        case 4:
-                            string += color("██", col) 
-                strings[habit] = string
+                                string += str(start.month)
+                        else:
+                            string += "  "
+                    case "dd":
+                        if start.day == 1:
+                            string += "01"
+                        elif start.day == 5:
+                            string += "05"
+                        elif start.day == 30 and calendar.monthrange(start.year, start.month)[1] == 30 and start != st and start != end:
+                            string += "  "
+                        elif start.day % 5 == 0 or start == st or start == end:
+                            string += str(start.day)
+                        else:
+                            string += "  "
+            else:
+                try:
+                    num = json[habit][str(date[0])][date[1]-1][date[2]-1]
+                except:
+                    newyear(json, habit, date[0])
+                    num = 0
+                nums.append(num)
+                match num:
+                    case 0:
+                        string += color("  ", col)
+                    case 1:
+                        string += color("░░", col)
+                    case 2:
+                        string += color("▒▒", col)
+                    case 3:
+                        string += color("▓▓", col)
+                    case 4:
+                        string += color("██", col) 
+            strings[habit] = string
         start += dt.timedelta(days=1)
 
     for x in strings:

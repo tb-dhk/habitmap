@@ -14,8 +14,14 @@ try:
 except:
     dic = {}
 
-if not dic:
-    dic["stepno"] = 4
+try:
+    sett = json.load(open(os.getcwd()+'/settings.json'))
+except:
+    sett = {}
+
+
+if not sett:
+    sett["stepno"] = 4
 
 comms = """
     usage: hbmp [command] [argument]
