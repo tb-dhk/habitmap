@@ -65,9 +65,6 @@ def track(json, habit, day, ono):
                     date = (dat.year, dat.month, dat.day)
 
         if str(date[0]) not in json[habit]:
-            for x in json[habit]:
-                print(x)
-            print("adding year")
             newyear(json, habit, date[0])
        
         if stepno != 4:
@@ -196,7 +193,10 @@ def daymap(begin, end, col, json):
                     date = (start.year, start.month, start.day)
                     if date[0] not in dic[habit]:
                         newyear(json, habit, date[0])
+                        for x in json[habit]:
+                            print(x)
                         print("adding year")
+            
                     num = json[habit][str(date[0])][date[1]-1][date[2]-1]
                     nums.append(num)
                     match num:
