@@ -170,6 +170,8 @@ def daymap(begin, end, col):
                                 string += "05"
                             elif start.day % 5 == 0:
                                 string += str(start.day)
+                            else:
+                                string += "  "
                     start += dt.timedelta(days=1)  
                 print(string)
             else:
