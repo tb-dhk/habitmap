@@ -22,6 +22,7 @@ except:
 
 if not sett:
     sett["stepno"] = 4
+    sett["defcol"] = "#FFFFFF"
 
 comms = """
     usage: hbmp [command] [argument]
@@ -166,7 +167,7 @@ else:
                 case "-d" | "-day":
                     match len(sys.argv):
                         case 5:
-                            main.daymap(*sys.argv[3:5], "FFFFFF", dic)
+                            main.daymap(*sys.argv[3:5], defcol[1:], dic)
                         case 6:
                             main.daymap(*sys.argv[3:6], dic)
                         case _:
@@ -174,7 +175,7 @@ else:
                 case "-m" | "-month":
                     match len(sys.argv):
                         case 5:
-                            main.monthmap(*sys.argv[3:5], "FFFFFF", dic)
+                            main.monthmap(*sys.argv[3:5], defcol[1:], dic)
                         case 6:
                             main.monthmap(*sys.argv[3:6], dic)
                         case _:
@@ -182,7 +183,7 @@ else:
                 case "-y" | "-year":
                     match len(sys.argv):
                         case 5:
-                            main.yearmap(*sys.argv[3:5], "FFFFFF")
+                            main.yearmap(*sys.argv[3:5], defcol[1:])
                         case 6:
                             main.yearmap(*sys.argv[3:6])
                         case _:
