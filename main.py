@@ -152,6 +152,7 @@ def daymap(begin, end, col, json):
                     string = " " + string
                 string += " "
                 while start <= end:
+                    print(start)
                     date = (start.year, start.month, start.day)
                     match habit:
                         case "yy":
