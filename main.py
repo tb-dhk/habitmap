@@ -165,8 +165,6 @@ def daymap(begin, end, col, json):
                         case 4:
                             string += color("██", col)
                 elif habit in ["yy", "mm", "dd"]:
-                    while len(string) < max + 4:
-                        string = " " + string
                     match habit:
                         case "yy":
                             if (start.month == 1 and start.day == 1) or start == st:
@@ -214,7 +212,6 @@ def daymap(begin, end, col, json):
                         case 4:
                             string += color("██", col) 
             strings[habit] = string
-        print(strings)
         start += dt.timedelta(days=1)
 
     for x in strings:
