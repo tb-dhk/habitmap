@@ -227,8 +227,8 @@ def daymap(begin, end, col, json):
                                 string += color("██", col)
                         start += dt.timedelta(days=1) 
             strings[habit] = string
-        start += dt.timedelta(days=1)
-    
+    start += dt.timedelta(days=1)
+
     for x in strings:
         print(strings[x])
 
