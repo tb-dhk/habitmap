@@ -1,4 +1,4 @@
 {
-    stepno = 4
-    defcol = "#FFFFFF"
+    "stepno" = 4,
+    "defcol" = "#ffffff"
 }
