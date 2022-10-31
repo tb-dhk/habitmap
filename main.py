@@ -2,6 +2,7 @@ import os
 import json
 import datetime as dt
 import statistics
+import calendar
 from colors import color
 
 os.chdir(os.path.dirname(os.path.realpath(__file__)))
@@ -174,6 +175,8 @@ def daymap(begin, end, col):
                                 string += "01"
                             elif start.day == 5:
                                 string += "05"
+                            elif start.day == 30 and calendar.monthrange(start.year, start.month)[1] == 30:
+                                string += "  "
                             elif start.day % 5 == 0:
                                 string += str(start.day)
                             else:
