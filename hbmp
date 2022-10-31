@@ -5,6 +5,7 @@ import main
 import datetime as dt
 import os
 import json
+import toml
 import sys 
 
 os.chdir(os.path.dirname(os.path.realpath(__file__)))  
@@ -15,7 +16,7 @@ except:
     dic = {}
 
 try:
-    sett = json.load(open(os.getcwd()+'/settings.json'))
+    sett = toml.load(open(os.getcwd()+'/settings.toml'))
 except:
     sett = {}
 
@@ -143,7 +144,7 @@ else:
                         except:
                             print("not found")
                         else:
-                            print(f"{sys.argv[2]} deleted.")
+                            print(f"{sys.argv[3]} deleted.")
                     except:
                         print("not enough arguments.")
                 case "-t" | "--track":
