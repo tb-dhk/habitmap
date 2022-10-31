@@ -26,7 +26,7 @@ comms = """
     -t, --track     [habit] [day] [stepno]                              add or edit a record.
 
     -l, --list                                                          list all habits.
-    -d, --day       [day]                   ([color])                   view day heatmap for all habits.      
+    -d, --day       [day]                   ([color])                   view heatmap for all habits from one day to another.      
     -y, --year      [habit] [year]          ([color])                   view year heatmap for habit.
 
     -h, --help                                                          see all commands and explanations.
