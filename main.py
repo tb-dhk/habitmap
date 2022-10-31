@@ -145,13 +145,14 @@ def daymap(begin, end, col):
                             string += color("▓▓", col)
                         case 4:
                             string += color("██", col)
-                    print(string)
+                print(string)
             else:
                 string = "    " + habit
                 while len(string) < max + 4:
                     string = " " + string
                 string += " "
                 while start <= end:
+                    print(string)
                     date = (start.year, start.month, start.day)
                     num = dic[habit][str(date[0])][date[1]-1][date[2]-1]
                     nums.append(num)
@@ -167,7 +168,7 @@ def daymap(begin, end, col):
                         case 4:
                             string += color("██", col)
                     start += dt.timedelta(days=1) 
-                    print(string)
+                print(string)
     
 
 def yearmap(habit, year, col):
