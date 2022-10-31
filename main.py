@@ -31,8 +31,7 @@ def newyear(json, habit, year):
                 json[habit][str(year)][-1].append(0)
         else:
             for x in range(nmth[x]):
-                json[habit][str(year)][-1].append(0)
-    print(f"    habit '{habit}' added.")
+                json[habit][str(year)][-1].append(0) 
 
 def add(json, habit):
     if habit == "stepno":
@@ -42,6 +41,7 @@ def add(json, habit):
     else:
         tyr = dt.date.today().year
         newyear(json, habit, tyr)
+        print(f"    habit '{habit}' added.")
 
 def track(json, habit, day, ono):
     ono = int(ono)
