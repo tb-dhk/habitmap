@@ -219,7 +219,6 @@ def daymap(begin, end, col, json):
         start += dt.timedelta(days=1)
 
     for x in strings:
-        print(x)
         print(strings[x])
 
 
