@@ -120,7 +120,7 @@ def daymap(begin, end, col):
     lis.append("overall")
     
     nums = []
-    if len(nums) == 0:
+    if len(lis) <= 4:
         print("    you have no habits. please add a habit and try again.")
         exit()
 
@@ -164,6 +164,8 @@ def daymap(begin, end, col):
                             string += str(start.day)
                     start += dt.timedelta(days=1)  
                 print(string)
+                if habit == "dd":
+                    print("")
             else:
                 start = st
                 string = "    " + habit
