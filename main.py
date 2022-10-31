@@ -161,7 +161,10 @@ def daymap(begin, end, col):
                             else:
                                 string += str(start.month)
                         case "dd":
-                            string += str(start.day)
+                            if start.day < 10:
+                                string += "0" + str(start.day)
+                            else:
+                                string += str(start.day)
                     start += dt.timedelta(days=1)  
                 print(string)
             else:
