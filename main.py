@@ -159,12 +159,16 @@ def daymap(begin, end, col):
                                     string += "0" + str(start.year)
                                 else:
                                     string += str(start.year)[-2:]
+                            else:
+                                string += "  "
                         case "mm":
                             if start.day == 1 or start == st:
                                 if start.month < 10:
                                     string += "0" + str(start.month)
                                 else:
                                     string += str(start.month)
+                            else:
+                                string += "  "
                         case "dd":
                             if start.day == 5:
                                 string += "05"
