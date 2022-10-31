@@ -108,7 +108,7 @@ def daymap(begin, end, col, json):
                 print("    invalid day. the 'day' argument must either be 'tdy', 'yst', or a date in ISO format (YYYY-MM-DD).")
                 exit()
             else:
-                end = dt.date.fromisoformat(begin)
+                end = dt.date.fromisoformat(end)
     
     max = 0
     lis = ["yy", "mm", "dd"]
@@ -190,7 +190,6 @@ def daymap(begin, end, col, json):
                     string = " " + string
                 string += " "
                 while start <= end:
-                    print(start, end)
                     date = (start.year, start.month, start.day)
                     if date[0] not in dic[habit]:
                         newyear(json, habit, date[0])
