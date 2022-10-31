@@ -65,6 +65,8 @@ def track(json, habit, day, ono):
                     date = (dat.year, dat.month, dat.day)
 
         if str(date[0]) not in json[habit]:
+            for x in json[habit]:
+                print(x)
             print("adding year")
             newyear(json, habit, date[0])
        
