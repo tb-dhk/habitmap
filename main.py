@@ -171,13 +171,13 @@ def daymap(begin, end, col, json):
                             else:
                                 string += "  "
                         case "dd":
-                            if start.day == 1 or start == st:
+                            if start.day == 1:
                                 string += "01"
                             elif start.day == 5:
                                 string += "05"
-                            elif start.day == 30 and calendar.monthrange(start.year, start.month)[1] == 30:
+                            elif start.day == 30 and calendar.monthrange(start.year, start.month)[1] == 30 and start != st:
                                 string += "  "
-                            elif start.day % 5 == 0:
+                            elif start.day % 5 == 0 or start == st:
                                 string += str(start.day)
                             else:
                                 string += "  "
