@@ -122,6 +122,14 @@ else:
                     main.daymap(*sys.argv[2:5], dic)
                 case _:
                     print("not enough arguments.")
+        case "-m" | "-month":
+            match len(sys.argv):
+                case 4:
+                    main.monthmap(*sys.argv[2:4], "FFFFFF", dic)
+                case 5:
+                    main.monthmap(*sys.argv[2:5], dic)
+                case _:
+                    print("not enough arguments.")
         case "-y" | "-year":
             match len(sys.argv):
                 case 4:
