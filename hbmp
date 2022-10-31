@@ -20,19 +20,19 @@ if not dic:
 comms = """
     list of arguments:
 
-    -e, --e.g.      [args]                  ([optional] [args])         description
+    -e, --e.g.      [args]          ([optional] [args])     description
 
-    -a, --add       [name]                                              add a new habit (if not already existing).
-    -r, --remove    [habit]                                             remove a habit.
-    -t, --track     [day]                   ([habit] [stepno])          add or edit a record.
+    -a, --add       [name]                                  add a new habit (if not already existing).
+    -r, --remove    [habit]                                 remove a habit.
+    -t, --track     [day]           ([habit] [stepno])      add or edit a record.
 
-    -l, --list                                                          list all habits.
-    -d, --day       [start] [end]           ([color])                   view heatmap for all habits from one day to another.
-    -m, --month     [start] [end]           ([color])                   view heatmap for all habits from the start of a month to the beginning of another.
-    -y, --year      [habit] [year]          ([color])                   view year heatmap for habit.
+    -l, --list                                              list all habits.
+    -d, --day       [start] [end]   ([color])               view heatmap for all habits from one day to another.
+    -m, --month     [start] [end]   ([color])               view heatmap for all habits from the start of a month to the beginning of another.
+    -y, --year      [habit] [year]  ([color])               view year heatmap for habit.
 
-    -h, --help                                                          see all commands and explanations.
-    -s, --steps     [number]                                            set the default number of steps in heatmap (number from 1-4)                                                                    
+    -h, --help                                              see all commands and explanations.
+    -s, --steps     [number]                                set the default number of steps in heatmap (number from 1-4)                                                                    
 """
 
 help = """
