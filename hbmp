@@ -20,7 +20,7 @@ if not dic:
 comms = """
     list of arguments:
 
-    -e, --e.g.      [args]                  (optional [args])           description
+    -e, --e.g.      [args]                  ([optional] [args])         description
 
     -a, --add       [name]                                              add a new habit (if not already existing).
     -r, --remove    [habit]                                             remove a habit.
