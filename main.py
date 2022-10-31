@@ -3,6 +3,7 @@ import json
 import datetime as dt
 import statistics
 import calendar
+import math
 from colors import color
 
 os.chdir(os.path.dirname(os.path.realpath(__file__)))
@@ -147,7 +148,7 @@ def daymap(begin, end, col, json):
                 while len(string) < max + 4:
                     string = " " + string
                 string += " "
-                num = round(statistics.mean(nums))
+                num = math.floor(statistics.mean(nums))
                 match num:
                     case 0:
                         string += color("  ", col)
