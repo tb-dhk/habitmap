@@ -125,7 +125,7 @@ else:
             match sys.argv[2]:
                 case "-a" | "--add":
                     try:
-                        main.add(dic, sys.argv[2])
+                        main.add(dic, sys.argv[3])
                     except:
                         print("not enough arguments.")
                 case "-r" | "--remove":
@@ -134,7 +134,7 @@ else:
                             print("stepno cannot be deleted.")
                         else:
                             try:
-                                del dic[sys.argv[2]]
+                                del dic[sys.argv[3]]
                             except:
                                 print("not found")
                             else:
@@ -142,10 +142,10 @@ else:
                     except:
                         print("not enough arguments.")
                 case "-t" | "--track":
-                    if len(sys.argv) == 3:
-                        main.multitrack(dic, sys.argv[2])
-                    elif len(sys.argv) == 5:
-                        main.track(dic, *sys.argv[2:5])
+                    if len(sys.argv) == 4:
+                        main.multitrack(dic, sys.argv[3])
+                    elif len(sys.argv) == 6:
+                        main.track(dic, *sys.argv[3:6])
                     else:
                         print("not enough arguments.")
         case "map":
@@ -157,25 +157,25 @@ else:
                 case "-d" | "-day":
                     match len(sys.argv):
                         case 5:
-                            main.daymap(*sys.argv[2:4], "FFFFFF", dic)
+                            main.daymap(*sys.argv[3:5], "FFFFFF", dic)
                         case 6:
-                            main.daymap(*sys.argv[2:5], dic)
+                            main.daymap(*sys.argv[3:6], dic)
                         case _:
                             print("not enough arguments.")
                 case "-m" | "-month":
                     match len(sys.argv):
                         case 5:
-                            main.monthmap(*sys.argv[2:4], "FFFFFF", dic)
+                            main.monthmap(*sys.argv[3:5], "FFFFFF", dic)
                         case 6:
-                            main.monthmap(*sys.argv[2:5], dic)
+                            main.monthmap(*sys.argv[3:6], dic)
                         case _:
                             print("not enough arguments.")
                 case "-y" | "-year":
                     match len(sys.argv):
                         case 5:
-                            main.yearmap(*sys.argv[2:4], "FFFFFF")
+                            main.yearmap(*sys.argv[3:5], "FFFFFF")
                         case 6:
-                            main.yearmap(*sys.argv[2:5])
+                            main.yearmap(*sys.argv[3:6])
                         case _:
                             print("not enough arguments.")
         case "help":
