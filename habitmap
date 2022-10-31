@@ -167,7 +167,7 @@ else:
                 print("not enough arguments.")
         case "-t" | "--track":
             if len(sys.argv) == 3:
-                main.multitrack(dic, *sys.argv[2])
+                main.multitrack(dic, sys.argv[2])
             elif len(sys.argv) == 5:
                 main.track(dic, *sys.argv[2:5])
             else:
