@@ -170,7 +170,9 @@ def daymap(begin, end, col):
                             else:
                                 string += "  "
                         case "dd":
-                            if start.day == 5:
+                            if start.day == 1:
+                                string += "01"
+                            elif start.day == 5:
                                 string += "05"
                             elif start.day % 5 == 0:
                                 string += str(start.day)
