@@ -16,22 +16,22 @@ except:
 step_to4 = [ [0, 4], [0, 2, 4], [0, 1, 3, 4] ]
 step_from4 = [ [0, 0, 1, 1, 1], [0, 1, 1, 2, 2], [0, 1, 2, 2, 3] ]
    
-def newyear(json, habit, year):
+def newyear(js, habit, year):
     nmth = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
     lmth = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
 
-    json[habit] = {
+    js[habit] = {
         str(year) : []
     }
 
     for x in range(12):
-        json[habit][str(year)].append([])
+        js[habit][str(year)].append([])
         if int(year) % 4 == 0:
             for x in range(lmth[x]):
-                json[habit][str(year)][-1].append(0)
+                js[habit][str(year)][-1].append(0)
         else:
             for x in range(nmth[x]):
-                json[habit][str(year)][-1].append(0)
+                js[habit][str(year)][-1].append(0)
     print(f"    habit '{habit}' added.")
 
 def add(json, habit):
