@@ -123,6 +123,7 @@ def daymap(begin, end, col):
     
     for habit in lis:
         start = st
+        print(lis, habit)
         if habit != "stepno":
             if habit == "overall":
                 string = "overall"
