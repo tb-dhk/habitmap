@@ -19,8 +19,6 @@ try:
 except:
     sett = {}
 
-print(sett)
-
 if sett == {}:
     sett["stepno"] = 4
     sett["defcol"] = "#FFFFFF"
