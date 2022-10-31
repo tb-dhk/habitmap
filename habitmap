@@ -26,7 +26,7 @@ comms = """
     -t, --track     [habit] [day] [stepno]                              add or edit a record.
 
     -l, --list                                                          list all habits.
-    -d, --day       [day]                   ([color])                   view heatmap for all habits from one day to another.      
+    -d, --day       [day] [start]           ([color])                   view heatmap for all habits from one day to another.      
     -y, --year      [habit] [year]          ([color])                   view year heatmap for habit.
 
     -h, --help                                                          see all commands and explanations.
@@ -59,10 +59,10 @@ help = """
 
         seeing data:
         
-        -d, --day [day] ([color]): view day heatmap for all habits.
+        -d, --day [start] [end] ([color]): view day heatmap for all habits.
         displays a single bar of each habit's data on [day], optionally in [color]
         
-        [day]: any day.
+        [start], [end]: any day.
         [color]: any hex code (no preceding "#")
 
         -y, --year [habit] [year] ([color]): displays a heatmap.
@@ -117,7 +117,7 @@ else:
         case "-d" | "-day":
             match len(sys.argv):
                 case 4:
-                    main.daymap(*sys.argv[2:4], "000000", dic)
+                    main.daymap(*sys.argv[2:4], "FFFFFF", dic)
                 case 5:
                     main.daymap(*sys.argv[2:5], dic)
                 case _:
@@ -125,7 +125,7 @@ else:
         case "-y" | "-year":
             match len(sys.argv):
                 case 4:
-                    main.yearmap(*sys.argv[2:4], "000000")
+                    main.yearmap(*sys.argv[2:4], "FFFFFF")
                 case 5:
                     main.yearmap(*sys.argv[2:5])
                 case _:
