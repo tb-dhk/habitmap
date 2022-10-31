@@ -163,7 +163,7 @@ else:
                 case "-l" | "--list":
                     for habit in dic:
                         if habit != "stepno":
-                            print(habit)
+                            print("    " + habit)
                 case "-d" | "-day":
                     match len(sys.argv):
                         case 5:
