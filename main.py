@@ -194,7 +194,7 @@ def daymap(begin, end, col, json):
                     if date[0] not in dic[habit]:
                         newyear(json, habit, date[0])
                         print(json[habit])
-                    num = dic[habit][str(date[0])][date[1]-1][date[2]-1]
+                    num = json[habit][str(date[0])][date[1]-1][date[2]-1]
                     nums.append(num)
                     match num:
                         case 0:
