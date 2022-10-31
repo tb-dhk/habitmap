@@ -106,8 +106,6 @@ help = """
         note that in printing heatmaps, all numbers will be converted to their 4-step equivalents.
 """
 
-print("")
-
 if len(sys.argv) == 1:
     print(comms)
 else:
