@@ -2,6 +2,7 @@
 
 import main
 
+import datetime as dt
 import os
 import json
 import sys 
@@ -171,4 +172,7 @@ else:
         case _:
             print("invalid command.")
 
+td = dt.date.today()
+for habit in dic:
+    print(dic[habit][td.year][td.month][td.day])
 open(os.getcwd()+"/stats.json", "w").write(json.dumps(dic, indent=4))
