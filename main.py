@@ -149,9 +149,10 @@ def daymap(begin, end, col, json):
             try:
                 string = strings[habit]
             except:
-                string = "    " + habit
+                string = habit
                 while len(string) < max:
                     string = " " + string
+                string = "    " + string + " "
             if habit != "stepno":
                 if habit == "overall":
                     num = math.floor(statistics.mean(nums))
