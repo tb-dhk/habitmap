@@ -119,12 +119,10 @@ def daymap(begin, end, col, json):
             end = yst
         case _:
             try:
-                dat = dt.date.fromisoformat(end)
+                end = dt.date.fromisoformat(end)
             except:
                 print("    invalid day. the 'day' argument must either be 'tdy', 'yst', or a date in ISO format (YYYY-MM-DD).")
                 exit()
-            else:
-                end = dt.date.fromisoformat(end)
     
     max = 0
     lis = ["yy", "mm", "dd"]
@@ -136,39 +134,43 @@ def daymap(begin, end, col, json):
         
     lis.append("overall")
     
-    nums = []
     if len(lis) <= 4:
         print("    you have no habits. please add a habit and try again.")
         exit()
 
-    for habit in lis:
-        if habit != "stepno":
-            if habit == "overall":
-                string = "overall"
-                while len(string) < max + 4:
-                    string = " " + string
-                string += " "
-                num = math.floor(statistics.mean(nums))
-                match num:
-                    case 0:
-                        string += color("  ", col)
-                    case 1:
-                        string += color("░░", col)
-                    case 2:
-                        string += color("▒▒", col)
-                    case 3:
-                        string += color("▓▓", col)
-                    case 4:
-                        string += color("██", col)
-                print(string)
-            elif habit in ["yy", "mm", "dd"]:
-                start = st
-                string = habit
-                while len(string) < max + 4:
-                    string = " " + string
-                string += " "
-                while start <= end:
-                    date = (start.year, start.month, start.day)
+    strings = {}
+
+    start = st
+        # start += dt.timedelta(days=1)  
+    while start <= end:
+        date = (start.year, start.month, start.day)
+        for habit in lis:
+            nums = []
+            string = ""
+            if habit != "stepno":
+                if habit == "overall":
+                    string = "overall"
+                    while len(string) < max + 4:
+                        string = " " + string
+                    string += " "
+                    num = math.floor(statistics.mean(nums))
+                    match num:
+                        case 0:
+                            string += color("  ", col)
+                        case 1:
+                            string += color("░░", col)
+                        case 2:
+                            string += color("▒▒", col)
+                        case 3:
+                            string += color("▓▓", col)
+                        case 4:
+                            string += color("██", col)
+                elif habit in ["yy", "mm", "dd"]:
+                    start = st
+                    string = habit
+                    while len(string) < max + 4:
+                        string = " " + string
+                    string += " "
                     match habit:
                         case "yy":
                             if (start.month == 1 and start.day == 1) or start == st:
@@ -197,35 +199,38 @@ def daymap(begin, end, col, json):
                                 string += str(start.day)
                             else:
                                 string += "  "
-                    start += dt.timedelta(days=1)  
-                print(string)
-            else:
-                start = st
-                string = "    " + habit
-                while len(string) < max + 4:
-                    string = " " + string
-                string += " "
-                while start <= end:
-                    date = (start.year, start.month, start.day)
-                    try:
-                        num = json[habit][str(date[0])][date[1]-1][date[2]-1]
-                    except:
-                        newyear(json, habit, date[0])
-                        num = 0
-                    nums.append(num)
-                    match num:
-                        case 0:
-                            string += color("  ", col)
-                        case 1:
-                            string += color("░░", col)
-                        case 2:
-                            string += color("▒▒", col)
-                        case 3:
-                            string += color("▓▓", col)
-                        case 4:
-                            string += color("██", col)
-                    start += dt.timedelta(days=1) 
-                print(string)
+                else:
+                    start = st
+                    string = "    " + habit
+                    while len(string) < max + 4:
+                        string = " " + string
+                    string += " "
+                    while start <= end:
+                        date = (start.year, start.month, start.day)
+                        try:
+                            num = json[habit][str(date[0])][date[1]-1][date[2]-1]
+                        except:
+                            newyear(json, habit, date[0])
+                            num = 0
+                        nums.append(num)
+                        match num:
+                            case 0:
+                                string += color("  ", col)
+                            case 1:
+                                string += color("░░", col)
+                            case 2:
+                                string += color("▒▒", col)
+                            case 3:
+                                string += color("▓▓", col)
+                            case 4:
+                                string += color("██", col)
+                        start += dt.timedelta(days=1) 
+            strings[habit] = string
+        start += dt.timedelta(days=1)
+    
+    for x in strings:
+        print(x)
+
 
 def monthmap(begin, end, col, json):
     begin = dt.date.isoformat(dt.datetime.combine(dt.date(int(begin[0:4]), int(begin[5:7]), 1), dt.datetime.min.time()))
