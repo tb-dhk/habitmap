@@ -154,12 +154,17 @@ def daymap(begin, end, col):
                     date = (start.year, start.month, start.day)
                     match habit:
                         case "yy":
-                            string += str(start.year)[-2:]
+                            if (start.month == 1 and start.day == 1) or start == st:
+                                if start.year < 10:
+                                    string += "0" + str(start.year)
+                                else:
+                                    string += str(start.year)[-2:]
                         case "mm":
-                            if start.month < 10:
-                                string += "0" + str(start.month)
-                            else:
-                                string += str(start.month)
+                            if start.day == 1 or start == st:
+                                if start.month < 10:
+                                    string += "0" + str(start.month)
+                                else:
+                                    string += str(start.month)
                         case "dd":
                             if start.day < 10:
                                 string += "0" + str(start.day)
