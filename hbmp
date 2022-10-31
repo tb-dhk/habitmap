@@ -181,7 +181,7 @@ else:
                 case "-y" | "-year":
                     match len(sys.argv):
                         case 5:
-                            main.yearmap(*sys.argv[3:5], defcol[1:])
+                            main.yearmap(*sys.argv[3:5], defcol[1:], dic)
                         case 6:
                             main.yearmap(*sys.argv[3:6])
                         case _:

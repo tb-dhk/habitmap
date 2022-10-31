@@ -85,7 +85,7 @@ def multitrack(json, day):
     lis = []
     max = 0
 
-    for habit in dic:
+    for habit in json:
         if len(habit) > max:
             max = len(habit)
         lis.append(habit)
@@ -127,7 +127,7 @@ def daymap(begin, end, col, json):
     max = 0
     lis = ["yy", "mm", "dd"]
     
-    for habit in dic:
+    for habit in json:
         if len(habit) > max:
             max = len(habit)
         lis.append(habit)
@@ -226,9 +226,9 @@ def monthmap(begin, end, col, json):
     end = dt.date.isoformat(dt.datetime.combine(dt.date(int(end[0:4]), int(end[5:7]), calendar.monthrange(int(end[0:4]), int(end[5:7]))[1]), dt.datetime.min.time()))
     daymap(begin, end, col, json)
 
-def yearmap(habit, year, col):
+def yearmap(habit, year, col, json):
     col = "#" + col
-    stat = dic[habit][str(year)]
+    stat = json[habit][str(year)]
     yearindow = [[], [], [], [], [], [], []]
     strings = []
     months = [0]
