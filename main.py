@@ -171,7 +171,7 @@ def daymap(begin, end, col, json):
                 elif habit in ["yy", "mm", "dd"]:
                     match habit:
                         case "yy":
-                            if (start.month == 1 and start.day == 1) or start == st:
+                            if (start.month == 1 and start.day == 1) or start == st or start == end:
                                 if start.year < 10:
                                     string += "0" + str(start.year)
                                 else:
@@ -179,7 +179,7 @@ def daymap(begin, end, col, json):
                             else:
                                 string += "  "
                         case "mm":
-                            if start.day == 1 or start == st:
+                            if start.day == 1 or start == st or start == end:
                                 if start.month < 10:
                                     string += "0" + str(start.month)
                                 else:
@@ -191,9 +191,9 @@ def daymap(begin, end, col, json):
                                 string += "01"
                             elif start.day == 5:
                                 string += "05"
-                            elif start.day == 30 and calendar.monthrange(start.year, start.month)[1] == 30 and start != st:
+                            elif start.day == 30 and calendar.monthrange(start.year, start.month)[1] == 30 and start != st and start != end:
                                 string += "  "
-                            elif start.day % 5 == 0 or start == st:
+                            elif start.day % 5 == 0 or start == st or start == end:
                                 string += str(start.day)
                             else:
                                 string += "  "
