@@ -94,7 +94,7 @@ def multitrack(json, day):
             while len(string) < max:
                 string = " " + string
 
-            ono = input(string + "? ")
+            ono = input("    " + string + "? ")
             track(json, day, habit, ono)
     
 
