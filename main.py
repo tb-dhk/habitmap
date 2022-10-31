@@ -146,7 +146,6 @@ def daymap(begin, end, col, json):
         date = (start.year, start.month, start.day)
         nums = []
         for habit in lis:
-            print(start, date, end, habit)
             string = ""
             if habit != "stepno":
                 if habit == "overall":
@@ -222,7 +221,7 @@ def daymap(begin, end, col, json):
                         case 4:
                             string += color("██", col) 
             strings[habit] = string
-            print(start)
+            print(string)
         start += dt.timedelta(days=1)
 
     for x in strings:
