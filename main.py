@@ -212,6 +212,8 @@ def daymap(begin, end, col, json):
 def monthmap(begin, end, col, json):
     begin = dt.datetime.isoformat(dt.datetime.combine(dt.date(int(begin[0:4]), int(begin[5:7]), 1), dt.datetime.min.time()))
     end = dt.datetime.isoformat(dt.datetime.combine(dt.date(int(begin[0:4]), int(begin[5:7]), calendar.monthrange(int(begin[0:4]), int(begin[5:7]))[1]), dt.datetime.min.time()))
+    print(begin)
+    print(end)
     daymap(begin, end, col, json)
 
 def yearmap(habit, year, col):
