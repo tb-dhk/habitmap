@@ -16,22 +16,22 @@ except:
 step_to4 = [ [0, 4], [0, 2, 4], [0, 1, 3, 4] ]
 step_from4 = [ [0, 0, 1, 1, 1], [0, 1, 1, 2, 2], [0, 1, 2, 2, 3] ]
    
-def newyear(js, habit, year):
+def newyear(json, habit, year):
     nmth = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
     lmth = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
 
-    js[habit] = {
+    json[habit] = {
         str(year) : []
     }
 
     for x in range(12):
-        js[habit][str(year)].append([])
+        json[habit][str(year)].append([])
         if int(year) % 4 == 0:
             for x in range(lmth[x]):
-                js[habit][str(year)][-1].append(0)
+                json[habit][str(year)][-1].append(0)
         else:
             for x in range(nmth[x]):
-                js[habit][str(year)][-1].append(0)
+                json[habit][str(year)][-1].append(0)
     print(f"    habit '{habit}' added.")
 
 def add(json, habit):
@@ -79,7 +79,7 @@ def track(json, habit, day, ono):
     elif ono > stepno or ono < 0:
         print("    invalid stepno.")
 
-def daymap(begin, end, col):
+def daymap(begin, end, col, json):
     col = "#" + col
     tdy = dt.date.today()
     yst = dt.date.today() - dt.timedelta(days=1)

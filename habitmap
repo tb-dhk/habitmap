@@ -117,9 +117,9 @@ else:
         case "-d" | "-day":
             match len(sys.argv):
                 case 4:
-                    main.daymap(*sys.argv[2:4], "000000")
+                    main.daymap(*sys.argv[2:4], "000000", dic)
                 case 5:
-                    main.daymap(*sys.argv[2:5])
+                    main.daymap(*sys.argv[2:5], dic)
                 case _:
                     print("not enough arguments.")
         case "-y" | "-year":
