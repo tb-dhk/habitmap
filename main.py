@@ -43,7 +43,7 @@ def add(json, habit):
         newyear(json, habit, tyr)
         print(f"    habit '{habit}' added.")
 
-def track(json, habit, day, ono):
+def track(json, day, habit, ono):
     ono = int(ono)
     if habit in json and ono <= stepno and ono >= 0:
         date = ()
@@ -78,6 +78,25 @@ def track(json, habit, day, ono):
         print("    invalid habit.")
     elif ono > stepno or ono < 0:
         print("    invalid stepno.")
+
+def multitrack(json, day):
+    lis = []
+    max = 0
+
+    for habit in dic:
+        if len(habit) > max:
+            max = len(habit)
+        lis.append(habit)
+
+    for habit in lis:
+        if habit != "stepno":
+            string = habit
+            while len(string) < max:
+                string = " " + string
+
+            ono = input(string + "? ")
+            track(json, day, habit, ono)
+    
 
 def daymap(begin, end, col, json):
     col = "#" + col

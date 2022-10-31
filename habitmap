@@ -24,7 +24,7 @@ comms = """
 
     -a, --add       [name]                                              add a new habit (if not already existing).
     -r, --remove    [habit]                                             remove a habit.
-    -t, --track     [habit] [day] [stepno]                              add or edit a record.
+    -t, --track     [day]                   ([habit] [stepno])          add or edit a record.
 
     -l, --list                                                          list all habits.
     -d, --day       [day] [start]           ([color])                   view heatmap for all habits from one day to another.      
@@ -51,11 +51,12 @@ help = """
 
         -l, --list: lists all habits.
 
-        -t, --track [habit] [day] [stepno]: adds or edits a record.
+        -t, --track [day] ([habit] [stepno]): adds or edits a record.
         adds or edits the record of habit [habit] on [day] (0 by default) and changes it to [stepno].
+        if [habit] and [stepno] are left blank, you will be prompted to enter a number for each habit.
 
-        [habit]: name of an existing habit.
         [day]: either "tdy", "yst", or a date in ISO format (YYYY-MM-DD).
+        [habit]: name of an existing habit.
         [stepno]: a number from 0 to the default step number
 
         seeing data:
@@ -165,7 +166,9 @@ else:
             else:
                 print("not enough arguments.")
         case "-t" | "--track":
-            if len(sys.argv) == 5:
+            if len(sys.argv) == 3:
+                main.multitrack(dic, *sys.argv[2])
+            elif len(sys.argv) == 5:
                 main.track(dic, *sys.argv[2:5])
             else:
                 print("not enough arguments.")
