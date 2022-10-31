@@ -24,6 +24,8 @@ if not sett:
     sett["stepno"] = 4
     sett["defcol"] = "#FFFFFF"
 
+defcol = sett["defcol"]
+
 comms = """
     usage: hbmp [command] [argument]
     
@@ -137,15 +139,12 @@ else:
                         print("not enough arguments.")
                 case "-r" | "--remove":
                     try:
-                        if sys.argv[2] == "stepno":
-                            print("stepno cannot be deleted.")
+                        try:
+                            del dic[sys.argv[3]]
+                        except:
+                            print("not found")
                         else:
-                            try:
-                                del dic[sys.argv[3]]
-                            except:
-                                print("not found")
-                            else:
-                                print(f"{sys.argv[2]} deleted.")
+                            print(f"{sys.argv[2]} deleted.")
                     except:
                         print("not enough arguments.")
                 case "-t" | "--track":
@@ -162,8 +161,7 @@ else:
             match sys.argv[2]:
                 case "-l" | "--list":
                     for habit in dic:
-                        if habit != "stepno":
-                            print("    " + habit)
+                        print("    " + habit)
                 case "-d" | "-day":
                     match len(sys.argv):
                         case 5:
