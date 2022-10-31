@@ -164,8 +164,6 @@ def daymap(begin, end, col):
                             string += str(start.day)
                     start += dt.timedelta(days=1)  
                 print(string)
-                if habit == "dd":
-                    print("")
             else:
                 start = st
                 string = "    " + habit
