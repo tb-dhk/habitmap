@@ -152,10 +152,6 @@ def daymap(begin, end, col, json):
                 string = ""
             if habit != "stepno":
                 if habit == "overall":
-                    string = "overall"
-                    while len(string) < max + 4:
-                        string = " " + string
-                    string += " "
                     num = math.floor(statistics.mean(nums))
                     match num:
                         case 0:
@@ -169,10 +165,8 @@ def daymap(begin, end, col, json):
                         case 4:
                             string += color("██", col)
                 elif habit in ["yy", "mm", "dd"]:
-                    string = habit
                     while len(string) < max + 4:
                         string = " " + string
-                    string += " "
                     match habit:
                         case "yy":
                             if (start.month == 1 and start.day == 1) or start == st:
@@ -202,10 +196,6 @@ def daymap(begin, end, col, json):
                             else:
                                 string += "  "
                 else:
-                    string = "    " + habit
-                    while len(string) < max + 4:
-                        string = " " + string
-                    string += " "
                     try:
                         num = json[habit][str(date[0])][date[1]-1][date[2]-1]
                     except:
