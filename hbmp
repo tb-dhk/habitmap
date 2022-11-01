@@ -132,7 +132,7 @@ help = """
 
 print(sys.argv)
 
-if len(sys.argv) == 1 or (len(sys.argv) == 2 and sys.argv[1] not in ["help", "steps"]):
+if len(sys.argv) == 1 or (len(sys.argv) == 2 and sys.argv[1] not in ["help", "steps", "samplecolors"]):
     print(comms)
 else:
     match sys.argv[1]:
