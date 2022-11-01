@@ -29,9 +29,15 @@ def ccol(dic, col):
 
     if hex:
         return col
-    elif col in dic:
-        return dic[col]
     else:
+        found = False
+        for x in dic:
+            if x[0] == col:
+                found = True
+                return x[1]
+                break
+    
+    if not found:
         print("invalid color.")
         exit()
    
