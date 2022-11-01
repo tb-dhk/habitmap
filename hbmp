@@ -24,7 +24,7 @@ if sett == {}:
     sett["defcol"] = "#FFFFFF"
 
 defcol = sett["defcol"]
-cols = set["cols"]
+cols = sett["cols"]
 
 comms = """
     usage: hbmp [command] [argument]
