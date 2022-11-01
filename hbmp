@@ -7,6 +7,7 @@ import os
 import json
 import toml
 import sys 
+from colors import color
 
 os.chdir(os.path.dirname(os.path.realpath(__file__)))  
 
@@ -213,6 +214,16 @@ else:
                         print("invalid habit.")
             else:
                 print("not enough arguments.")
+        case "samplecolors":
+            if len(sys.argv) > 2:
+                string = ""
+                for x in sys.argv[2:]:
+                    string += color(f"    {x} ██", main.ccol(cols, x))
+                print(string)
+            else:
+                string = "    "
+                for x in cols:
+                    string += color(f"    {x} ██", main.ccol(cols, x))
         case _:
             print("invalid command.")
 
