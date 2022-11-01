@@ -134,10 +134,9 @@ else:
         case "habit":
             match sys.argv[2]:
                 case "-a" | "--add":
-                    try:
-                        main.add(dic, sys.argv[3])
-                    except:
-                        print("not enough arguments.")
+                    main.add(dic, sys.argv[3])
+                    # except:
+                    #    print("not enough arguments.")
                 case "-r" | "--remove":
                     try:
                         try:
