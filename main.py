@@ -176,7 +176,7 @@ def daymap(begin, end, col, json, bydur):
     colno = 0
 
     while start <= end:
-        col = "#" + col[colno % len(col)]
+        co = "#" + col[colno % len(col)]
         match bydur:
             case "day":
                 ns = start + dateutil.relativedelta.relativedelta(days=+1)
@@ -220,15 +220,15 @@ def daymap(begin, end, col, json, bydur):
                 num = math.floor(statistics.mean(nums))
                 match num:
                     case 0:
-                        string += color("  ", col)
+                        string += color("  ", co)
                     case 1:
-                        string += color("░░", col)
+                        string += color("░░", co)
                     case 2:
-                        string += color("▒▒", col)
+                        string += color("▒▒", co)
                     case 3:
-                        string += color("▓▓", col)
+                        string += color("▓▓", co)
                     case 4:
-                        string += color("██", col)
+                        string += color("██", co)
             elif habit in ["yy", "mm", "dd"]:
                 match habit:
                     case "yy":
@@ -277,15 +277,15 @@ def daymap(begin, end, col, json, bydur):
                 num = math.floor(statistics.mean(snums))
                 match num:
                     case 0:
-                        string += color("  ", col)
+                        string += color("  ", co)
                     case 1:
-                        string += color("░░", col)
+                        string += color("░░", co)
                     case 2:
-                        string += color("▒▒", col)
+                        string += color("▒▒", co)
                     case 3:
-                        string += color("▓▓", col)
+                        string += color("▓▓", co)
                     case 4:
-                        string += color("██", col) 
+                        string += color("██", co) 
             strings[habit] = string
         ps = start
         start = ns
