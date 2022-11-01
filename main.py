@@ -23,15 +23,12 @@ def ccol(dic, col):
     lis = []
     for y in col:
         hex = False
-        if len(col) == 3 or len(col) == 6:
+        if len(y) == 3 or len(y) == 6:
             hex = True
             for x in y:
-                print(x.lower())
                 if x.lower() not in "0123456789abcdef":
                     hex = False
         
-        print(y, hex)
-
         if hex:
             lis.append(y)
         else:
