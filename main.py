@@ -20,6 +20,7 @@ step_to4 = [ [0, 4], [0, 2, 4], [0, 1, 3, 4] ]
 step_from4 = [ [0, 0, 1, 1, 1], [0, 1, 1, 2, 2], [0, 1, 2, 2, 3] ]
 
 def ccol(dic, col):
+    lis = []
     for x in col:
         hex = False
         if len(col) == 3 or len(col) == 6:
@@ -29,18 +30,17 @@ def ccol(dic, col):
                     hex = False
 
         if hex:
-            return col
+            lis.append(col)
         else:
             found = False
             for x in dic:
                 if x[0] == col:
                     found = True
-                    return x[1]
+                    lis.append(x[1])
                     break
-        
-        if not found:
-            print("invalid color.")
-            exit()
+            if not found:
+                print("invalid color.")
+                exit()
    
 def newyear(json, habit, year):
     nmth = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
