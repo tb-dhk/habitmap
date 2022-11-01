@@ -28,9 +28,10 @@ def ccol(dic, col):
             for x in y:
                 if x.lower() not in "0123456789abcdef":
                     hex = False
+        
+        print(y, hex)
 
         if hex:
-            print(y, hex)
             lis.append(y)
         else:
             found = False
