@@ -301,7 +301,6 @@ def monthmap(begin, end, col, json):
     daymap(begin, end, col, json, "day")
 
 def yearmap(habit, year, col, json):
-    col = "#" + col
     stat = json[habit][str(year)]
     yearindow = [[], [], [], [], [], [], []]
     strings = []
