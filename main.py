@@ -245,9 +245,7 @@ def daymap(begin, end, col, json, bydur):
                     sta += dateutil.relativedelta.relativedelta(days=+1)
                     print(snums)
                 
-                print(st, ns, snums)
                 num = math.floor(statistics.mean(snums))
-                print(num)
                 match num:
                     case 0:
                         string += color("  ", col)
@@ -260,7 +258,6 @@ def daymap(begin, end, col, json, bydur):
                     case 4:
                         string += color("██", col) 
             strings[habit] = string
-        print("dates:", ps, start, ns)
         ps = start
         start = ns
 

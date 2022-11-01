@@ -44,7 +44,7 @@ comms = """
     -d, --day       [start] [end]               ([color])               view heatmap for all habits from one day to another.
     -m, --month     [start] [end]               ([color])               view heatmap for all habits from the start of a month to the beginning of another.
     -y, --year      [habit] [year]              ([color])               view year heatmap for habit.
-    -b, --bydur     [start] [end] [duration]
+    -b, --bydur     [start] [end] [duration]    ([color])               view heatmap based on average of week/month/year
 
     help:                                                               see all commands and explanations.
 
