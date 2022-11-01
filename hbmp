@@ -187,7 +187,7 @@ else:
                             main.yearmap(*sys.argv[3:5], main.ccol(cols, defcol), dic)
                         case _:
                             if len(sys.argv) >= 6:
-                                main.yearmap(*sys.argv[3:5], main.ccol(cols, sys.argv[5:]))
+                                main.yearmap(*sys.argv[3:5], main.ccol(cols, sys.argv[5:]), dic)
                             else:
                                 print("not enough arguments.")
                 case "-b" | "--bydur":
