@@ -231,8 +231,10 @@ def daymap(begin, end, col, json, bydur):
                     case 4:
                         string += color("██", co)
             elif habit == "":
-                num = round(statistics.mean(nums)/4, 2)
-                string += " " + str(num)
+                num = round(statistics.mean(nums)/4, 2)*100
+                if num < 10:
+                    num = "0" + str(num)
+                string += str(num)
             elif habit in ["yy", "mm", "dd"]:
                 match habit:
                     case "yy":
