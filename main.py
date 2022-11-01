@@ -20,26 +20,27 @@ step_to4 = [ [0, 4], [0, 2, 4], [0, 1, 3, 4] ]
 step_from4 = [ [0, 0, 1, 1, 1], [0, 1, 1, 2, 2], [0, 1, 2, 2, 3] ]
 
 def ccol(dic, col):
-    hex = False
-    if len(col) == 3 or len(col) == 6:
-        hex = True
-        for x in col:
-            if x.lower() not in "0123456789abcdef":
-                hex = False
+    for x in col:
+        hex = False
+        if len(col) == 3 or len(col) == 6:
+            hex = True
+            for x in col:
+                if x.lower() not in "0123456789abcdef":
+                    hex = False
 
-    if hex:
-        return col
-    else:
-        found = False
-        for x in dic:
-            if x[0] == col:
-                found = True
-                return x[1]
-                break
-    
-    if not found:
-        print("invalid color.")
-        exit()
+        if hex:
+            return col
+        else:
+            found = False
+            for x in dic:
+                if x[0] == col:
+                    found = True
+                    return x[1]
+                    break
+        
+        if not found:
+            print("invalid color.")
+            exit()
    
 def newyear(json, habit, year):
     nmth = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
@@ -170,8 +171,11 @@ def daymap(begin, end, col, json, bydur):
 
     start = st
     ps = st
-        # start += dt.timedelta(days=1)  
+        # start += dt.timedelta(days=1) 
+    colno = 0
+
     while start <= end:
+        col = col[colno % len(col)]
         match bydur:
             case "day":
                 ns = start + dateutil.relativedelta.relativedelta(days=+1)
@@ -284,6 +288,7 @@ def daymap(begin, end, col, json, bydur):
             strings[habit] = string
         ps = start
         start = ns
+        colno += 1
 
     for x in strings:
         print(strings[x])

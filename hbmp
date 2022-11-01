@@ -166,10 +166,11 @@ else:
                     match len(sys.argv):
                         case 5:
                             main.daymap(*sys.argv[3:5], main.ccol(cols, defcol), dic, "day")
-                        case 6:
-                            main.daymap(*sys.argv[3:5], main.ccol(cols, sys.argv[5]), dic, "day")                          
                         case _:
-                            print("not enough arguments.")
+                            if len(sys.argv) >= 6:
+                                main.daymap(*sys.argv[3:5], main.ccol(cols, sys.argv[5:]), dic, "day")                          
+                            else:
+                                print("not enough arguments.")
                 case "-m" | "--month":
                     match len(sys.argv):
                         case 5:
