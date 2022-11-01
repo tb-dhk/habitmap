@@ -15,11 +15,14 @@ try:
 except:
     dic = {}
 
-sett = toml.load(open(os.getcwd()+'/config.toml'))
+try:
+    sett = toml.load(open(os.getcwd()+'/config.toml'))
+except:
+    sett = {}
 
 if sett == {}:
     sett["defcol"] = "#FFFFFF"
-    sett["cols"] = ""
+    sett["cols"] = []
 
 defcol = sett["defcol"]
 cols = sett["cols"]
@@ -162,7 +165,7 @@ else:
                 case "-d" | "--day":
                     match len(sys.argv):
                         case 5:
-                            main.daymap(*sys.argv[3:5], main.ccol(cols, defcol[1:]), dic, "day")
+                            main.daymap(*sys.argv[3:5], main.ccol(cols, defcol), dic, "day")
                         case 6:
                             main.daymap(*sys.argv[3:5], main.ccol(cols, sys.argv[5]), dic, "day")                          
                         case _:
@@ -170,7 +173,7 @@ else:
                 case "-m" | "--month":
                     match len(sys.argv):
                         case 5:
-                            main.monthmap(*sys.argv[3:5], main.ccol(cols, defcol[1:]), dic)
+                            main.monthmap(*sys.argv[3:5], main.ccol(cols, defcol), dic)
                         case 6:
                             main.monthmap(*sys.argv[3:5], main.ccol(cols, sys.argv[5]), dic)
                         case _:
@@ -178,7 +181,7 @@ else:
                 case "-y" | "--year":
                     match len(sys.argv):
                         case 5:
-                            main.yearmap(*sys.argv[3:5], main.ccol(cols, defcol[1:]), dic)
+                            main.yearmap(*sys.argv[3:5], main.ccol(cols, defcol), dic)
                         case 6:
                             main.yearmap(*sys.argv[3:5], main.ccol(cols, sys.argv[5]))
                         case _:
@@ -186,7 +189,7 @@ else:
                 case "-b" | "--bydur":
                     match len(sys.argv):
                         case 6:
-                            main.daymap(*sys.argv[3:5], main.ccol(cols, defcol[1:]), dic, sys.argv[5])
+                            main.daymap(*sys.argv[3:5], main.ccol(cols, defcol), dic, sys.argv[5])
                         case 7:
                             main.daymap(*sys.argv[3:5], main.ccol(cols, sys.argv[6]), dic, sys.argv[5])
                 case _:
