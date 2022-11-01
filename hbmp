@@ -22,6 +22,7 @@ except:
 
 if sett == {}:
     sett["defcol"] = "#FFFFFF"
+    sett["cols"] = ""
 
 defcol = sett["defcol"]
 cols = sett["cols"]
