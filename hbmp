@@ -164,26 +164,26 @@ else:
                         print("    " + habit)
                 case "-d" | "--day":
                     match len(sys.argv):
-                        case 5:
+                        case 4:
                             main.daymap(*sys.argv[3:5], defcol[1:], dic, "day")
-                        case 6:
+                        case 5:
                             main.daymap(*sys.argv[3:5], sys.argv[5][1:], dic, "day")
                             print(sys.argv[5])
                         case _:
                             print("not enough arguments.")
                 case "-m" | "--month":
                     match len(sys.argv):
-                        case 5:
+                        case 4:
                             main.monthmap(*sys.argv[3:5], defcol[1:], dic)
-                        case 6:
+                        case 5:
                             main.monthmap(*sys.argv[3:5], sys.argv[5][1:], dic)
                         case _:
                             print("not enough arguments.")
                 case "-y" | "--year":
                     match len(sys.argv):
-                        case 5:
+                        case 4:
                             main.yearmap(*sys.argv[3:5], defcol[1:], dic)
-                        case 6:
+                        case 5:
                             main.yearmap(*sys.argv[3:5], sys.argv[5][1:])
                         case _:
                             print("not enough arguments.")
