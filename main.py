@@ -30,6 +30,7 @@ def ccol(dic, col):
                     hex = False
 
         if hex:
+            print(y, hex)
             lis.append(y)
         else:
             found = False
