@@ -218,12 +218,12 @@ else:
             if len(sys.argv) > 2:
                 string = ""
                 for x in main.ccol(cols, sys.argv[2:]):
-                    string += color(f"    {x} ██", "#" + x)
+                    string += color(f"    {x[1]} ██", "#" + x)
                 print(string)
             else:
                 string = "    "
                 for x in cols:
-                    string += color(f"    {x} ██", "#" + x[1])
+                    string += color(f"    {x[1]} ██", "#" + x[1])
                 print(string)
         case _:
             print("invalid command.")
