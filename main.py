@@ -320,7 +320,6 @@ def yearmap(habit, year, col, json):
                 weekcount += 1
         months.append(weekcount)
 
-    months = months[:-1]
     monstr = "        "
     colno = 0
     for x in range(len(months)):
