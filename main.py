@@ -42,7 +42,7 @@ def add(json, habit):
     else:
         tyr = dt.date.today().year
         newyear(json, habit, tyr)
-        habit["stepno"] = 4
+        json[habit]["stepno"] = 4
         print(f"    habit '{habit}' added.")
 
 def track(json, day, habit, ono):
