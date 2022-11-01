@@ -122,9 +122,9 @@ commands:
 
     misc:
 
-    -h, --help: see this message.
+    help: see this message.
 
-    -s, --steps [number]: sets the default number of steps.
+    steps [number]: sets the default number of steps.
     sets the default number of steps (at the moment, this number of steps applies to all habits)
     having one step would mean that you either have or have not done the habit but having more steps allows you to indicate anything in between.
 
