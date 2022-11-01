@@ -97,13 +97,13 @@ commands:
     map:
 
     -d, --day [start] [end] ([color]): view day heatmap for all habits.
-    displays a single bar of each habit's data on [day], optionally in [color]
+    displays a single bar of each habit's data from [start] to [end], optionally in [color].
 
     [start], [end]: either "tdy", "yst", or a date in ISO format (YYYY-MM-DD).
     [color]: any hex code.
 
     -m, --month [start] [end] ([color]): view day heatmap for all habits over a few months.
-    displays a single bar of each habit's data on [day], optionally in [color]
+    displays a single bar of each habit's data from [start] to [end], optionally in [color].
 
     [start], [end]: any month in ISO format (date without day, YYYY-MM).
     [color]: any hex code.
@@ -115,16 +115,18 @@ commands:
     [year]: any valid integer from 1 to 9999 (based on python's datetime module's limits)
     [color]: any hex code.
 
-    -v, --average [start] [end] [duration] ([color]): view heatmap for all habits based on week/month/year.
+    -b, --bydur [start] [end] [duration] ([color]): view heatmap for all habits based on week/month/year.
+    displays a single bar of each habit's data from [start] to [end] based on average for every [duration], optionally in [color].
+
     [start], [end]: either "tdy", "yst", or a date in ISO format (YYYY-MM-DD).
     [duration]: either "week", "month" or "year"
     [color]: any hex code.
 
     misc:
 
-    -h, --help: see this message.
+    help: see this message.
 
-    -s, --steps [number]: sets the default number of steps.
+    steps [number]: sets the default number of steps.
     sets the default number of steps (at the moment, this number of steps applies to all habits)
     having one step would mean that you either have or have not done the habit but having more steps allows you to indicate anything in between.
 
