@@ -225,7 +225,7 @@ def daymap(begin, end, col, json, bydur):
                             string += "01"
                         elif start.day == 5:
                             string += "05"
-                        elif start.day == 30 and calendar.monthrange(start.year, start.month)[1] == 30 and start != st and start != end:
+                        elif start.day in [30, 31] and calendar.monthrange(start.year, start.month)[1] == 30 and start != st and start != end:
                             string += "  "
                         elif start.day % 5 == 0 or start == st or start == end or start.day - ps.day != 1:
                             if start.day < 10:
