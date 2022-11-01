@@ -224,7 +224,10 @@ def daymap(begin, end, col, json, bydur):
                         elif start.day == 30 and calendar.monthrange(start.year, start.month)[1] == 30 and start != st and start != end:
                             string += "  "
                         elif start.day % 5 == 0 or start == st or start == end or start.day - ps.day != 1:
-                            string += str(start.day)
+                            if start.day < 10:
+                                string += "0" + str(start.day)
+                            else:
+                                string += str(start.day)
                         else:
                             string += "  "
             else:
