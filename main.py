@@ -145,6 +145,35 @@ def daymap(begin, end, col, json, bydur):
     ps = st
         # start += dt.timedelta(days=1)  
     while start <= end:
+        match bydur:
+            case "day":
+                ns = start + dateutil.relativedelta.relativedelta(days=+1)
+            case "week":
+                if start.weekday() != 6:
+                    ns = start
+                    while ns.weekday != 6:
+                        ns += dateutil.relativedelta.relativedelta(days=+1)
+                else:
+                    ns = start + dateutil.relativedelta.relativedelta(days=+7)
+            case "month":
+                if start.day != 1:
+                    ns = start
+                    while ns.day != 1:
+                        ns += dateutil.relativedelta.relativedelta(days=+1)
+                else:
+                    ns = start + dateutil.relativedelta.relativedelta(months=+6)
+            case "year":
+                if start.day != 1 and start.month != 1:
+                    ns = start
+                    while ns.day != 1 and ns.month != 1:
+                        ns += dateutil.relativedelta.relativedelta(days=+1)
+                else:
+                    ns = start + dateutil.relativedelta.relativedelta(years=+1)
+
+            case _:
+                print("    invalid bydur.")
+                exit()
+
         date = (start.year, start.month, start.day)
         nums = []
         for habit in lis:
@@ -199,35 +228,6 @@ def daymap(begin, end, col, json, bydur):
                         else:
                             string += "  "
             else:
-                match bydur:
-                    case "day":
-                        ns = start + dateutil.relativedelta.relativedelta(days=1)
-                    case "week":
-                        if start.weekday() != 6:
-                            ns = start
-                            while ns.weekday != 6:
-                                ns += dateutil.relativedelta.relativedelta(days=1)
-                        else:
-                            ns = start + dateutil.relativedelta.relativedelta(days=7)
-                    case "month":
-                        if start.day != 1:
-                            ns = start
-                            while ns.day != 1:
-                                ns += dateutil.relativedelta.relativedelta(days=1)
-                        else:
-                            ns = start + dateutil.relativedelta.relativedelta(months=+6)
-                    case "year":
-                        if start.day != 1 and start.month != 1:
-                            ns = start
-                            while ns.day != 1 and ns.month != 1:
-                                ns += dateutil.relativedelta.relativedelta(days=1)
-                        else:
-                            ns = start + dateutil.relativedelta.relativedelta(years=1)
-
-                    case _:
-                        print("    invalid bydur.")
-                        exit()
-                
                 snums = []
 
                 while start < ns:
