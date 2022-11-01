@@ -37,50 +37,51 @@ def newyear(json, habit, year):
                 json[habit][str(year)][-1].append(0) 
 
 def add(json, habit):
-    if habit == "stepno":
-        print("    invalid name.")
-    elif habit in json:
+    if habit in json:
         print(f"    habit '{habit}' already exists.")
     else:
         tyr = dt.date.today().year
         newyear(json, habit, tyr)
+        habit["stepno"] = 4
         print(f"    habit '{habit}' added.")
 
 def track(json, day, habit, ono):
     ono = int(ono)
-    if habit in json and ono <= stepno and ono >= 0:
-        date = ()
-        tdy = dt.date.today()
-        yst = dt.date.today() - dt.timedelta(days=1) 
+    if habit in json:
+        stepno = json[habit]["stepno"]
+        if ono <= stepno and ono >= 0:
+            date = ()
+            tdy = dt.date.today()
+            yst = dt.date.today() - dt.timedelta(days=1) 
 
-        match day:
-            case "tdy":
-                date = (tdy.year, tdy.month, tdy.day)
-            case "yst":
-                date = (yst.year, yst.month, yst.day)
-            case _:
-                try:
-                    dat = dt.date.fromisoformat(day)
-                except:
-                    print("    invalid day. the 'day' argument must either be 'tdy', 'yst', or a date in ISO format (YYYY-MM-DD).")
-                    exit()
-                else:
-                    date = (dat.year, dat.month, dat.day)
+            match day:
+                case "tdy":
+                    date = (tdy.year, tdy.month, tdy.day)
+                case "yst":
+                    date = (yst.year, yst.month, yst.day)
+                case _:
+                    try:
+                        dat = dt.date.fromisoformat(day)
+                    except:
+                        print("    invalid day. the 'day' argument must either be 'tdy', 'yst', or a date in ISO format (YYYY-MM-DD).")
+                        exit()
+                    else:
+                        date = (dat.year, dat.month, dat.day)
 
-        if str(date[0]) not in json[habit]:
-            newyear(json, habit, date[0])
-       
-        if stepno != 4:
-            no = step_to4[stepno-1][ono]
-            json[habit][str(date[0])][date[1]-1][date[2]-1] = no
-            print(f"    value of habit {habit} on {date[0]}-{date[1]}-{date[2]} changed to {ono} of {stepno} ({no} in 4-step).")
+            if str(date[0]) not in json[habit]:
+                newyear(json, habit, date[0])
+           
+            if stepno != 4:
+                no = step_to4[stepno-1][ono]
+                json[habit][str(date[0])][date[1]-1][date[2]-1] = no
+                print(f"    value of habit {habit} on {date[0]}-{date[1]}-{date[2]} changed to {ono} of {stepno} ({no} in 4-step).")
+            else:
+                json[habit][str(date[0])][date[1]-1][date[2]-1] = ono
+                print(f"    value of habit {habit} on {date[0]}-{date[1]}-{date[2]} changed to {ono} of {stepno}.")
         else:
-            json[habit][str(date[0])][date[1]-1][date[2]-1] = ono
-            print(f"    value of habit {habit} on {date[0]}-{date[1]}-{date[2]} changed to {ono} of {stepno}.")
-    elif habit not in json:
-        print("    invalid habit.")
-    elif ono > stepno or ono < 0:
-        print("    invalid stepno.")
+            print("    invalid stepno.")
+    else:
+        print("    invalid habit.")   
 
 def multitrack(json, day):
     lis = []
