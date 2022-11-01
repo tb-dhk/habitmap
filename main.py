@@ -26,6 +26,7 @@ def ccol(dic, col):
         if len(col) == 3 or len(col) == 6:
             hex = True
             for x in y:
+                print(x.lower())
                 if x.lower() not in "0123456789abcdef":
                     hex = False
         
