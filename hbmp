@@ -29,12 +29,12 @@ defcol = sett["defcol"]
 cols = sett["cols"]
 
 comms = """
-    usage: hbmp [command] [argument]
+    usage: hbmp [command] ([argument] [subargs] ([optional args]))
     
     list of arguments:
 
     command:
-    -a, --arg.      [args]                      ([optional] [args])     description
+    -a, --arg.      [subargs]                   ([optional] [args])     description
     
     habit:
     -a, --add       [name]                                              add a new habit (if not already existing).
