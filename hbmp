@@ -109,6 +109,7 @@ help = """
         sets the default number of steps (at the moment, this number of steps applies to all habits)
         having one step would mean that you either have or have not done the habit but having more steps allows you to indicate anything in between.
 
+        [habit]: name of an existing habit.
         [number]: any number from 1-4.
 
     explaining steps:
@@ -197,15 +198,18 @@ else:
         case "help":
             print(help)
         case "steps":
-            if len(sys.argv) == 3: 
+            if len(sys.argv) == 4: 
                 try:
-                    new = int(sys.argv[2])
+                    new = int(sys.argv[3])
                     if new < 1 or new > 4:
                         raise TypeError
                 except:
                     print("invalid number.")
                 else:
-                    dic["stepno"] = new
+                    if sys.argv[2] in dic:
+                        dic[sys.argv[2]] = new
+                    else:
+                        print("invalid habit.")
             else:
                 print("not enough arguments.")
         case _:
