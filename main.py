@@ -232,7 +232,7 @@ def daymap(begin, end, col, json, bydur):
                             string += "  "
             else:
                 snums = []
-                print(start)
+                print(start, ns)
                 while start < ns:
                     print(start, ns)
                     try:
