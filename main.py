@@ -163,6 +163,7 @@ def daymap(begin, end, col, json, bydur):
         lis.append(habit)
         
     lis.append("overall")
+    lis.append("")
     
     if len(lis) <= 4:
         print("    you have no habits. please add a habit and try again.")
@@ -229,6 +230,9 @@ def daymap(begin, end, col, json, bydur):
                         string += color("▓▓", co)
                     case 4:
                         string += color("██", co)
+            elif habit == "":
+                num = math.floor(statistics.mean(nums))
+                string += "0" + str(num)
             elif habit in ["yy", "mm", "dd"]:
                 match habit:
                     case "yy":
