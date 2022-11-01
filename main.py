@@ -169,10 +169,11 @@ def daymap(begin, end, col, json, bydur):
                         ns += dateutil.relativedelta.relativedelta(days=+1)
                 else:
                     ns = start + dateutil.relativedelta.relativedelta(years=+1)
-
             case _:
                 print("    invalid bydur.")
                 exit()
+
+        print(ns)
 
         date = (start.year, start.month, start.day)
         nums = []
