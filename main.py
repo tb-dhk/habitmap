@@ -233,8 +233,8 @@ def daymap(begin, end, col, json, bydur):
                             string += "  "
             else:
                 snums = []
-                print(start, ns)
-                while start < ns:
+                sta = start
+                while sta < ns:
                     print(start, ns)
                     try:
                         num = json[habit][str(start.year)][start.month-1][start.day-1]
@@ -243,7 +243,7 @@ def daymap(begin, end, col, json, bydur):
                         num = 0
                     nums.append(num)
                     snums.append(num)
-                    start += dateutil.relativedelta.relativedelta(days=+1)
+                    sta += dateutil.relativedelta.relativedelta(days=+1)
                     print(snums)
                 
                 print(st, ns, snums)
