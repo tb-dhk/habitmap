@@ -151,8 +151,7 @@ def daymap(begin, end, col, json, bydur):
             case "week":
                 if start.weekday() != 6:
                     ns = start
-                    while ns.weekday != 6:
-                        print(ns, ns.weekday)
+                    while ns.weekday() != 6:
                         ns += dateutil.relativedelta.relativedelta(days=+1)
                 else:
                     ns = start + dateutil.relativedelta.relativedelta(days=+7)
