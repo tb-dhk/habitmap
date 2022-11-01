@@ -23,7 +23,7 @@ except:
 if sett == {}:
     sett["defcol"] = "#FFFFFF"
 
-defcol = sett[defcol]
+defcol = sett["defcol"]
 cols = sett[cols]
 
 comms = """
