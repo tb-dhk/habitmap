@@ -21,20 +21,20 @@ step_from4 = [ [0, 0, 1, 1, 1], [0, 1, 1, 2, 2], [0, 1, 2, 2, 3] ]
 
 def ccol(dic, col):
     lis = []
-    for x in col:
+    for y in col:
         hex = False
         if len(col) == 3 or len(col) == 6:
             hex = True
-            for x in col:
+            for x in y:
                 if x.lower() not in "0123456789abcdef":
                     hex = False
 
         if hex:
-            lis.append(col)
+            lis.append(y)
         else:
             found = False
             for x in dic:
-                if x[0] == col:
+                if x[0] == y:
                     found = True
                     lis.append(x[1])
                     break
