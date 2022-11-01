@@ -100,24 +100,25 @@ commands:
     displays a single bar of each habit's data on [day], optionally in [color]
 
     [start], [end]: either "tdy", "yst", or a date in ISO format (YYYY-MM-DD).
-    [color]: any hex code (no preceding "#")
+    [color]: any hex code
 
     -m, --month [start] [end] ([color]): view day heatmap for all habits over a few months.
     displays a single bar of each habit's data on [day], optionally in [color]
 
     [start], [end]: any month in ISO format (date without day, YYYY-MM).
-    [color]: any hex code (no preceding "#")
+    [color]: any hex code
 
     -y, --year [habit] [year] ([color]): displays a heatmap.
     displays a calendar heatmap of the data in [habit] for [year], optionally in [color].
 
     [habit]: name of an existing habit.
     [year]: any valid integer from 1 to 9999 (based on python's datetime module's limits)
-    [color]: any hex code (no preceding "#")
+    [color]: any hex code
 
-    -v, --average [start] [end] [duration]: view heatmap for all habits based on week/month/year.
+    -v, --average [start] [end] [duration] ([color]): view heatmap for all habits based on week/month/year.
     [start], [end]: either "tdy", "yst", or a date in ISO format (YYYY-MM-DD).
     [duration]: either "week", "month" or "year"
+    [color]: any hex code (no preceding "#")
 
     misc:
 
