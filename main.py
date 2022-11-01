@@ -201,26 +201,26 @@ def daymap(begin, end, col, json, bydur):
             else:
                 match bydur:
                     case "day":
-                        ns = start + dt.timedelta(days=1)
+                        ns = start + dtut.relativedelta(days=1)
                     case "week":
                         if start.weekday() != 6:
                             ns = start
                             while ns.weekday != 6:
-                                ns += dt.timedelta(days=1)
+                                ns += dtut.relativedelta(days=1)
                         else:
-                            ns = start + dt.timedelta(days=7)
+                            ns = start + dtut.relativedelta(days=7)
                     case "month":
                         if start.day != 1:
                             ns = start
                             while ns.day != 1:
-                                ns += dt.timedelta(days=1)
+                                ns += dtut.relativedelta(days=1)
                         else:
                             ns = start + dtut.relativedelta(months=+6)
                     case "year":
                         if start.day != 1 and start.month != 1:
                             ns = start
                             while ns.day != 1 and ns.month != 1:
-                                ns += dt.timedelta(days=1)
+                                ns += dtut.relativedelta(days=1)
                         else:
                             ns = start + dtut.relativedelta(years=1)
 
