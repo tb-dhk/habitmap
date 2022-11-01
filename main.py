@@ -22,7 +22,6 @@ step_from4 = [ [0, 0, 1, 1, 1], [0, 1, 1, 2, 2], [0, 1, 2, 2, 3] ]
 def ccol(dic, col):
     lis = []
     for y in col:
-        print(y)
         hex = False
         if len(y) == 3 or len(y) == 6:
             hex = True
