@@ -153,6 +153,7 @@ def daymap(begin, end, col, json, bydur):
                     ns = start
                     while ns.weekday() != 6:
                         ns += dateutil.relativedelta.relativedelta(days=+1)
+                        print(ns)
                 else:
                     ns = start + dateutil.relativedelta.relativedelta(days=+7)
             case "month":
@@ -172,8 +173,6 @@ def daymap(begin, end, col, json, bydur):
             case _:
                 print("    invalid bydur.")
                 exit()
-
-        print(ns)
 
         date = (start.year, start.month, start.day)
         nums = []
