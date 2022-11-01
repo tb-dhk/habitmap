@@ -208,6 +208,7 @@ else:
                 else:
                     if sys.argv[2] in dic:
                         dic[sys.argv[2]]["stepno"] = new
+                        print(f"    stepno for {sys.argv[2]} changed to {new}.")
                     else:
                         print("invalid habit.")
             else:
