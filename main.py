@@ -260,6 +260,7 @@ def daymap(begin, end, col, json, bydur):
                     case 4:
                         string += color("██", col) 
             strings[habit] = string
+        print(ps, start, ns)
         ps = start
         start = ns
 
