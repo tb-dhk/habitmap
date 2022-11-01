@@ -163,7 +163,7 @@ def daymap(begin, end, col, json, bydur):
                     while ns.day != 1:
                         ns += dateutil.relativedelta.relativedelta(days=+1)
                 else:
-                    ns = start + dateutil.relativedelta.relativedelta(months=+6)
+                    ns = start + dateutil.relativedelta.relativedelta(months=+1)
             case "year":
                 if start.day != 1 and start.month != 1:
                     ns = start
