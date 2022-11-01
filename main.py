@@ -231,6 +231,7 @@ def daymap(begin, end, col, json, bydur):
                 snums = []
 
                 while start < ns:
+                    print(start, ns)
                     try:
                         num = json[habit][str(date[0])][date[1]-1][date[2]-1]
                     except:
