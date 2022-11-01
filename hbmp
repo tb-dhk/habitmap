@@ -81,27 +81,27 @@ help = """
         displays a single bar of each habit's data from [start] to [end], optionally in [color].
 
         [start], [end]: either "tdy", "yst", or a date in ISO format (YYYY-MM-DD).
-        [color]: any hex code.
+        [color]: any hex code (no preceding #).
 
         -m, --month [start] [end] ([color]): view day heatmap for all habits over a few months.
         displays a single bar of each habit's data from [start] to [end], optionally in [color].
 
         [start], [end]: any month in ISO format (date without day, YYYY-MM).
-        [color]: any hex code.
+        [color]: any hex code (no preceding #).
 
         -y, --year [habit] [year] ([color]): displays a heatmap.
         displays a calendar heatmap of the data in [habit] for [year], optionally in [color].
 
         [habit]: name of an existing habit.
         [year]: any valid integer from 1 to 9999 (based on python's datetime module's limits)
-        [color]: any hex code.
+        [color]: any hex code (no preceding #).
 
         -b, --bydur [start] [end] [duration] ([color]): view heatmap for all habits based on week/month/year.
         displays a single bar of each habit's data from [start] to [end] based on average for every [duration], optionally in [color].
 
         [start], [end]: either "tdy", "yst", or a date in ISO format (YYYY-MM-DD).
         [duration]: either "week", "month" or "year"
-        [color]: any hex code.
+        [color]: any hex code (no preceding #).
 
         help: see this message.
 
@@ -127,8 +127,6 @@ help = """
         note that in printing heatmaps, all numbers will be converted to their 4-step equivalents.
 """
 
-print(sys.argv)
-
 if len(sys.argv) == 1 or (len(sys.argv) == 2 and sys.argv[1] not in ["help", "steps"]):
     print(comms)
 else:
@@ -137,8 +135,6 @@ else:
             match sys.argv[2]:
                 case "-a" | "--add":
                     main.add(dic, sys.argv[3])
-                    # except:
-                    #    print("not enough arguments.")
                 case "-r" | "--remove":
                     try:
                         try:
@@ -169,32 +165,31 @@ else:
                         case 4:
                             main.daymap(*sys.argv[2:4], defcol[1:], dic, "day")
                         case 5:
-                            main.daymap(*sys.argv[2:4], sys.argv[4][1:], dic, "day")
-                            print(sys.argv[5])
+                            main.daymap(*sys.argv[3:5], sys.argv[5], dic, "day")                          
                         case _:
                             print("not enough arguments.")
                 case "-m" | "--month":
                     match len(sys.argv):
                         case 4:
-                            main.monthmap(*sys.argv[2:4], defcol[1:], dic)
+                            main.monthmap(*sys.argv[3:5], defcol[1:], dic)
                         case 5:
-                            main.monthmap(*sys.argv[2:4], sys.argv[4][1:], dic)
+                            main.monthmap(*sys.argv[3:5], sys.argv[5], dic)
                         case _:
                             print("not enough arguments.")
                 case "-y" | "--year":
                     match len(sys.argv):
                         case 4:
-                            main.yearmap(*sys.argv[2:4], defcol[1:], dic)
+                            main.yearmap(*sys.argv[3:5], defcol[1:], dic)
                         case 5:
-                            main.yearmap(*sys.argv[2:4], sys.argv[4][1:])
+                            main.yearmap(*sys.argv[3:5], sys.argv[5])
                         case _:
                             print("not enough arguments.")
                 case "-b" | "--bydur":
                     match len(sys.argv):
-                        case 5:
-                            main.daymap(*sys.argv[2:4], defcol[1:], dic, sys.argv[4])
                         case 6:
-                            main.daymap(*sys.argv[2:4], sys.argv[5][1:], dic, sys.argv[4])
+                            main.daymap(*sys.argv[3:5], defcol[1:], dic, sys.argv[5])
+                        case 7:
+                            main.daymap(*sys.argv[3:5], sys.argv[6], dic, sys.argv[5])
                 case _:
                     print("invalid command.")
         case "help":
