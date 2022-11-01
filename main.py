@@ -231,7 +231,6 @@ def daymap(begin, end, col, json, bydur):
                 snums = []
 
                 while start < ns:
-                    print(start, ns)
                     try:
                         num = json[habit][str(date[0])][date[1]-1][date[2]-1]
                     except:
@@ -240,6 +239,7 @@ def daymap(begin, end, col, json, bydur):
                     nums.append(num)
                     snums.append(num)
                     start += dateutil.relativedelta.relativedelta(days=+1)
+                    print(snums)
     
                 num = statistics.mean(snums)
                 match num:
