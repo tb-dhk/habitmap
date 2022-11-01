@@ -43,10 +43,10 @@ comms = """
 
     map:
     -l, --list                                                          list all habits.
-    -d, --day       [start] [end]               ([color])               view heatmap for all habits from one day to another.
-    -m, --month     [start] [end]               ([color])               view heatmap for all habits from the start of a month to the beginning of another.
-    -y, --year      [habit] [year]              ([color])               view year heatmap for habit.
-    -b, --bydur     [start] [end] [duration]    ([color])               view heatmap based on average of week/month/year
+    -d, --day       [start] [end]               ([colors])              view heatmap for all habits from one day to another.
+    -m, --month     [start] [end]               ([colors])              view heatmap for all habits from the start of a month to the beginning of another.
+    -y, --year      [habit] [year]              ([colors])              view year heatmap for habit.
+    -b, --bydur     [start] [end] [duration]    ([colors])              view heatmap based on average of week/month/year.
 
     help:                                                               see all commands and explanations.
 
@@ -176,24 +176,29 @@ else:
                     match len(sys.argv):
                         case 5:
                             main.monthmap(*sys.argv[3:5], main.ccol(cols, defcol), dic)
-                        case 6:
-                            main.monthmap(*sys.argv[3:5], main.ccol(cols, sys.argv[5]), dic)
                         case _:
-                            print("not enough arguments.")
+                            if len(sys.argv) >= 6:
+                                main.monthmap(*sys.argv[3:5], main.ccol(cols, sys.argv[5:]), dic)
+                            else:
+                                print("not enough arguments.")
                 case "-y" | "--year":
                     match len(sys.argv):
                         case 5:
                             main.yearmap(*sys.argv[3:5], main.ccol(cols, defcol), dic)
-                        case 6:
-                            main.yearmap(*sys.argv[3:5], main.ccol(cols, sys.argv[5]))
                         case _:
-                            print("not enough arguments.")
+                            if len(sys.argv) >= 6:
+                                main.yearmap(*sys.argv[3:5], main.ccol(cols, sys.argv[5:]))
+                            else:
+                                print("not enough arguments.")
                 case "-b" | "--bydur":
                     match len(sys.argv):
                         case 6:
                             main.daymap(*sys.argv[3:5], main.ccol(cols, defcol), dic, sys.argv[5])
-                        case 7:
-                            main.daymap(*sys.argv[3:5], main.ccol(cols, sys.argv[6]), dic, sys.argv[5])
+                        case _:
+                            if len(sys.argv) >= 7:
+                                main.daymap(*sys.argv[3:5], main.ccol(cols, sys.argv[6]), dic, sys.argv[5])
+                            else:
+                                print("not enough arguments.")
                 case _:
                     print("invalid command.")
         case "help":
