@@ -235,9 +235,8 @@ def daymap(begin, end, col, json, bydur):
                 snums = []
                 sta = start
                 while sta < ns:
-                    print(start, ns)
                     try:
-                        num = json[habit][str(start.year)][start.month-1][start.day-1]
+                        num = json[habit][str(sta.year)][sta.month-1][sta.day-1]
                     except:
                         newyear(json, habit, date[0])
                         num = 0
