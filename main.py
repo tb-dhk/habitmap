@@ -127,7 +127,6 @@ def multitrack(json, day):
     
 
 def daymap(begin, end, col, json, bydur):
-    col = "#" + col
     tdy = dt.date.today()
     yst = dt.date.today() - dt.timedelta(days=1)
     
@@ -177,7 +176,7 @@ def daymap(begin, end, col, json, bydur):
     colno = 0
 
     while start <= end:
-        col = col[colno % len(col)]
+        col = "#" + col[colno % len(col)]
         match bydur:
             case "day":
                 ns = start + dateutil.relativedelta.relativedelta(days=+1)
