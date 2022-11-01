@@ -23,8 +23,8 @@ except:
 if sett == {}:
     sett["defcol"] = "#FFFFFF"
 
-defcol = sett["defcol"]
-cols = sett["cols"]
+defcol = sett[defcol]
+cols = sett[cols]
 
 comms = """
     usage: hbmp [command] [argument]
