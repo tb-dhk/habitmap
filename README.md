@@ -38,12 +38,12 @@ now, you are able to use minianki! enter "mnak" in your terminal to begin!
 
 ## commands
 ```
-usage: hbmp [command] [argument]
+usage: hbmp [command] ([argument] [subargs] ([optional args]))
     
-    list of arguments:
+    list of commands and arguments:
 
     command:
-    -a, --arg.      [args]                      ([optional] [args])     description
+    -a, --arg.      [subargs]                   ([optional] [args])     description
     
     habit:
     -a, --add       [name]                                              add a new habit (if not already existing).
