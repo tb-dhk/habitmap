@@ -4,7 +4,7 @@ import datetime as dt
 import statistics
 import calendar
 import math
-import dateutil.relativedelta as dtut.relativedelta
+import dateutil.relativedelta
 from colors import color
 
 os.chdir(os.path.dirname(os.path.realpath(__file__)))
@@ -201,28 +201,28 @@ def daymap(begin, end, col, json, bydur):
             else:
                 match bydur:
                     case "day":
-                        ns = start + dtut.relativedelta.relativedelta(days=1)
+                        ns = start + dateutil.relativedelta.relativedelta(days=1)
                     case "week":
                         if start.weekday() != 6:
                             ns = start
                             while ns.weekday != 6:
-                                ns += dtut.relativedelta.relativedelta(days=1)
+                                ns += dateutil.relativedelta.relativedelta(days=1)
                         else:
-                            ns = start + dtut.relativedelta.relativedelta(days=7)
+                            ns = start + dateutil.relativedelta.relativedelta(days=7)
                     case "month":
                         if start.day != 1:
                             ns = start
                             while ns.day != 1:
-                                ns += dtut.relativedelta.relativedelta(days=1)
+                                ns += dateutil.relativedelta.relativedelta(days=1)
                         else:
-                            ns = start + dtut.relativedelta.relativedelta(months=+6)
+                            ns = start + dateutil.relativedelta.relativedelta(months=+6)
                     case "year":
                         if start.day != 1 and start.month != 1:
                             ns = start
                             while ns.day != 1 and ns.month != 1:
-                                ns += dtut.relativedelta.relativedelta(days=1)
+                                ns += dateutil.relativedelta.relativedelta(days=1)
                         else:
-                            ns = start + dtut.relativedelta.relativedelta(years=1)
+                            ns = start + dateutil.relativedelta.relativedelta(years=1)
 
                     case _:
                         print("    invalid bydur.")
