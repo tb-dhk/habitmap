@@ -18,6 +18,21 @@ except:
 
 step_to4 = [ [0, 4], [0, 2, 4], [0, 1, 3, 4] ]
 step_from4 = [ [0, 0, 1, 1, 1], [0, 1, 1, 2, 2], [0, 1, 2, 2, 3] ]
+
+def ccol(dic, col):
+    hex = False
+    if len(col) == 3 or len(col) == 6:
+        hex = True
+        for x in col:
+            if x.lower() not in "0123456789abcdef":
+                hex = False
+
+    if hex:
+        return col
+    elif col in dic:
+        return dic[col]
+    else:
+        print("invalid color.")
    
 def newyear(json, habit, year):
     nmth = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
