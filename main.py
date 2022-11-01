@@ -48,7 +48,11 @@ def add(json, habit):
 def track(json, day, habit, ono):
     ono = int(ono)
     if habit in json:
-        stepno = json[habit]["stepno"]
+        try:
+            stepno = json[habit]["stepno"]
+        except:
+            json[habit]["stepno"] = 4
+            stepno = 4
         if ono <= stepno and ono >= 0:
             date = ()
             tdy = dt.date.today()

@@ -207,7 +207,7 @@ else:
                     print("invalid number.")
                 else:
                     if sys.argv[2] in dic:
-                        dic[sys.argv[2]] = new
+                        dic[sys.argv[2]]["stepno"] = new
                     else:
                         print("invalid habit.")
             else:
