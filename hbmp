@@ -130,6 +130,8 @@ help = """
         note that in printing heatmaps, all numbers will be converted to their 4-step equivalents.
 """
 
+print(sys.argv)
+
 if len(sys.argv) == 1 or (len(sys.argv) == 2 and sys.argv[1] not in ["help", "steps"]):
     print(comms)
 else:
@@ -224,6 +226,7 @@ else:
                 string = "    "
                 for x in cols:
                     string += color(f"    {x} ██", main.ccol(cols, x))
+                print(string)
         case _:
             print("invalid command.")
 
