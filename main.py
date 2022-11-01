@@ -156,7 +156,6 @@ def daymap(begin, end, col, json, bydur):
                         print(ns)
                 else:
                     ns = start + dateutil.relativedelta.relativedelta(days=+7)
-                    print(start, ns)
             case "month":
                 if start.day != 1:
                     ns = start
