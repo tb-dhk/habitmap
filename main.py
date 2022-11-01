@@ -4,6 +4,7 @@ import datetime as dt
 import statistics
 import calendar
 import math
+import dateutil as dtut
 from colors import color
 
 os.chdir(os.path.dirname(os.path.realpath(__file__)))
@@ -95,7 +96,7 @@ def multitrack(json, day):
         track(json, day, habit, ono)
     
 
-def daymap(begin, end, col, json):
+def daymap(begin, end, col, json, bydur):
     col = "#" + col
     tdy = dt.date.today()
     yst = dt.date.today() - dt.timedelta(days=1)
@@ -141,6 +142,7 @@ def daymap(begin, end, col, json):
     strings = {}
 
     start = st
+    ps = st
         # start += dt.timedelta(days=1)  
     while start <= end:
         date = (start.year, start.month, start.day)
@@ -170,7 +172,7 @@ def daymap(begin, end, col, json):
             elif habit in ["yy", "mm", "dd"]:
                 match habit:
                     case "yy":
-                        if (start.month == 1 and start.day == 1) or start == st or start == end:
+                        if ps.year != start.year or start == st or start == end:
                             if start.year < 10:
                                 string += "0" + str(start.year)
                             else:
@@ -178,7 +180,7 @@ def daymap(begin, end, col, json):
                         else:
                             string += "  "
                     case "mm":
-                        if start.day == 1 or start == st or start == end:
+                        if ps.month != start.month or start == st or start == end:
                             if start.month < 10:
                                 string += "0" + str(start.month)
                             else:
@@ -192,17 +194,52 @@ def daymap(begin, end, col, json):
                             string += "05"
                         elif start.day == 30 and calendar.monthrange(start.year, start.month)[1] == 30 and start != st and start != end:
                             string += "  "
-                        elif start.day % 5 == 0 or start == st or start == end:
+                        elif start.day % 5 == 0 or start == st or start == end or start.day - ps.day != 1:
                             string += str(start.day)
                         else:
                             string += "  "
             else:
-                try:
-                    num = json[habit][str(date[0])][date[1]-1][date[2]-1]
-                except:
-                    newyear(json, habit, date[0])
-                    num = 0
-                nums.append(num)
+                match bydur:
+                    case "day":
+                        ns = start + dt.timedelta(days=1)
+                    case "week":
+                        if start.weekday() != 6:
+                            ns = start
+                            while ns.weekday != 6:
+                                ns += dt.timedelta(days=1)
+                        else:
+                            ns = start + dt.timedelta(days=7)
+                    case "month":
+                        if start.day != 1:
+                            ns = start
+                            while ns.day != 1:
+                                ns += dt.timedelta(days=1)
+                        else:
+                            ns = start + dtut.relativedelta(months=+6)
+                    case "year":
+                        if start.day != 1 and start.month != 1:
+                            ns = start
+                            while ns.day != 1 and ns.month != 1:
+                                ns += dt.timedelta(days=1)
+                        else:
+                            ns = start + dtut.relativedelta(years=1)
+
+                    case _:
+                        print("    invalid bydur.")
+                        exit()
+                
+                snums = []
+
+                while start < ns:
+                    try:
+                        num = json[habit][str(date[0])][date[1]-1][date[2]-1]
+                    except:
+                        newyear(json, habit, date[0])
+                        num = 0
+                    nums.append(num)
+                    snums.append(num)
+    
+                num = statistics.mean(snums)
                 match num:
                     case 0:
                         string += color("  ", col)
@@ -215,7 +252,8 @@ def daymap(begin, end, col, json):
                     case 4:
                         string += color("██", col) 
             strings[habit] = string
-        start += dt.timedelta(days=1)
+        ps = start
+        start = ns
 
     for x in strings:
         print(strings[x])
@@ -224,7 +262,7 @@ def daymap(begin, end, col, json):
 def monthmap(begin, end, col, json):
     begin = dt.date.isoformat(dt.datetime.combine(dt.date(int(begin[0:4]), int(begin[5:7]), 1), dt.datetime.min.time()))
     end = dt.date.isoformat(dt.datetime.combine(dt.date(int(end[0:4]), int(end[5:7]), calendar.monthrange(int(end[0:4]), int(end[5:7]))[1]), dt.datetime.min.time()))
-    daymap(begin, end, col, json)
+    daymap(begin, end, col, json, "day")
 
 def yearmap(habit, year, col, json):
     col = "#" + col
