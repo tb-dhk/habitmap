@@ -246,7 +246,8 @@ def daymap(begin, end, col, json, bydur):
                     print(snums)
                 
                 print(st, ns, snums)
-                num = statistics.mean(snums)
+                num = math.floor(statistics.mean(snums))
+                print(num)
                 match num:
                     case 0:
                         string += color("  ", col)
