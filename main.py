@@ -27,9 +27,6 @@ def ccol(dic, col):
             if x.lower() not in "0123456789abcdef":
                 hex = False
 
-    for x in dic:
-        print(x)
-
     if hex:
         return col
     elif col in dic:
