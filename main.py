@@ -152,7 +152,6 @@ def daymap(begin, end, col, json, bydur):
                 if start.weekday() != 6:
                     ns = start
                     while ns.weekday() != 6:
-                        print(ns, ns.weekday())
                         ns += dateutil.relativedelta.relativedelta(days=+1)
                 else:
                     ns = start + dateutil.relativedelta.relativedelta(days=+7)
@@ -232,6 +231,7 @@ def daymap(begin, end, col, json, bydur):
                 snums = []
 
                 while start < ns:
+                    print(start, ns)
                     try:
                         num = json[habit][str(date[0])][date[1]-1][date[2]-1]
                     except:
