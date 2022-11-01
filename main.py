@@ -27,12 +27,16 @@ def ccol(dic, col):
             if x.lower() not in "0123456789abcdef":
                 hex = False
 
+    for x in dic:
+        print(x)
+
     if hex:
         return col
     elif col in dic:
         return dic[col]
     else:
         print("invalid color.")
+        exit()
    
 def newyear(json, habit, year):
     nmth = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]

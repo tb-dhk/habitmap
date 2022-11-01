@@ -15,10 +15,7 @@ try:
 except:
     dic = {}
 
-try:
-    sett = toml.load(open(os.getcwd()+'/config.toml'))
-except:
-    sett = {}
+sett = toml.load(open(os.getcwd()+'/config.toml'))
 
 if sett == {}:
     sett["defcol"] = "#FFFFFF"
