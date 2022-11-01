@@ -41,6 +41,8 @@ def ccol(dic, col):
             if not found:
                 print("invalid color.")
                 exit()
+
+    return lis
    
 def newyear(json, habit, year):
     nmth = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
