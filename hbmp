@@ -51,6 +51,8 @@ comms = """
     help:                                                               see all commands and explanations.
 
     steps:          [number]                                            set the default number of steps in heatmap (number from 1-4)
+
+    samplecolors:                               ([colors])
 """
 
 help = """
@@ -80,31 +82,31 @@ help = """
 
         map:
 
-        -d, --day [start] [end] ([color]): view day heatmap for all habits.
-        displays a single bar of each habit's data from [start] to [end], optionally in [color].
+        -d, --day [start] [end] ([colors]): view day heatmap for all habits.
+        displays a single bar of each habit's data from [start] to [end], optionally in [colors].
 
         [start], [end]: either "tdy", "yst", or a date in ISO format (YYYY-MM-DD).
-        [color]: any hex code (no preceding #).
+        [colors]: any number of hex codes (no preceding #).
 
-        -m, --month [start] [end] ([color]): view day heatmap for all habits over a few months.
-        displays a single bar of each habit's data from [start] to [end], optionally in [color].
+        -m, --month [start] [end] ([colors]): view day heatmap for all habits over a few months.
+        displays a single bar of each habit's data from [start] to [end], optionally in [colors].
 
         [start], [end]: any month in ISO format (date without day, YYYY-MM).
-        [color]: any hex code (no preceding #).
+        [colors]: any number of hex codes (no preceding #).
 
-        -y, --year [habit] [year] ([color]): displays a heatmap.
-        displays a calendar heatmap of the data in [habit] for [year], optionally in [color].
+        -y, --year [habit] [year] ([colors]): displays a heatmap.
+        displays a calendar heatmap of the data in [habit] for [year], optionally in [colors].
 
         [habit]: name of an existing habit.
         [year]: any valid integer from 1 to 9999 (based on python's datetime module's limits)
-        [color]: any hex code (no preceding #).
+        [colors]: any number of hex codes (no preceding #).
 
-        -b, --bydur [start] [end] [duration] ([color]): view heatmap for all habits based on week/month/year.
-        displays a single bar of each habit's data from [start] to [end] based on average for every [duration], optionally in [color].
+        -b, --bydur [start] [end] [duration] ([colors]): view heatmap for all habits based on week/month/year.
+        displays a single bar of each habit's data from [start] to [end] based on average for every [duration], optionally in [colors].
 
         [start], [end]: either "tdy", "yst", or a date in ISO format (YYYY-MM-DD).
         [duration]: either "week", "month" or "year"
-        [color]: any hex code (no preceding #).
+        [colors]: any number of hex codes (no preceding #).
 
         help: see this message.
 
@@ -114,6 +116,11 @@ help = """
 
         [habit]: name of an existing habit.
         [number]: any number from 1-4.
+
+        samplecolors ([colors]): see colors displayed in the terminal.
+        if [colors] is entered, the colors listed will be printed out. otherwise, all custom color aliases in config.toml will be printed out.
+
+        [colors]: any number of hex codes (no preceding #).
 
     explaining steps:
 
