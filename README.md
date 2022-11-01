@@ -38,6 +38,40 @@ now, you are able to use minianki! enter "mnak" in your terminal to begin!
 
 ## commands
 ```
+usage: hbmp [command] ([argument] [subargs] ([optional args]))
+    
+    list of commands and arguments:
+
+    command:
+    -a, --arg.      [subargs]                   ([optional] [args])     description
+    
+    habit:
+    -a, --add       [name]                                              add a new habit (if not already existing).
+    -r, --remove    [habit]                                             remove a habit.
+    -t, --track     [day]                       ([habit] [stepno])      add or edit a record.
+
+    map:
+    -l, --list                                                          list all habits.
+    -d, --day       [start] [end]               ([colors])              view heatmap for all habits from one day to another.
+    -m, --month     [start] [end]               ([colors])              view heatmap for all habits from the start of a month to the beginning of another.
+    -y, --year      [habit] [year]              ([colors])              view year heatmap for habit.
+    -b, --bydur     [start] [end] [duration]    ([colors])              view heatmap based on average of week/month/year.
+
+    help:                                                               see all commands and explanations.
+
+    steps:          [number]                                            set the default number of steps in heatmap (number from 1-4)
+
+    samplecolors:                               ([colors])              see all custom colors or the given colors in the terminal.
+```
+
+## config
+for configuration, there are currently two options, both of which can be found in config.toml.
+stepno (default 4): default number of steps. for an explanation on steps, see [the guide](#guide)
+defcol (default #FFFFFF): default colour for maps. can be a name in cols.
+cols: a list custom color names, in the format [name, hex code without preceding "#"]
+
+## guide
+```
 commands:
 
         habit:
