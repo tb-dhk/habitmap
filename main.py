@@ -325,8 +325,8 @@ def yearmap(habit, year, col, json):
     colno = 0
     for x in range(len(months)):
         co = "#" + col[colno % len(col)]
+        print(len(monstr), months[x]*2+8)
         while len(monstr) < months[x] * 2 + 8:
-            print(len(monstr), months[x]*2+8)
             monstr = monstr + ("  ")
         if x+1 < 10:
             monstr = monstr + color("0" + str(x+1), co)
