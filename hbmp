@@ -223,7 +223,7 @@ else:
             else:
                 string = "    "
                 for x in cols:
-                    string += color(f"    {x[0]} ██", "#" + x[0] + "\n")
+                    string += color(f"    {x[0]} ██", "#" + x[1] + "\n")
                 print(string)
         case _:
             print("invalid command.")
