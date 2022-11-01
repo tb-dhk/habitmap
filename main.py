@@ -323,36 +323,42 @@ def yearmap(habit, year, col, json):
 
     months = months[:-1]
     monstr = "        "
+    colno = 0
     for x in range(len(months)):
+        co = col[colno % len(colno)]
         while len(monstr) < months[x] * 2 + 8:
             monstr = monstr + ("  ")
         if x+1 < 10:
-            monstr = monstr + ("0" + str(x+1))
+            monstr = monstr + color("0" + str(x+1), co)
         else:
-            monstr = monstr + (str(x+1))
+            monstr = monstr + color(str(x+1), co)
+        colno += 1
     strings.append(monstr)
 
+    colno = 0
     for x in range(len(yearindow)):
         days = ["sun", "mon", "tue", "wed", "thu", "fri", "sat"]
         string = "    " + days[x] + " "
+        co = col[colno % len(colno)]
         for y in yearindow[x]:
             try:
                 int(y) 
             except:
-                string += color("  ", col)
+                string += color("  ", co)
             else:
                 match y:
                     case 0:
-                        string += color("  ", col)
+                        string += color("  ", co)
                     case 1:
-                        string += color("░░", col)
+                        string += color("░░", co)
                     case 2:
-                        string += color("▒▒", col)
+                        string += color("▒▒", co)
                     case 3:
-                        string += color("▓▓", col)
+                        string += color("▓▓", co)
                     case 4:
-                        string += color("██", col)
+                        string += color("██", co)
         strings.append(string)
+        colno += 1
     for x in strings:
         print(x)
     print("")
