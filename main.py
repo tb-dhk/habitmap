@@ -243,7 +243,6 @@ def daymap(begin, end, col, json, bydur):
                     nums.append(num)
                     snums.append(num)
                     sta += dateutil.relativedelta.relativedelta(days=+1)
-                    print(snums)
                 
                 num = math.floor(statistics.mean(snums))
                 match num:
