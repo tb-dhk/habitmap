@@ -85,7 +85,7 @@ help = """
         -d, --day [start] [end] ([colors]): view day heatmap for all habits.
         displays a single bar of each habit's data from [start] to [end], optionally in [colors].
 
-        [start], [end]: either "tdy", "yst", or a date in ISO format (YYYY-MM-DD).
+        [start], [end]: either "tdy", "yst", a day of the week or a date in ISO format (YYYY-MM-DD).
         [colors]: any number of hex codes (no preceding #).
 
         -m, --month [start] [end] ([colors]): view day heatmap for all habits over a few months.
@@ -104,7 +104,7 @@ help = """
         -b, --bydur [start] [end] [duration] ([colors]): view heatmap for all habits based on week/month/year.
         displays a single bar of each habit's data from [start] to [end] based on average for every [duration], optionally in [colors].
 
-        [start], [end]: either "tdy", "yst", or a date in ISO format (YYYY-MM-DD).
+        [start], [end]: either "tdy", "yst", a day of the week or a date in ISO format (YYYY-MM-DD).
         [duration]: either "week", "month" or "year"
         [colors]: any number of hex codes (no preceding #).
 

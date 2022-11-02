@@ -43,6 +43,31 @@ def ccol(dic, col):
                 exit()
 
     return lis
+
+def cday(day):
+    try:
+        return dt.date.fromisoformat(day)
+    except:
+        match day:
+            case "tdy":
+                return dt.date.today()
+            case "yst":
+                return dt.date.today() - dt.timedelta(days=1)
+            case "sun" | "mon" | "tue" | "wed" | "thu" | "fri" | "sat":
+                ds = ["sun", "mon", "tue", "wed", "thu", "fri", "sat"]
+                wd = dt.date.today().weekday()
+
+                if dt.date.today().weekday() < 5:
+                    sat = dt.date.today() + dt.timedelta(days=5-wd)
+                elif dt.date.today().weekday() == 6:
+                    sat = dt.date.today() + dt.timedelta(days=6)
+                else:
+                    sat = dt.date.today()
+
+                return sat - dt.timedelta(days=6-ds.index(day))
+            case _:
+                print("invalid day. the 'day' argument must either be 'tdy', 'yst', the first three letters of a day of the week or a date in ISO format (YYYY-MM-DD).")
+                exit()
    
 def newyear(json, habit, year):
     nmth = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
@@ -80,23 +105,10 @@ def track(json, day, habit, ono):
             stepno = 4
         if ono <= stepno and ono >= 0:
             date = ()
-            tdy = dt.date.today()
-            yst = dt.date.today() - dt.timedelta(days=1) 
-
-            match day:
-                case "tdy":
-                    date = (tdy.year, tdy.month, tdy.day)
-                case "yst":
-                    date = (yst.year, yst.month, yst.day)
-                case _:
-                    try:
-                        dat = dt.date.fromisoformat(day)
-                    except:
-                        print("    invalid day. the 'day' argument must either be 'tdy', 'yst', or a date in ISO format (YYYY-MM-DD).")
-                        exit()
-                    else:
-                        date = (dat.year, dat.month, dat.day)
-
+            
+            day = cday(day)
+            date = (day.year, day.month, day.day)
+            
             if str(date[0]) not in json[habit]:
                 newyear(json, habit, date[0])
            
@@ -127,32 +139,8 @@ def multitrack(json, day):
     
 
 def daymap(begin, end, col, json, bydur):
-    tdy = dt.date.today()
-    yst = dt.date.today() - dt.timedelta(days=1)
-    
-    match begin:
-        case "tdy":
-            st = tdy 
-        case "yst":
-            st = yst
-        case _:
-            try:
-                st = dt.date.fromisoformat(begin)
-            except:
-                print("    invalid day. the 'day' argument must either be 'tdy', 'yst', or a date in ISO format (YYYY-MM-DD).")
-                exit()
-
-    match end:
-        case "tdy":
-            end = tdy 
-        case "yst":
-            end = yst
-        case _:
-            try:
-                end = dt.date.fromisoformat(end)
-            except:
-                print("    invalid day. the 'day' argument must either be 'tdy', 'yst', or a date in ISO format (YYYY-MM-DD).")
-                exit()
+    st = cday(begin)
+    end = cday(end)
     
     max = 0
     lis = ["yy", "mm", "dd"]
