@@ -45,7 +45,7 @@ comms = """
     -l, --list                                                          list all habits.
     -d, --day       [start] [end]               ([colors])              view heatmap for all habits from one day to another.
     -m, --month     [start] [end]               ([colors])              view heatmap for all habits from the start of a month to the beginning of another.
-    -y, --year      [habit] [year]              ([colors])              view year heatmap for habit.
+    -y, --year      [year] [habit]              ([colors])              view year heatmap for habit.
     -b, --bydur     [start] [end] [duration]    ([colors])              view heatmap based on average of week/month/year.
 
     help:                                                               see all commands and explanations.
@@ -94,7 +94,7 @@ help = """
         [start], [end]: any month in ISO format (date without day, YYYY-MM).
         [colors]: any number of hex codes (no preceding #).
 
-        -y, --year [habit] [year] ([colors]): displays a heatmap.
+        -y, --year [year] [habit] ([colors]): displays a heatmap.
         displays a calendar heatmap of the data in [habit] for [year], optionally in [colors].
 
         [habit]: name of an existing habit.
