@@ -308,7 +308,7 @@ def monthmap(begin, end, col, json):
     end = dt.date.isoformat(dt.datetime.combine(dt.date(int(end[0:4]), int(end[5:7]), calendar.monthrange(int(end[0:4]), int(end[5:7]))[1]), dt.datetime.min.time()))
     daymap(begin, end, col, json, "day")
 
-def yearmap(habit, year, col, json):
+def yearmap(year, habit, col, json):
     stat = json[habit][str(year)]
     yearindow = [[], [], [], [], [], [], []]
     strings = []
