@@ -74,78 +74,81 @@ cols: a list custom color names, in the format [name, hex code without preceding
 ```
 commands:
 
-        habit:
+    habit:
 
-        -a, --add [name]: add a new habit.
-        adds a new habit with name [name] to the database.
-        
-        [name]: any string.
+    -a, --add [name]: add a new habit.
+    adds a new habit with name [name] to the database.
 
-        -r, --remove [name]: removes a habit.
-        removes the habit named [name] from the database.
+    [name]: any string.
 
-        [name]: any string.
+    -r, --remove [name]: removes a habit.
+    removes the habit named [name] from the database.
 
-        -l, --list: lists all habits.
+    [name]: any string.
 
-        -t, --track [day] ([habit] [stepno]): adds or edits a record.
-        adds or edits the record of habit [habit] on [day] (0 by default) and changes it to [stepno].
-        if [habit] and [stepno] are left blank, you will be prompted to enter a number for each habit.
+    -l, --list: lists all habits.
 
-        [day]: either "tdy", "yst", or a date in ISO format (YYYY-MM-DD).
-        [habit]: name of an existing habit.
-        [stepno]: a number from 0 to the default step number
+    -t, --track [day] ([habit] [stepno]): adds or edits a record.
+    adds or edits the record of habit [habit] on [day] (0 by default) and changes it to [stepno].
+    if [habit] and [stepno] are left blank, you will be prompted to enter a number for each habit.
 
-        map:
+    [day]: either "tdy", "yst", the first three letters of a day of the week or a date in ISO format (YYYY-MM-DD).
+    [habit]: name of an existing habit.
+    [stepno]: a number from 0 to the default step number
 
-        -d, --day [start] [end] ([color]): view day heatmap for all habits.
-        displays a single bar of each habit's data from [start] to [end], optionally in [color].
+    map:
 
-        [start], [end]: either "tdy", "yst", or a date in ISO format (YYYY-MM-DD).
-        [color]: any number of hex codes (no preceding #).
+    -d, --day [start] [end] ([colors]): view day heatmap for all habits.
+    displays a single bar of each habit's data from [start] to [end], optionally in [colors].
 
-        -m, --month [start] [end] ([color]): view day heatmap for all habits over a few months.
-        displays a single bar of each habit's data from [start] to [end], optionally in [color].
+    [start], [end]: either "tdy", "yst", the first three letters of a day of the week or a date in ISO format (YYYY-MM-DD).
+    [colors]: any number of hex codes (no preceding #).
 
-        [start], [end]: any month in ISO format (date without day, YYYY-MM).
-        [color]: any number of hex codes (no preceding #).
+    -m, --month [start] [end] ([colors]): view day heatmap for all habits over a few months.
+    displays a single bar of each habit's data from [start] to [end], optionally in [colors].
 
-        -y, --year [habit] [year] ([color]): displays a heatmap.
-        displays a calendar heatmap of the data in [habit] for [year], optionally in [color].
+    [start], [end]: any month in ISO format (date without day, YYYY-MM).
+    [colors]: any number of hex codes (no preceding #).
 
-        [habit]: name of an existing habit.
-        [year]: any valid integer from 1 to 9999 (based on python's datetime module's limits)
-        [color]: any number of hex codes (no preceding #).
+    -y, --year [year] [habit] ([colors]): displays a heatmap.
+    displays a calendar heatmap of the data in [habit] for [year], optionally in [colors].
 
-        -b, --bydur [start] [end] [duration] ([color]): view heatmap for all habits based on week/month/year.
-        displays a single bar of each habit's data from [start] to [end] based on average for every [duration], optionally in [color].
+    [habit]: name of an existing habit.
+    [year]: any valid integer from 1 to 9999 (based on python's datetime module's limits)
+    [colors]: any number of hex codes (no preceding #).
 
-        [start], [end]: either "tdy", "yst", or a date in ISO format (YYYY-MM-DD).
-        [duration]: either "week", "month" or "year"
-        [color]: any number of hex codes (no preceding #).
-        
-        note: if multiple colours are entered into colour, the bars will alternate between each color in sequence over and over again.
+    -b, --bydur [start] [end] [duration] ([colors]): view heatmap for all habits based on week/month/year.
+    displays a single bar of each habit's data from [start] to [end] based on average for every [duration], optionally in [colors].
 
-        help: see this message.
+    [start], [end]: either "tdy", "yst", the first three letters of a day of the week or a date in ISO format (YYYY-MM-DD).
+    [duration]: either "week", "month" or "year"
+    [colors]: any number of hex codes (no preceding #).
 
-        steps [habit] [number]: sets the default number of steps.
-        sets the default number of steps (at the moment, this number of steps applies to all habits)
-        having one step would mean that you either have or have not done the habit but having more steps allows you to indicate anything in between.
+    help: see this message.
 
-        [habit]: name of an existing habit.
-        [number]: any number from 1-4.
+    steps [habit] [number]: sets the default number of steps.
+    sets the default number of steps (at the moment, this number of steps applies to all habits)
+    having one step would mean that you either have or have not done the habit but having more steps allows you to indicate anything in between.
 
-    explaining steps:
+    [habit]: name of an existing habit.
+    [number]: any number from 1-4.
 
-        steps are the number of different values enterable for each record. if a habit only has the option to be marked as done or not done, we count that as one step.
-        if a habit has two steps, one would be allowed to mark the habit as done, undone or half-done. similar rules apply for three or four steps.
-        the step conversion table is as follows:
-        
-        og max no. of steps:    in 1-step:      in 2-step:      in 3-step       in 4-step:
-        1 (0, 1)                (0, 1)          (0, 2)          (0, 3)          (0, 4)
-        2 (0, 1, 2)             (0, 1, 1)       (0, 1, 2)       (0, 2, 3)       (0, 2, 4)
-        3 (0, 1, 2, 3)          (0, 0, 1, 1)    (0, 1, 1, 2)    (0, 1, 2, 3)    (0, 1, 3, 4)
-        4 (0, 1, 2, 3, 4)       (0, 0, 1, 1, 1) (0, 1, 1, 2, 2) (0, 1, 2, 2, 3) (0, 1, 2, 3, 4)
+    samplecolors ([colors]): see colors displayed in the terminal.
+    if [colors] is entered, the colors listed will be printed out. otherwise, all custom color aliases in config.toml will be printed out.
 
-        note that in printing heatmaps, all numbers will be converted to their 4-step equivalents.
+    [colors]: any number of hex codes (no preceding #).
+
+explaining steps:
+
+    steps are the number of different values enterable for each record. if a habit only has the option to be marked as done or not done, we count that as one step.
+    if a habit has two steps, one would be allowed to mark the habit as done, undone or half-done. similar rules apply for three or four steps.
+    the step conversion table is as follows:
+
+    og max no. of steps:    in 1-step:      in 2-step:      in 3-step       in 4-step:
+    1 (0, 1)                (0, 1)          (0, 2)          (0, 3)          (0, 4)
+    2 (0, 1, 2)             (0, 1, 1)       (0, 1, 2)       (0, 2, 3)       (0, 2, 4)
+    3 (0, 1, 2, 3)          (0, 0, 1, 1)    (0, 1, 1, 2)    (0, 1, 2, 3)    (0, 1, 3, 4)
+    4 (0, 1, 2, 3, 4)       (0, 0, 1, 1, 1) (0, 1, 1, 2, 2) (0, 1, 2, 2, 3) (0, 1, 2, 3, 4)
+
+    note that in printing heatmaps, all numbers will be converted to their 4-step equivalents.
 ```
