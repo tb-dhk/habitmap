@@ -78,7 +78,7 @@ def rearr(dic, habit1, habit2):
     ind = lis.index(habit2)
 
     lis.remove(habit1)
-    lis.insert(ind + 1, habit1)
+    lis.insert(ind, habit1)
 
     return {habit : dic[habit] for habit in lis}
 
