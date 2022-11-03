@@ -1,6 +1,8 @@
 # intro
 welcome to habitmap!
 
+see the habitmap documentation [here](https://shuu-wasseo.github.io/habitmap-docs/index.html)
+
 habitmap is a command-line app to track your habits and visualise how committed you are to making or maintaining them with colorful heatmaps!
 
 habitmap allows you to:
@@ -21,5 +23,3 @@ to see the source code for this book, see the [habitmap-docs repository (also on
 
 ## license
 both habitmap and its documentation are under the [GNU General Public License v3.0](https://github.com/shuu-wasseo/habitmap/blob/main/LICENSE).
-
-this documentation was written in [mdBook](https://github.com/rust-lang/mdBook).
