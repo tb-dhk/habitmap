@@ -70,13 +70,13 @@ help = """
 
         [name]: any string.
 
-        -t, --track [day] ([habit] [stepno]): adds or edits a record.
+        -t, --track [day] ([habit] [number]): adds or edits a record.
         adds or edits the record of habit [habit] on [day] and changes it to [stepno].
-        if [habit] and [stepno] are left blank, you will be prompted to enter a number for each habit.
+        if [habit] and [number] are left blank, you will be prompted to enter a number for each habit.
 
         [day]: either "tdy", "yst", the first three letters of a day of the week or a date in ISO format (YYYY-MM-DD).
         [habit]: name of an existing habit.
-        [stepno]: a number from 0 to the default step number.
+        [number]: a number from 0 to the default step number.
 
         -l, --list: lists all habits.
 
@@ -85,12 +85,12 @@ help = """
 
         [habit1], [habit2]: name of an existing habit.
 
-        -s, --steps [habit] [number]: sets the default number of steps.
+        -s, --steps [habit] [stepno]: sets the default number of steps.
         sets the default number of steps (at the moment, this number of steps applies to all habits)
         having one step would mean that you either have or have not done the habit but having more steps allows you to indicate anything in between.
 
         [habit]: name of an existing habit.
-        [number]: any number from 1-4.
+        [stepno]: any number from 1-4.
 
         map:
 
