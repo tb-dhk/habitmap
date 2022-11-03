@@ -40,7 +40,7 @@ now, you are able to use minianki! enter "mnak" in your terminal to begin!
 ```
 usage: hbmp [command] ([argument] [subargs] ([optional args]))
     
-    list of commands and arguments:
+    list of arguments:
 
     command:
     -a, --arg.      [subargs]                   ([optional] [args])     description
@@ -49,17 +49,17 @@ usage: hbmp [command] ([argument] [subargs] ([optional args]))
     -a, --add       [name]                                              add a new habit (if not already existing).
     -r, --remove    [habit]                                             remove a habit.
     -t, --track     [day]                       ([habit] [stepno])      add or edit a record.
+    -l, --list                                                          list all habits.
+    -m, --move      [habit] [habit2]                                    moves one habit after another habit.
+    -s, --steps     [habit] [number]                                    set the default number of steps in heatmap (number from 1-4)
 
     map:
-    -l, --list                                                          list all habits.
     -d, --day       [start] [end]               ([colors])              view heatmap for all habits from one day to another.
     -m, --month     [start] [end]               ([colors])              view heatmap for all habits from the start of a month to the beginning of another.
-    -y, --year      [habit] [year]              ([colors])              view year heatmap for habit.
+    -y, --year      [year] [habit]              ([colors])              view year heatmap for habit.
     -b, --bydur     [start] [end] [duration]    ([colors])              view heatmap based on average of week/month/year.
 
     help:                                                               see all commands and explanations.
-
-    steps:          [habit] [number]                                    set the default number of steps in heatmap (number from 1-4)
 
     samplecolors:                               ([colors])              see all custom colors or the given colors in the terminal.
 ```
