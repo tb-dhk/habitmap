@@ -40,17 +40,16 @@ comms = """
     -a, --add       [name]                                              add a new habit (if not already existing).
     -r, --remove    [habit]                                             remove a habit.
     -t, --track     [day]                       ([habit] [stepno])      add or edit a record.
+    -l, --list                                                          list all habits.
+    -s, --steps     [number]                                            set the default number of steps in heatmap (number from 1-4)
 
     map:
-    -l, --list                                                          list all habits.
     -d, --day       [start] [end]               ([colors])              view heatmap for all habits from one day to another.
     -m, --month     [start] [end]               ([colors])              view heatmap for all habits from the start of a month to the beginning of another.
     -y, --year      [year] [habit]              ([colors])              view year heatmap for habit.
     -b, --bydur     [start] [end] [duration]    ([colors])              view heatmap based on average of week/month/year.
 
     help:                                                               see all commands and explanations.
-
-    steps:          [number]                                            set the default number of steps in heatmap (number from 1-4)
 
     samplecolors:                               ([colors])              see all custom colors or the given colors in the terminal.
 """
@@ -70,8 +69,6 @@ help = """
 
         [name]: any string.
 
-        -l, --list: lists all habits.
-
         -t, --track [day] ([habit] [stepno]): adds or edits a record.
         adds or edits the record of habit [habit] on [day] (0 by default) and changes it to [stepno].
         if [habit] and [stepno] are left blank, you will be prompted to enter a number for each habit.
@@ -79,6 +76,15 @@ help = """
         [day]: either "tdy", "yst", the first three letters of a day of the week or a date in ISO format (YYYY-MM-DD).
         [habit]: name of an existing habit.
         [stepno]: a number from 0 to the default step number
+
+        -l, --list: lists all habits.
+
+        -s, --steps [habit] [number]: sets the default number of steps.
+        sets the default number of steps (at the moment, this number of steps applies to all habits)
+        having one step would mean that you either have or have not done the habit but having more steps allows you to indicate anything in between.
+
+        [habit]: name of an existing habit.
+        [number]: any number from 1-4.
 
         map:
 
@@ -109,13 +115,6 @@ help = """
         [colors]: any number of hex codes (no preceding #).
 
         help: see this message.
-
-        steps [habit] [number]: sets the default number of steps.
-        sets the default number of steps (at the moment, this number of steps applies to all habits)
-        having one step would mean that you either have or have not done the habit but having more steps allows you to indicate anything in between.
-
-        [habit]: name of an existing habit.
-        [number]: any number from 1-4.
 
         samplecolors ([colors]): see colors displayed in the terminal.
         if [colors] is entered, the colors listed will be printed out. otherwise, all custom color aliases in config.toml will be printed out.
@@ -162,14 +161,30 @@ else:
                         main.track(dic, *sys.argv[3:6])
                     else:
                         print("not enough arguments.")
+                case "-l" | "--list":
+                    for habit in dic:
+                        print("    " + habit)
+                case "-s" "--steps":
+                    if len(sys.argv) == 4: 
+                        try:
+                            new = int(sys.argv[3])
+                            if new < 1 or new > 4:
+                                raise TypeError
+                        except:
+                            print("invalid number.")
+                        else:
+                            if sys.argv[2] in dic:
+                                dic[sys.argv[2]]["stepno"] = new
+                                print(f"    stepno for {sys.argv[2]} changed to {new}.")
+                            else:
+                                print("invalid habit.")
+                    else:
+                        print("not enough arguments.")
                 case _:
                     print("invalid command.")
 
         case "map":
             match sys.argv[2]:
-                case "-l" | "--list":
-                    for habit in dic:
-                        print("    " + habit)
                 case "-d" | "--day":
                     match len(sys.argv):
                         case 5:
@@ -210,22 +225,6 @@ else:
                     print("invalid command.")
         case "help":
             print(help)
-        case "steps":
-            if len(sys.argv) == 4: 
-                try:
-                    new = int(sys.argv[3])
-                    if new < 1 or new > 4:
-                        raise TypeError
-                except:
-                    print("invalid number.")
-                else:
-                    if sys.argv[2] in dic:
-                        dic[sys.argv[2]]["stepno"] = new
-                        print(f"    stepno for {sys.argv[2]} changed to {new}.")
-                    else:
-                        print("invalid habit.")
-            else:
-                print("not enough arguments.")
         case "samplecolors":
             if len(sys.argv) > 2:
                 string = ""
