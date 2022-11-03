@@ -157,7 +157,7 @@ else:
                         except:
                             print("not found")
                         else:
-                            print(f"    habit {sys.argv[3]} deleted.")
+                            print(f"    habit {sys.argv[3]} removed.")
                     except:
                         print("not enough arguments.")
                 case "-t" | "--track":
