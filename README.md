@@ -86,8 +86,6 @@ commands:
 
     [name]: any string.
 
-    -l, --list: lists all habits.
-
     -t, --track [day] ([habit] [stepno]): adds or edits a record.
     adds or edits the record of habit [habit] on [day] (0 by default) and changes it to [stepno].
     if [habit] and [stepno] are left blank, you will be prompted to enter a number for each habit.
@@ -95,6 +93,20 @@ commands:
     [day]: either "tdy", "yst", the first three letters of a day of the week or a date in ISO format (YYYY-MM-DD).
     [habit]: name of an existing habit.
     [stepno]: a number from 0 to the default step number
+
+    -l, --list: lists all habits.
+
+    -m, --move [habit1] [habit2]: moves one habit before another habit.
+    moves [habit1] from its origial position to before [habit2].
+
+    [habit1], [habit2]: name of an existing habit.
+
+    -s, --steps [habit] [number]: sets the default number of steps.
+    sets the default number of steps (at the moment, this number of steps applies to all habits)
+    having one step would mean that you either have or have not done the habit but having more steps allows you to indicate anything in between.
+
+    [habit]: name of an existing habit.
+    [number]: any number from 1-4.
 
     map:
 
@@ -125,13 +137,6 @@ commands:
     [colors]: any number of hex codes (no preceding #).
 
     help: see this message.
-
-    steps [habit] [number]: sets the default number of steps.
-    sets the default number of steps (at the moment, this number of steps applies to all habits)
-    having one step would mean that you either have or have not done the habit but having more steps allows you to indicate anything in between.
-
-    [habit]: name of an existing habit.
-    [number]: any number from 1-4.
 
     samplecolors ([colors]): see colors displayed in the terminal.
     if [colors] is entered, the colors listed will be printed out. otherwise, all custom color aliases in config.toml will be printed out.
