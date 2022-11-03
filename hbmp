@@ -42,7 +42,7 @@ comms = """
     -t, --track     [day]                       ([habit] [stepno])      add or edit a record.
     -l, --list                                                          list all habits.
     -m, --move      [habit] [habit2]                                    moves one habit after another habit.
-    -s, --steps     [habit] [number]                                    set the default number of steps in heatmap (number from 1-4)
+    -s, --steps     [habit] [stepno]                                    set the default number of steps in heatmap (number from 1-4)
 
     map:
     -d, --day       [start] [end]               ([colors])              view heatmap for all habits from one day to another.
