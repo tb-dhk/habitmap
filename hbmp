@@ -76,11 +76,11 @@ help = """
 
         [day]: either "tdy", "yst", the first three letters of a day of the week or a date in ISO format (YYYY-MM-DD).
         [habit]: name of an existing habit.
-        [stepno]: a number from 0 to the default step number
+        [stepno]: a number from 0 to the default step number.
 
         -l, --list: lists all habits.
 
-        -m, --move [habit1] [habit2]: moves one habit before another habit.
+        -m, --move [habit1] [habit2]: moves one habit after another habit.
         moves [habit1] from its origial position to before [habit2].
 
         [habit1], [habit2]: name of an existing habit.
