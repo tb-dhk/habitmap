@@ -1,6 +1,6 @@
 install:
 	chmod +x hbmp
-	pip install ansi-colors
+	pip install ansicolors
 	pip install toml
 	pip install python-dateutil
 setup:
