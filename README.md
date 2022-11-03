@@ -40,7 +40,7 @@ now, you are able to use minianki! enter "mnak" in your terminal to begin!
 ```
 usage: hbmp [command] ([argument] [subargs] ([optional args]))
     
-    list of arguments:
+    list of commands and arguments:
 
     command:
     -a, --arg.      [subargs]                   ([optional] [args])     description
