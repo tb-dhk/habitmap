@@ -172,7 +172,7 @@ else:
                         print("    " + habit)
                 case "-m" | "--move":
                     if len(sys.argv) == 5:
-                        dic = main.rearr(dic, sys.argv[2], sys.argv[3])
+                        dic = main.rearr(dic, sys.argv[3], sys.argv[4])
                     else:
                         print("not enough arguments.")
                 case "-s" "--steps":
