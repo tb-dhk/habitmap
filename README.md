@@ -1,4 +1,4 @@
-# intro
+# habitmap
 welcome to habitmap!
 
 see the habitmap documentation [here](https://shuu-wasseo.github.io/habitmap-docs/index.html).
