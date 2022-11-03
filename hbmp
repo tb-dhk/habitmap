@@ -31,7 +31,7 @@ cols = sett["cols"]
 comms = """
     usage: hbmp [command] ([argument] [subargs] ([optional args]))
     
-    list of arguments:
+    list of commands and arguments:
 
     command:
     -a, --arg.      [subargs]                   ([optional] [args])     description
@@ -168,6 +168,7 @@ else:
                     else:
                         print("not enough arguments.")
                 case "-l" | "--list":
+                    print("    you have the following commands:")
                     for habit in dic:
                         print("    " + habit)
                 case "-m" | "--move":
