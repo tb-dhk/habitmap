@@ -39,7 +39,7 @@ comms = """
     habit:
     -a, --add       [name]                                              add a new habit (if not already existing).
     -r, --remove    [habit]                                             remove a habit.
-    -t, --track     [day]                       ([habit] [stepno])      add or edit a record.
+    -t, --track     [day]                       ([habit] [number])      add or edit a record.
     -l, --list                                                          list all habits.
     -m, --move      [habit] [habit2]                                    moves one habit after another habit.
     -s, --steps     [habit] [stepno]                                    set the default number of steps in heatmap (number from 1-4)
