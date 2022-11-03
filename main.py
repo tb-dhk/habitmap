@@ -146,7 +146,7 @@ def multitrack(json, day):
         lis.append(habit)
 
     for habit in lis:
-        ono = input("    " + habit + "? ")
+        ono = input(f"    {habit}? ({json[habit]["stepno"]}) ")
         track(json, day, habit, ono)
     
 
