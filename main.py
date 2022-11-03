@@ -153,6 +153,22 @@ def multitrack(json, day):
     
 
 def daymap(begin, end, col, json, bydur):
+    match len(str(begin)):
+        case 10:
+            begin = begin
+        case 7:
+            begin = dt.date.fromisoformat(begin + "-01")
+        case 4:
+            begin = dt.date.fromisoformat(begin + "-01-01")
+
+    match len(str(end)):
+        case 10:
+            end = end
+        case 7:
+            end = dt.date.fromisoformat(end + str(calendar.monthrange(int(end[0:4]), int(end[5:7]))))
+        case 4:
+            end = dt.date.fromisoformat(end + "-12-31")
+
     st = cday(begin)
     end = cday(end)
     
@@ -307,7 +323,7 @@ def daymap(begin, end, col, json, bydur):
 
 def monthmap(begin, end, col, json):
     begin = dt.date.isoformat(dt.datetime.combine(dt.date(int(begin[0:4]), int(begin[5:7]), 1), dt.datetime.min.time()))
-    end = dt.date.isoformat(dt.datetime.combine(dt.date(int(end[0:4]), int(end[5:7]), calendar.monthrange(int(end[0:4]), int(end[5:7]))[1]), dt.datetime.min.time()))
+    end = dt.date.isoformat(dt.datetime.combine(dt.date(int(end[0:4]), int(end[5:7]), [1]), dt.datetime.min.time()))
     daymap(begin, end, col, json, "day")
 
 def yearmap(year, habit, col, json):
