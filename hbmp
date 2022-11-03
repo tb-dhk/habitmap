@@ -85,8 +85,8 @@ help = """
 
         [habit1], [habit2]: name of an existing habit.
 
-        -s, --steps [habit] [stepno]: sets the default number of steps.
-        sets the default number of steps (at the moment, this number of steps applies to all habits)
+        -s, --steps [habit] [stepno]: sets the number of steps.
+        sets the default number of steps for [habit] to [stepno]
         having one step would mean that you either have or have not done the habit but having more steps allows you to indicate anything in between.
 
         [habit]: name of an existing habit.
