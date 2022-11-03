@@ -71,7 +71,7 @@ help = """
         [name]: any string.
 
         -t, --track [day] ([habit] [stepno]): adds or edits a record.
-        adds or edits the record of habit [habit] on [day] (0 by default) and changes it to [stepno].
+        adds or edits the record of habit [habit] on [day] and changes it to [stepno].
         if [habit] and [stepno] are left blank, you will be prompted to enter a number for each habit.
 
         [day]: either "tdy", "yst", the first three letters of a day of the week or a date in ISO format (YYYY-MM-DD).
