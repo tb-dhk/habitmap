@@ -80,8 +80,8 @@ help = """
 
         -l, --list: lists all habits.
 
-        -m, --move [habit1] [habit2]: moves one habit after another habit.
-        moves [habit1] from its origial position to before [habit2].
+        -m, --move [habit1] [habit2]: moves one habit right after another habit.
+        moves [habit1] from its origial position to right after [habit2].
 
         [habit1], [habit2]: name of an existing habit.
 
