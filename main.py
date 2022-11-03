@@ -68,7 +68,20 @@ def cday(day):
             case _:
                 print("invalid day. the 'day' argument must either be 'tdy', 'yst', the first three letters of a day of the week or a date in ISO format (YYYY-MM-DD).")
                 exit()
-   
+
+def rearr(dic, habit1, habit2):
+    lis = []
+
+    for habit in dic:
+        lis.append(habit)
+
+    ind = lis.index(habit2)
+
+    lis.remove(habit1)
+    lis.insert(ind + 1, habit1)
+
+    return {habit : dic[habit] for habit in lis}
+
 def newyear(json, habit, year):
     nmth = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
     lmth = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]

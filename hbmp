@@ -41,7 +41,8 @@ comms = """
     -r, --remove    [habit]                                             remove a habit.
     -t, --track     [day]                       ([habit] [stepno])      add or edit a record.
     -l, --list                                                          list all habits.
-    -s, --steps     [number]                                            set the default number of steps in heatmap (number from 1-4)
+    -m, --move      [habit] [habit2]                                    moves one habit after another habit.
+    -s, --steps     [habit] [number]                                    set the default number of steps in heatmap (number from 1-4)
 
     map:
     -d, --day       [start] [end]               ([colors])              view heatmap for all habits from one day to another.
@@ -78,6 +79,11 @@ help = """
         [stepno]: a number from 0 to the default step number
 
         -l, --list: lists all habits.
+
+        -m, --move [habit1] [habit2]: moves one habit before another habit.
+        moves [habit1] from its origial position to before [habit2].
+
+        [habit1], [habit2]: name of an existing habit.
 
         -s, --steps [habit] [number]: sets the default number of steps.
         sets the default number of steps (at the moment, this number of steps applies to all habits)
@@ -164,6 +170,11 @@ else:
                 case "-l" | "--list":
                     for habit in dic:
                         print("    " + habit)
+                case "-m" | "--move":
+                    if len(sys.argv) == 5:
+                        dic = main.rearr(dic, sys.argv[2], sys.argv[3])
+                    else:
+                        print("not enough arguments.")
                 case "-s" "--steps":
                     if len(sys.argv) == 4: 
                         try:
