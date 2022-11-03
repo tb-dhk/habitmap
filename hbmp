@@ -39,10 +39,10 @@ comms = """
     habit:
     -a, --add       [name]                                              add a new habit (if not already existing).
     -r, --remove    [habit]                                             remove a habit.
-    -t, --track     [day]                       ([habit] [stepno])      add or edit a record.
+    -t, --track     [day]                       ([habit] [number])      add or edit a record.
     -l, --list                                                          list all habits.
     -m, --move      [habit] [habit2]                                    moves one habit after another habit.
-    -s, --steps     [habit] [number]                                    set the default number of steps in heatmap (number from 1-4)
+    -s, --steps     [habit] [stepno]                                    set the default number of steps in heatmap (number from 1-4)
 
     map:
     -d, --day       [start] [end]               ([colors])              view heatmap for all habits from one day to another.
@@ -71,7 +71,7 @@ help = """
         [name]: any string.
 
         -t, --track [day] ([habit] [stepno]): adds or edits a record.
-        adds or edits the record of habit [habit] on [day] (0 by default) and changes it to [stepno].
+        adds or edits the record of habit [habit] on [day] and changes it to [stepno].
         if [habit] and [stepno] are left blank, you will be prompted to enter a number for each habit.
 
         [day]: either "tdy", "yst", the first three letters of a day of the week or a date in ISO format (YYYY-MM-DD).
@@ -157,7 +157,7 @@ else:
                         except:
                             print("not found")
                         else:
-                            print(f"    habit {sys.argv[3]} deleted.")
+                            print(f"    habit {sys.argv[3]} removed.")
                     except:
                         print("not enough arguments.")
                 case "-t" | "--track":
