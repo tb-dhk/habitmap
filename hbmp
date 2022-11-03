@@ -170,7 +170,7 @@ else:
                 case "-l" | "--list":
                     print("    you have the following commands:")
                     for habit in dic:
-                        print("    " + habit)
+                        print("    - " + habit)
                 case "-m" | "--move":
                     if len(sys.argv) == 5:
                         dic = main.rearr(dic, sys.argv[3], sys.argv[4])
