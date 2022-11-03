@@ -19,7 +19,7 @@ for any feature requests, feel free to open a new issue [here](https://github.co
 
 if you'd like to make your own features and integrate them into habitmap, feel free to make your own branch and then pull request or a [fork](https://github.com/shuu-wasseo/habitmap/fork) if the feature does not get accepted. in the latter case, do remember to link and credit the original habitmap repository.
 
-to see and contribute to the source code for the documentation, see the [habitmap-docs repository (also on GitHub).](https://github.com/shuu-wasseo/habitmap-docs). the same contribution rules apply.
+to see and contribute to the source code for the documentation, see the [habitmap-docs repository (also on GitHub)](https://github.com/shuu-wasseo/habitmap-docs). the same contribution rules apply.
 
 ## license
 both habitmap and its documentation are under the [GNU General Public License v3.0](https://github.com/shuu-wasseo/habitmap/blob/main/LICENSE).
