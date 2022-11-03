@@ -59,7 +59,7 @@ usage: hbmp [command] ([argument] [subargs] ([optional args]))
 
     help:                                                               see all commands and explanations.
 
-    steps:          [number]                                            set the default number of steps in heatmap (number from 1-4)
+    steps:          [habit] [number]                                    set the default number of steps in heatmap (number from 1-4)
 
     samplecolors:                               ([colors])              see all custom colors or the given colors in the terminal.
 ```
