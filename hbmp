@@ -30,7 +30,7 @@ cols = sett["cols"]
 
 
 comms = """
-    usage: hbmp [command] ([argument] [parameters] ([options]))
+    usage: hbmp [command] ([subcommand] [parameters] ([options]))
     
     list of commands, parameters and options:
 
