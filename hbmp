@@ -47,8 +47,7 @@ comms = """
 
     map:
     -d, --day       [start] [end]               ([colors])              view heatmap for all habits from one day to another.
-    -m, --month     [start] [end]               ([colors])              view heatmap for all habits from the start of a month to the beginning of another.
-    -y, --year      [year] [habit]              ([colors])              view yearly calendar heatmap for a habit.
+    -y, --year      [year] [habit]              ([colors])              view heatmap for all habits based on week/month/yearly average
     -b, --bydur     [start] [end] [duration]    ([colors])              view heatmap based on average of week/month/year.
 
     help:                                                               see all commands and explanations.
@@ -108,7 +107,7 @@ help = """
         [year]: any valid integer from 1 to 9999 (based on python's datetime module's limits)
         [colors]: any number of hex codes (no preceding #).
 
-        -b, --bydur [start] [end] [duration] ([colors]): view heatmap for all habits based on week/month/year.
+        -b, --bydur [start] [end] [duration] ([colors]): view heatmap for all habits based on week/month/yearly average.
         displays a single bar of each habit's data from [start] to [end] based on average for every [duration], optionally in [colors].
 
         [start], [end]: either "tdy", "yst", the first three letters of a day of the week or a date in ISO format (YYYY-MM-DD).
