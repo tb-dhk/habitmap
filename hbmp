@@ -181,17 +181,17 @@ else:
                     else:
                         print("not enough arguments.")
                 case "-s" | "--steps":
-                    if len(sys.argv) == 4: 
+                    if len(sys.argv) == 5: 
                         try:
-                            new = int(sys.argv[3])
+                            new = int(sys.argv[4])
                             if new < 1 or new > 4:
                                 raise TypeError
                         except:
                             print("invalid number.")
                         else:
-                            if sys.argv[2] in dic:
-                                dic[sys.argv[2]]["stepno"] = new
-                                print(f"    stepno for {sys.argv[2]} changed to {new}.")
+                            if sys.argv[3] in dic:
+                                dic[sys.argv[3]]["stepno"] = new
+                                print(f"    stepno for {sys.argv[3]} changed to {new}.")
                             else:
                                 print("invalid habit.")
                     else:
