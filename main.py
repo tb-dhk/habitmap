@@ -46,7 +46,7 @@ def ccol(dic, col):
 
 def cday(day):
     try:
-        return dt.date.fromisoformat(day)
+        day = dt.date.fromisoformat(day)
     except:
         match day:
             case "tdy":
@@ -66,8 +66,11 @@ def cday(day):
 
                 return sat - dt.timedelta(days=6-ds.index(day))
             case _:
-                print("invalid day. the 'day' argument must either be 'tdy', 'yst', the first three letters of a day of the week or a date in ISO format (YYYY-MM-DD).")
-                exit()
+                if isinstance(day, dt.date):
+                    return day
+                else:
+                    print("invalid day. the 'day' argument must either be 'tdy', 'yst', the first three letters of a day of the week or a date in ISO format (YYYY-MM-DD).")
+                    exit()
 
 def rearr(dic, habit1, habit2):
     lis = []
@@ -171,7 +174,7 @@ def daymap(begin, end, col, json, bydur):
 
     st = cday(begin)
     end = cday(end)
-    
+
     max = 0
     lis = ["yy", "mm", "dd"]
     
