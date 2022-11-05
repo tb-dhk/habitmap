@@ -162,6 +162,8 @@ def multitrack(json, day):
     
 
 def daymap(begin, end, col, json, bydur):
+    col = ccol([], col)
+
     match len(str(begin)):
         case 10:
             begin = dt.date.fromisoformat(begin)
