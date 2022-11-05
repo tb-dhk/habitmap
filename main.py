@@ -185,7 +185,9 @@ def daymap(begin, end, col, json, bydur):
         if len(habit) > max:
             max = len(habit)
         lis.append(habit)
-        
+
+    if max < 7:
+        max = 7
     lis.append("overall")
     lis.append("")
     
