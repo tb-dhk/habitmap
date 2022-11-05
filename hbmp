@@ -30,12 +30,12 @@ cols = sett["cols"]
 
 
 comms = """
-    usage: hbmp [command] ([argument] [subargs] ([optional args]))
+    usage: hbmp [command] ([argument] [parameters] ([options]))
     
-    list of commands and arguments:
+    list of commands, parameters and options:
 
     command:
-    -a, --arg.      [subargs]                   ([optional] [args])     description
+    -a, --arg.      [parameter]                 ([option])              description
     
     habit:
     -a, --add       [name]                                              add a new habit (if not already existing).
