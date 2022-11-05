@@ -180,7 +180,7 @@ else:
                             print("    - " + habit)
                     else:
                         print("not enough arguments.")
-                case "-s" "--steps":
+                case "-s" | "--steps":
                     if len(sys.argv) == 4: 
                         try:
                             new = int(sys.argv[3])
