@@ -165,7 +165,7 @@ def daymap(begin, end, col, json, bydur):
         case 10:
             end = end
         case 7:
-            end = dt.date.fromisoformat(end + str(calendar.monthrange(int(end[0:4]), int(end[5:7]))[1]))
+            end = dt.date.fromisoformat(end + "-" + str(calendar.monthrange(int(end[0:4]), int(end[5:7]))[1]))
         case 4:
             end = dt.date.fromisoformat(end + "-12-31")
 
