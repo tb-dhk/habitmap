@@ -157,7 +157,7 @@ else:
                         print("not enough arguments.")
                 case "-t" | "--track":
                     if len(sys.argv) == 4:
-                        main.multitrack(dic, sys.argv[3])
+                        main.multitrack(dic, main.cday(sys.argv[3]))
                     elif len(sys.argv) == 6:
                         main.track(dic, *sys.argv[3:6])
                     else:
@@ -202,15 +202,6 @@ else:
                         case _:
                             if len(sys.argv) >= 6:
                                 main.daymap(*sys.argv[3:5], main.ccol(cols, sys.argv[5:]), dic, "day")                          
-                            else:
-                                print("not enough arguments.")
-                case "-m" | "--month":
-                    match len(sys.argv):
-                        case 5:
-                            main.monthmap(*sys.argv[3:5], main.ccol(cols, [defcol]), dic)
-                        case _:
-                            if len(sys.argv) >= 6:
-                                main.monthmap(*sys.argv[3:5], main.ccol(cols, sys.argv[5:]), dic)
                             else:
                                 print("not enough arguments.")
                 case "-y" | "--year":

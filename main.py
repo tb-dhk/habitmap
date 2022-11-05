@@ -30,7 +30,7 @@ def ccol(dic, col):
                     hex = False
         
         if hex:
-            lis.append(y)
+            lis.append("#" + y)
         else:
             found = False
             for x in dic:
@@ -41,6 +41,7 @@ def ccol(dic, col):
             bit34 = ["black", "red", "green", "yellow", "blue", "magenta", "cyan", "white"]
             if y in bit34 or y[7:] in bit34:
                 found = True
+                lis.append(y)
             if not found:
                 print("invalid color.")
                 exit()
@@ -74,6 +75,8 @@ def cday(day):
                 else:
                     print("invalid day. the 'day' argument must either be 'tdy', 'yst', the first three letters of a day of the week or a date in ISO format (YYYY-MM-DD).")
                     exit()
+    else:
+        return day
 
 def rearr(dic, habit1, habit2):
     lis = []
@@ -203,7 +206,7 @@ def daymap(begin, end, col, json, bydur):
     colno = 0
 
     while start <= end:
-        co = "#" + col[colno % len(col)]
+        co = col[colno % len(col)]
         match bydur:
             case "day":
                 ns = start + dateutil.relativedelta.relativedelta(days=+1)
@@ -371,7 +374,7 @@ def yearmap(year, habit, col, json):
     for x in range(len(yearindow)):
         days = ["sun", "mon", "tue", "wed", "thu", "fri", "sat"]
         string = "    " + days[x] + " "
-        co = "#" + col[colno % len(col)]
+        co = col[colno % len(col)]
         for y in yearindow[x]:
             try:
                 int(y) 
