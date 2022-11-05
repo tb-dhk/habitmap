@@ -41,13 +41,13 @@ comms = """
     -r, --remove    [habit]                                             remove a habit.
     -t, --track     [day]                       ([habit] [number])      add or edit a record.
     -l, --list                                                          list all habits.
-    -m, --move      [habit] [habit2]                                    moves one habit after another habit.
+    -m, --move      [habit] [habit2]                                    moves one habit to right after another habit.
     -s, --steps     [habit] [stepno]                                    set the default number of steps in heatmap (number from 1-4)
 
     map:
     -d, --day       [start] [end]               ([colors])              view heatmap for all habits from one day to another.
     -m, --month     [start] [end]               ([colors])              view heatmap for all habits from the start of a month to the beginning of another.
-    -y, --year      [year] [habit]              ([colors])              view year heatmap for habit.
+    -y, --year      [year] [habit]              ([colors])              view yearly calendar heatmap for a habit.
     -b, --bydur     [start] [end] [duration]    ([colors])              view heatmap based on average of week/month/year.
 
     help:                                                               see all commands and explanations.
@@ -70,27 +70,27 @@ help = """
 
         [name]: any string.
 
-        -t, --track [day] ([habit] [stepno]): adds or edits a record.
+        -t, --track [day] ([habit] [number]): adds or edits a record.
         adds or edits the record of habit [habit] on [day] and changes it to [stepno].
-        if [habit] and [stepno] are left blank, you will be prompted to enter a number for each habit.
+        if [habit] and [number] are left blank, you will be prompted to enter a number for each habit.
 
         [day]: either "tdy", "yst", the first three letters of a day of the week or a date in ISO format (YYYY-MM-DD).
         [habit]: name of an existing habit.
-        [stepno]: a number from 0 to the default step number.
+        [number]: a number from 0 to the default step number.
 
         -l, --list: lists all habits.
 
-        -m, --move [habit1] [habit2]: moves one habit after another habit.
-        moves [habit1] from its origial position to before [habit2].
+        -m, --move [habit1] [habit2]: moves one habit to right after another habit.
+        moves [habit1] from its origial position to right after [habit2].
 
         [habit1], [habit2]: name of an existing habit.
 
-        -s, --steps [habit] [number]: sets the default number of steps.
-        sets the default number of steps (at the moment, this number of steps applies to all habits)
+        -s, --steps [habit] [stepno]: sets the number of steps.
+        sets the default number of steps for [habit] to [stepno]
         having one step would mean that you either have or have not done the habit but having more steps allows you to indicate anything in between.
 
         [habit]: name of an existing habit.
-        [number]: any number from 1-4.
+        [stepno]: any number from 1-4.
 
         map:
 
@@ -106,7 +106,7 @@ help = """
         [start], [end]: any month in ISO format (date without day, YYYY-MM).
         [colors]: any number of hex codes (no preceding #).
 
-        -y, --year [year] [habit] ([colors]): displays a heatmap.
+        -y, --year [year] [habit] ([colors]): view yearly calendar heatmap for a habit.
         displays a calendar heatmap of the data in [habit] for [year], optionally in [colors].
 
         [habit]: name of an existing habit.
