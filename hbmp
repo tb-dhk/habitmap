@@ -96,15 +96,9 @@ help = """
         map:
 
         -d, --day [start] [end] ([colors]): view day heatmap for all habits.
-        displays a single bar of each habit's data from [start] to [end], optionally in [colors].
+        displays a single bar of each habit's data from [start] to [end] as well as the overall completion of each day's habits, optionally in [colors].
 
-        [start], [end]: either "tdy", "yst", the first three letters of a day of the week or a date in ISO format (YYYY-MM-DD).
-        [colors]: any number of hex codes (no preceding #).
-
-        -m, --month [start] [end] ([colors]): view day heatmap for all habits over a few months.
-        displays a single bar of each habit's data from [start] to [end], optionally in [colors].
-
-        [start], [end]: any month in ISO format (date without day, YYYY-MM).
+        [start], [end]: either "tdy", "yst", the first three letters of a day of the week or a date, month or year in ISO format (YYYY-MM-DD).
         [colors]: any number of hex codes (no preceding #).
 
         -y, --year [year] [habit] ([colors]): view yearly calendar heatmap for a habit.
