@@ -164,7 +164,7 @@ def multitrack(json, day):
 def daymap(begin, end, col, json, bydur):
     match len(str(begin)):
         case 10:
-            begin = begin
+            begin = dt.date.fromisoformat(begin)
         case 7:
             begin = dt.date.fromisoformat(begin + "-01")
         case 4:
@@ -172,7 +172,7 @@ def daymap(begin, end, col, json, bydur):
 
     match len(str(end)):
         case 10:
-            end = end
+            end = dt.date.fromisoformat(end)
         case 7:
             end = dt.date.fromisoformat(end + "-" + str(calendar.monthrange(int(end[0:4]), int(end[5:7]))[1]))
         case 4:
@@ -205,6 +205,8 @@ def daymap(begin, end, col, json, bydur):
         # start += dt.timedelta(days=1) 
     colno = 0
 
+    if start > end:
+        print("start is later than end. please try again.")
     while start <= end:
         co = col[colno % len(col)]
         match bydur:
