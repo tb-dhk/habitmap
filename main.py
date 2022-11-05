@@ -38,6 +38,9 @@ def ccol(dic, col):
                     found = True
                     lis.append(x[1])
                     break
+            bit34 = ["black", "red", "green", "yellow", "blue", "magenta", "cyan", "white]
+            if y in bit34 or y[7:] in bit34:
+                found = True
             if not found:
                 print("invalid color.")
                 exit()
