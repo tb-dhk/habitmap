@@ -47,9 +47,9 @@ comms = """
 
     map:
     -d, --day       [start] [end]               ([colors])              view heatmap for all habits from one day to another.
-    -y, --year      [year] [habit]              ([colors])              view heatmap for all habits based on week/month/yearly average
     -b, --bydur     [start] [end] [duration]    ([colors])              view heatmap based on average of week/month/year.
-
+    -y, --year      [year] [habit]              ([colors])              view heatmap for all habits based on week/month/yearly average
+    
     help:                                                               see all commands and explanations.
 
     samplecolors:                               ([colors])              see all custom colors or the given colors in the terminal.
@@ -100,18 +100,18 @@ help = """
         [start], [end]: either "tdy", "yst", the first three letters of a day of the week or a date, month or year in ISO format (YYYY-MM-DD).
         [colors]: any number of hex codes (no preceding #).
 
+        -b, --bydur [start] [end] [duration] ([colors]): view heatmap for all habits based on week/month/yearly average.
+        displays a single bar of each habit's data from [start] to [end] based on average for every [duration], optionally in [colors].
+
+        [start], [end]: either "tdy", "yst", the first three letters of a day of the week or a date, month or year in ISO format (YYYY-MM-DD).
+        [duration]: either "week", "month" or "year"
+        [colors]: any number of hex codes (no preceding #).
+        
         -y, --year [year] [habit] ([colors]): view yearly calendar heatmap for a habit.
         displays a calendar heatmap of the data in [habit] for [year], optionally in [colors].
 
         [habit]: name of an existing habit.
         [year]: any valid integer from 1 to 9999 (based on python's datetime module's limits)
-        [colors]: any number of hex codes (no preceding #).
-
-        -b, --bydur [start] [end] [duration] ([colors]): view heatmap for all habits based on week/month/yearly average.
-        displays a single bar of each habit's data from [start] to [end] based on average for every [duration], optionally in [colors].
-
-        [start], [end]: either "tdy", "yst", the first three letters of a day of the week or a date in ISO format (YYYY-MM-DD).
-        [duration]: either "week", "month" or "year"
         [colors]: any number of hex codes (no preceding #).
 
         help: see this message.
