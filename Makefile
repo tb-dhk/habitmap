@@ -1,6 +1,3 @@
-start:
-	chmod +x hbmp
-
 install:
 	pip install ansicolors
 	pip install toml
@@ -9,4 +6,4 @@ setup:
 	hbmp habit -a exercise
 	hbmp habit -a meditate
 	hbmp habit -a hydrate
-	hbmp help
+	hbmp
