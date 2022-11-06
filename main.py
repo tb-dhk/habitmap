@@ -36,7 +36,8 @@ def ccol(dic, col):
             for x in dic:
                 if x[0] == y:
                     found = True
-                    lis.append(x[1])
+                    lis.append(ccol(dic, x[1]))
+                    print(f'found {x} in dic')
                     break
             bit34 = ["black", "red", "green", "yellow", "blue", "magenta", "cyan", "white"]
             if y in bit34 or y[7:] in bit34:
