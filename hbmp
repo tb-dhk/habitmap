@@ -199,7 +199,7 @@ else:
                 case "-d" | "--day":
                     match len(sys.argv):
                         case 5:
-                            main.daymap(*sys.argv[3:5], main.ccol(cols, [defcol]), dic, "day")
+                            main.daymap(*sys.argv[3:5], main.ccol(cols, defcol), dic, "day")
                         case _:
                             if len(sys.argv) >= 6:
                                 main.daymap(*sys.argv[3:5], main.ccol(cols, sys.argv[5:]), dic, "day")                          
@@ -208,7 +208,7 @@ else:
                 case "-y" | "--year":
                     match len(sys.argv):
                         case 5:
-                            main.yearmap(*sys.argv[3:5], main.ccol(cols, [defcol]), dic)
+                            main.yearmap(*sys.argv[3:5], main.ccol(cols, defcol), dic)
                         case _:
                             if len(sys.argv) >= 6:
                                 main.yearmap(*sys.argv[3:5], main.ccol(cols, sys.argv[5:]), dic)
@@ -217,7 +217,7 @@ else:
                 case "-b" | "--bydur":
                     match len(sys.argv):
                         case 6:
-                            main.daymap(*sys.argv[3:5], main.ccol(cols, [defcol]), dic, sys.argv[5])
+                            main.daymap(*sys.argv[3:5], main.ccol(cols, defcol), dic, sys.argv[5])
                         case _:
                             if len(sys.argv) >= 7:
                                 main.daymap(*sys.argv[3:5], main.ccol(cols, sys.argv[6]), dic, sys.argv[5])
