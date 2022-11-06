@@ -19,34 +19,35 @@ except:
 step_to4 = [ [0, 4], [0, 2, 4], [0, 1, 3, 4] ]
 step_from4 = [ [0, 0, 1, 1, 1], [0, 1, 1, 2, 2], [0, 1, 2, 2, 3] ]
 
+def vcol(dic, y):
+    if y[0] == "#":
+        y = y[1:]
+    hex = False
+    if len(y) == 3 or len(y) == 6:
+        hex = True
+        for x in y:
+            if x.lower() not in "0123456789abcdef":
+                hex = False
+
+    if hex:
+        return "#" + y
+    else:
+        found = False
+        for x in dic:
+            if x[0] == y:
+                found = True
+                return vcol(dic, x[1])
+        bit34 = ["black", "red", "green", "yellow", "blue", "magenta", "cyan", "white"]
+        if y in bit34 or y[7:] in bit34:
+            found = True
+            return y 
+        if not found:
+            exit()
+
 def ccol(dic, col):
     lis = []
     for y in col:
-        hex = False
-        if len(y) == 3 or len(y) == 6:
-            hex = True
-            for x in y:
-                if x.lower() not in "0123456789abcdef":
-                    hex = False
-        
-        if hex:
-            lis.append("#" + y)
-        else:
-            found = False
-            for x in dic:
-                if x[0] == y:
-                    found = True
-                    lis.append(ccol(dic, x[1]))
-                    print(f'found {x} in dic')
-                    break
-            bit34 = ["black", "red", "green", "yellow", "blue", "magenta", "cyan", "white"]
-            if y in bit34 or y[7:] in bit34:
-                found = True
-                lis.append(y)
-            if not found:
-                print("invalid color.")
-                exit()
-
+        lis.append(vcol(dic, y))
     return lis
 
 def cday(day):
