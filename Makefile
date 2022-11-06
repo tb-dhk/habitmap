@@ -6,4 +6,4 @@ setup:
 	hbmp habit -a exercise
 	hbmp habit -a meditate
 	hbmp habit -a hydrate
-	hbmp help
+	hbmp
