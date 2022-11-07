@@ -42,6 +42,7 @@ def vcol(dic, y):
             found = True
             return y 
         if not found:
+            print(f"invalid color {y}.")
             exit()
 
 def ccol(dic, col):
