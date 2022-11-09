@@ -107,6 +107,7 @@ def logout():
     toml.dump(sett, open('config.toml', 'w'))
 
 def login(acct):
+    print(acct)
     print("logging in...")
     if acct["loggedin"]:
         prompt = input("you are already logged in. would you like to log out? (y/N) ")
@@ -124,12 +125,12 @@ def login(acct):
         result = cursor.fetchall()
 
         fuser = False
-        acct = []
         for row in result:
             if row[0] == username:
-                acct = row
+                account = row
                 fuser = True
                 if hashlib.sha3_512((password + row[1]).encode()).hexdigest() == row[2]:
+                    acct["loggedin"] = True
                     print("login successful!")
                 else:
                     print("invalid credentials. please try again.")
@@ -151,18 +152,19 @@ def login(acct):
                 """)
         
         try:
-            edic = acct[3]
+            edic = account[3]
         except:
             edic = {}
 
         try:
-            esett = acct[5]
+            esett = account[5]
         except:
             esett = {}
             
         sync(username, dic, edic, sett, esett)
         mydb.commit()
     
+        print(acct)
         toml.dump(acct, open('account.toml', 'w'))
         return dic
 
