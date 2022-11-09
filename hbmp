@@ -23,9 +23,9 @@ except:
     sett = {}
 
 try:
-    acc = toml.load(open(os.getcwd()+'/.account.toml'))
+    acct = toml.load(open(os.getcwd()+'/.account.toml'))
 except:
-    acc = {}
+    acct = {}
 
 if sett == {}:
     sett["defcol"] = "#FFFFFF"

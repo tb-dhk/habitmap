@@ -8,8 +8,6 @@ import dotenv
 
 dotenv.load_dotenv()
 
-print(os.environ)
-
 mydb = mysql.connector.connect(
     host = os.getenv("host"),
     user = os.getenv("user"),
@@ -29,9 +27,9 @@ except:
     sett = {}
 
 try:
-    acc = toml.load(open(os.getcwd()+'/.account.toml'))
+    acct = toml.load(open(os.getcwd()+'/.account.toml'))
 except:
-    acc = {}
+    acct = {}
 
 def gensalt(uid, pwd):
     alpha = "qweryuiopasdfghjklzxcvbnm"
@@ -102,15 +100,15 @@ def sync(user, dic, edic, con, econ):
 
 def logout():
     print("logging out...")
-    acc["loggedin"] = False
-    acc["username"] = ""
-    toml.dump(acc, open('account.toml', 'w'))
+    acct["loggedin"] = False
+    acct["username"] = ""
+    toml.dump(acct, open('account.toml', 'w'))
     json.dump(dic, open('stats.json', 'w'), default=str)
     toml.dump(sett, open('config.toml', 'w'))
 
 def login():
     print("logging in...")
-    if acc["loggedin"]:
+    if acct["loggedin"]:
         prompt = input("you are already logged in. would you like to log out? (y/N) ")
         if prompt == "y":
             logout()
@@ -118,7 +116,7 @@ def login():
             print("logout abort.")
     else:
         username = input("enter username: ")
-        acc["username"] = username
+        acct["username"] = username
         password = getpass.getpass("enter password: ")
         maindb = os.getenv("database")
         cursor.execute("use {maindb};")
@@ -126,10 +124,10 @@ def login():
         result = cursor.fetchall()
 
         fuser = False
-        acc = []
+        acct = []
         for row in result:
             if row[0] == username:
-                acc = row
+                acct = row
                 fuser = True
                 if hashlib.sha3_512((password + row[1]).encode()).hexdigest() == row[2]:
                     print("login successful!")
@@ -153,20 +151,20 @@ def login():
                 """)
         
         try:
-            edic = acc[3]
+            edic = acct[3]
         except:
             edic = {}
 
         try:
-            esett = acc[5]
+            esett = acct[5]
         except:
             esett = {}
             
         sync(username, dic, edic, sett, esett)
         mydb.commit()
     
-        toml.dump(acc, open('account.toml', 'w'))
+        toml.dump(acct, open('account.toml', 'w'))
         return dic
 
-def removeacc():
+def removeacct():
     pass
