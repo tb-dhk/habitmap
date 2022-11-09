@@ -22,6 +22,7 @@ try:
 except:
     sett = {}
 
+print(toml.load(open(os.getcwd()+'/.account.toml')))
 try:
     acct = toml.load(open(os.getcwd()+'/.account.toml'))
 except:
@@ -30,6 +31,10 @@ except:
 if sett == {}:
     sett["defcol"] = "#FFFFFF"
     sett["cols"] = []
+
+if acct == {}:
+    acct["loggedin"] = False
+    sett["username"] = ""
 
 defcol = sett["defcol"]
 cols = sett["cols"]
