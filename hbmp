@@ -22,7 +22,6 @@ try:
 except:
     sett = {}
 
-print(toml.load(open(os.getcwd()+'/.account.toml')))
 try:
     acct = toml.load(open(os.getcwd()+'/.account.toml'))
 except:
