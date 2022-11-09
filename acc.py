@@ -119,7 +119,7 @@ def login(acct):
         acct["username"] = username
         password = getpass.getpass("enter password: ")
         maindb = os.getenv("database")
-        cursor.execute("use {maindb};")
+        cursor.execute(f"use {maindb};")
         cursor.execute("select * from accounts;")
         result = cursor.fetchall()
 
