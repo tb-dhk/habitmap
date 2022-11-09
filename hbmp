@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 
 import main
+import acc
 
 import datetime as dt
 import os
@@ -20,6 +21,11 @@ try:
     sett = toml.load(open(os.getcwd()+'/config.toml'))
 except:
     sett = {}
+
+try:
+    acc = toml.load(open(os.getcwd()+'/.account.toml'))
+except:
+    acc = {}
 
 if sett == {}:
     sett["defcol"] = "#FFFFFF"
@@ -138,7 +144,7 @@ help = """
         note that in printing heatmaps, all numbers will be converted to their 4-step equivalents.
 """
 
-if len(sys.argv) == 1 or (len(sys.argv) == 2 and sys.argv[1] not in ["help", "steps", "samplecolors"]):
+if len(sys.argv) == 1 or (len(sys.argv) == 2 and sys.argv[1] not in ["help", "steps", "samplecolors", "login"]):
     print(comms)
 else:
     match sys.argv[1]:
@@ -225,6 +231,10 @@ else:
                                 print("not enough arguments.")
                 case _:
                     print("invalid command.")
+        case "login":
+            dic = acc.login()
+        case "logout":
+            dic = acc.logout()
         case "help":
             print(help)
         case "samplecolors":
