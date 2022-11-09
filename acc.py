@@ -4,6 +4,9 @@ import json
 import getpass
 import toml
 import os
+import dotenv
+
+dotenv.load_dotenv()
 
 print(os.environ)
 
