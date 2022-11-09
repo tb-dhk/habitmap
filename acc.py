@@ -163,7 +163,7 @@ def login(acct):
         sync(username, dic, edic, sett, esett)
         mydb.commit()
     
-        toml.dump(acct, open('account.toml', 'w'))
+        toml.dump(acct, open('.account.toml', 'w'))
         return dic
 
 def removeacct():
