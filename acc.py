@@ -107,7 +107,6 @@ def logout():
     toml.dump(sett, open('config.toml', 'w'))
 
 def login(acct):
-    print(acct)
     print("logging in...")
     if acct["loggedin"]:
         prompt = input("you are already logged in. would you like to log out? (y/N) ")
@@ -164,7 +163,6 @@ def login(acct):
         sync(username, dic, edic, sett, esett)
         mydb.commit()
     
-        print(acct)
         toml.dump(acct, open('account.toml', 'w'))
         return dic
 
