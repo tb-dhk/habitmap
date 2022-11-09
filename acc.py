@@ -6,10 +6,10 @@ import toml
 import os
 
 mydb = mysql.connector.connect(
-    host="sql12.freesqldatabase.com",
-    user="sql12554021",
-    password="rD75mmE8z5",
-    port = 3306, #for Mamp users
+    host = os.getenv("host"),
+    user = os.getenv("user"),
+    password = os.getenv("password"),
+    port = os.getenv("port"),
 )
 
 cursor = mydb.cursor()
@@ -115,7 +115,8 @@ def login():
         username = input("enter username: ")
         acc["username"] = username
         password = getpass.getpass("enter password: ")
-        cursor.execute("use sql12554021;")
+        maindb = os.getenv("database")
+        cursor.execute("use {maindb};")
         cursor.execute("select * from accounts;")
         result = cursor.fetchall()
 
