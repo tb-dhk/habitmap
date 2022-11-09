@@ -106,7 +106,7 @@ def logout():
     json.dump(dic, open('stats.json', 'w'), default=str)
     toml.dump(sett, open('config.toml', 'w'))
 
-def login():
+def login(acct):
     print("logging in...")
     if acct["loggedin"]:
         prompt = input("you are already logged in. would you like to log out? (y/N) ")

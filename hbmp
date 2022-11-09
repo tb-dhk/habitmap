@@ -232,7 +232,7 @@ else:
                 case _:
                     print("invalid command.")
         case "login":
-            dic = acc.login()
+            dic = acc.login(acct)
         case "logout":
             dic = acc.logout()
         case "help":
