@@ -240,7 +240,7 @@ else:
                 case "login":
                     dic = acc.login(acct)
                 case "logout":
-                    dic = acc.logout()
+                    dic = acc.logout(acct)
         case "help":
             print(help)
         case "samplecolors":

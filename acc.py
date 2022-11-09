@@ -98,11 +98,11 @@ def sync(user, dic, edic, con, econ):
     mydb.commit()
     print("data synced successfully.")
 
-def logout():
+def logout(acct):
     print("logging out...")
     acct["loggedin"] = False
     acct["username"] = ""
-    toml.dump(acct, open('account.toml', 'w'))
+    toml.dump(acct, open('.account.toml', 'w'))
     json.dump(dic, open('stats.json', 'w'), default=str)
     toml.dump(sett, open('config.toml', 'w'))
 
