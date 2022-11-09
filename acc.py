@@ -5,6 +5,8 @@ import getpass
 import toml
 import os
 
+print(os.environ)
+
 mydb = mysql.connector.connect(
     host = os.getenv("host"),
     user = os.getenv("user"),
