@@ -203,36 +203,42 @@ def editacct(acct, det, new):
 
         if fuser:
             if det in ["username", "password"]:
-                prompt = input(f"are you sure you would like to change {det} to {new}? (y/N)")
+                prompt = input(f"are you sure you would like to change {det}? (y/N) ")
                 if prompt == "y":
-                    verify = input(f"enter your current {det}.")
+                    verify = getpass.getpass(f"enter your current {det} to verify: ")
                     if det == "username":
                         if verify == acct["username"]:
                             print("username verified.")
-                            acct["username"] = True
+                            acct["username"] = new
                             cursor.execute(f"""
                                 UPDATE
                                     accounts
                                 SET
-                                    username = '{new}',
+                                    username = '{new}'
                                 WHERE
                                     username = '{acct["username"]}';
                             """)
                             toml.dump(acct, open('.account.toml', 'w'))
+                            mydb.commit()
                             print(f"your username is now {new}.")
+                        else:
+                            print("invalid username.")
                     elif det == "password":
-                        if hashlib.sha3_512((det + account[1]).encode()).hexdigest() == account[2]:
+                        if hashlib.sha3_512((verify + account[1]).encode()).hexdigest() == account[2]:
                             print("password verified.")
                             cursor.execute(f"""
                                 UPDATE
                                     accounts
                                 SET
                                     salt = '{gensalt(account[0], new)}',
-                                    password = '{hashlib.sha3_512((password + gensalt(account[0], new)).encode()).hexdigest()}',
+                                    password = '{hashlib.sha3_512((new + gensalt(account[0], new)).encode()).hexdigest()}'
                                 WHERE
                                     username = '{acct["username"]}';
                             """)
-                            print(f"your username is now {new}.")
+                            mydb.commit()
+                            print(f"your password has been changed.")
+                        else:
+                            print("invalid password.")
             else:
                 print("invalid credential.")
     else:
@@ -247,6 +253,7 @@ def removeacct(acct, dic, sett):
             cursor.execute("select * from accounts;")
             uname = acct["username"]
             cursor.execute(f"delete from accounts where username = '{uname}'")
+            mydb.commit()
             print("account successfully deleted.")
             prompt = ("would you like to keep your data? (Y/n)")
             if prompt != "n":

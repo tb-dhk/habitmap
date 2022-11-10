@@ -245,16 +245,16 @@ else:
                     print("you are not logged in.")
             else:
                 match sys.argv[2]:
-                    case "login":
+                    case "-i" | "login":
                         dic = acc.login(acct, dic, sett)
-                    case "logout":
+                    case "-o" | "logout":
                         acc.logout(acct, dic, sett)
-                    case "edit":
-                        if len(sys.argv) < 4:
+                    case "-e" | "edit":
+                        if len(sys.argv) < 5:
                             print("not enough arguments.")
                         else:
                             acc.editacct(acct, *sys.argv[3:])
-                    case "delete":
+                    case "-d" | "delete":
                         acc.removeacct(acct, dic, sett)
         case "help":
             print(help)
