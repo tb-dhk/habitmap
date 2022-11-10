@@ -148,7 +148,7 @@ help = """
         note that in printing heatmaps, all numbers will be converted to their 4-step equivalents.
 """
 
-if len(sys.argv) == 1 or (len(sys.argv) == 2 and sys.argv[1] not in ["help", "steps", "samplecolors", "login", "logout"]):
+if len(sys.argv) == 1 or (len(sys.argv) == 2 and sys.argv[1] not in ["help", "samplecolors"]):
     print(comms)
 else:
     match sys.argv[1]:
@@ -236,19 +236,26 @@ else:
                 case _:
                     print("invalid command.")
         case "acc":
-            match sys.argv[2]:
-                case "login":
-                    dic = acc.login(acct)
-                case "logout":
-                    acc.logout(acct)
-                case "edit":
-                    if len(sys.argv) < 5:
-                        print("not enough arguments.")
-                    else:
-                        acc.editacct(acct, *sys.argv[3:])
-                case "delete":
-                    acc.removeacct(acct)
-                    
+            if len(sys.argv) < 2:
+                loggedin = acct["loggedin"]
+                username = acct["username"]
+                if loggedin:
+                    print(f"you are logged in as {username}.")
+                else:
+                    print("you are not logged in.")
+            else:
+                match sys.argv[2]:
+                    case "login":
+                        dic = acc.login(acct)
+                    case "logout":
+                        acc.logout(acct)
+                    case "edit":
+                        if len(sys.argv) < 4:
+                            print("not enough arguments.")
+                        else:
+                            acc.editacct(acct, *sys.argv[3:])
+                    case "delete":
+                        acc.removeacct(acct)
         case "help":
             print(help)
         case "samplecolors":
