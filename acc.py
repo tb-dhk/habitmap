@@ -5,6 +5,7 @@ import getpass
 import toml
 import os
 import dotenv
+import random
 
 dotenv.load_dotenv()
 
@@ -160,11 +161,12 @@ def login(acct, dic, sett):
                 print("creating account...")
                 salt = gensalt(username, password)
                 hpwd = hashlib.sha3_512((password + salt).encode()).hexdigest()
+                id = hashlib.sha3_512(str(random.random()).encode()).hexdigest()
                 cursor.execute(f"""
                 insert into
-                    `accounts` (`username`, `salt`, `password`, `data`)
+                    `accounts` (`username`, `salt`, `password`, `data`, `config`, `id`)
                 values
-                    ('{username}', '{salt}', '{hpwd}', '{r"{}"}');
+                    ('{username}', '{salt}', '{hpwd}', '{r"{}"}', '{r"{}"}', '{id}');
                 """)
                 acct["loggedin"] = True
         
@@ -216,7 +218,7 @@ def editacct(acct, det, new):
                                 SET
                                     username = '{new}'
                                 WHERE
-                                    username = '{acct["username"]}';
+                                    id = '{account[5]}';
                             """)
                             toml.dump(acct, open('.account.toml', 'w'))
                             mydb.commit()
