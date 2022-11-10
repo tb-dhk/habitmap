@@ -113,12 +113,12 @@ def logout(acct, dic, sett):
     else:
         print("you are already logged out.")
 
-def login(acct):
+def login(acct, dic, sett):
     print("logging in...")
     if acct["loggedin"]:
         prompt = input("you are already logged in. would you like to log out? (y/N) ")
         if prompt == "y":
-            logout(acct)
+            logout(acct, dic, sett)
         else:
             print("logout abort.")
     else:
@@ -224,7 +224,7 @@ def editacct(acct, det, new):
     else:
         print("please login first.")
 
-def removeacct(acct):
+def removeacct(acct, dic, sett):
     if acct["loggedin"]:
         prompt = input("are you sure you would like to remove your account? (y/N) ")
         if prompt == "y":
@@ -236,7 +236,7 @@ def removeacct(acct):
             print("account successfully deleted.")
             prompt = ("would you like to keep your data? (Y/n)")
             if prompt != "n":
-                logout(acct)
+                logout(acct, dic, sett)
             else:
                 print("deleting local data...")
                 acct["loggedin"] = False

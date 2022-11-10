@@ -27,8 +27,6 @@ try:
 except:
     acct = {}
 
-print(dic)
-
 if sett == {}:
     sett["defcol"] = "#FFFFFF"
     sett["cols"] = []
@@ -248,16 +246,16 @@ else:
             else:
                 match sys.argv[2]:
                     case "login":
-                        dic = acc.login(acct)
+                        dic = acc.login(acct, dic, sett)
                     case "logout":
-                        acc.logout(acct)
+                        acc.logout(acct, dic, sett)
                     case "edit":
                         if len(sys.argv) < 4:
                             print("not enough arguments.")
                         else:
                             acc.editacct(acct, *sys.argv[3:])
                     case "delete":
-                        acc.removeacct(acct)
+                        acc.removeacct(acct, dic, sett)
         case "help":
             print(help)
         case "samplecolors":
