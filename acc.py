@@ -175,6 +175,9 @@ def login(acct):
 
 def editacct(acct, det, new):
     if acct["loggedin"]:
+        maindb = os.getenv("database")
+        cursor.execute(f"use {maindb};")
+        cursor.execute("select * from accounts;")
         result = cursor.fetchall()
         fuser = False
 
@@ -225,6 +228,9 @@ def removeacct(acct):
     if acct["loggedin"]:
         prompt = input("are you sure you would like to remove your account? (y/N) ")
         if prompt == "y":
+            maindb = os.getenv("database")
+            cursor.execute(f"use {maindb};")
+            cursor.execute("select * from accounts;")
             uname = acct["username"]
             cursor.execute(f"delete from accounts where username == {uname}")
             print("account successfully deleted.")
