@@ -176,7 +176,7 @@ else:
                     else:
                         print("not enough arguments.")
                 case "-l" | "--list":
-                    print("    you have the following commands:")
+                    print("    you have the following habits:")
                     for habit in dic:
                         print("    - " + habit)
                 case "-m" | "--move":

@@ -14,7 +14,7 @@ mydb = mysql.connector.connect(
     password = os.getenv("password"),
     port = os.getenv("port"),
 )
-cursor = mydb.cursor()
+cursor = mydb.cursor(buffered=True)
 
 try:
     dic = json.load(open('stats.json', 'r'))
@@ -48,16 +48,18 @@ def gensalt(uid, pwd):
 
 def sync(user, dic, edic, con, econ):
     print("syncing database...")
-    if (edic == {} and econ == {}) and (dic == {} and con == {}):
+    edic = json.dumps(edic).replace(r"\\", "").strip(r"'\\").strip('"')
+    econ = toml.loads(toml.dumps(econ).replace(r"\\", "").strip(r"'\\").strip('"'))
+    if (edic in [{}, "null", None] and econ in [{}, "null", None]) and (dic in [{}, "null", None] and con in [{}, "null", None]):
         print("you have no data to import or export. happy habit tracking!")
-    elif (edic != {} or econ != {}) and (dic == {} and con == {}):
+    elif (edic not in [{}, "null", None] or econ not in [{}, "null", None]) and (dic in [{}, "null", None] and con in [{}, "null", None]):
         prompt = input("you have no data saved locally but you have data on the cloud. would you like to import from the cloud? (Y/n) ")
         if prompt == "n":
             print("import aborted.")
         else:
             dic = edic
             con = econ
-    elif (edic == {} and econ == {}) and (dic != {} or con != {}):
+    elif (edic in [{}, "null", None] and econ in [{},"null",  None]) and (dic not in [{}, "null", None] or con not in [{}, "null", None]):
         prompt = input("you have no data on the cloud but you have data saved locally. would you like to export to the cloud? (Y/n) ")
         if prompt == "n":
             print("export aborted.")
@@ -81,16 +83,22 @@ def sync(user, dic, edic, con, econ):
         else:
             print("your data on the cloud and your data saved locally are identical. happy habit tracking!")
     
-    edic = json.dumps(edic)
-    econ = toml.dumps(econ)
+    edic = json.loads(json.dumps(edic).replace(r"\\", ""))
+    econ = toml.loads(toml.dumps(econ).replace(r"\\", ""))
+    dic = json.loads(json.dumps(dic).replace(r"\\", ""))
+    con = toml.loads(toml.dumps(con).replace(r"\\", ""))
     json.dump(dic, open('stats.json', 'w'), default=str)
     toml.dump(con, open('config.toml', 'w'))
+    if edic == None:
+        edic = {}
+    if econ == None:
+        econ = {}
     cursor.execute(f"""
         UPDATE
             accounts
         SET
-            data = '{edic}',
-            config = '{econ}'
+            data = "{edic}",
+            config = "{econ}"
         WHERE
             username = '{user}';
     """)
@@ -119,6 +127,7 @@ def login(acct, dic, sett):
         prompt = input("you are already logged in. would you like to log out? (y/N) ")
         if prompt == "y":
             logout(acct, dic, sett)
+            login(acct, dic, sett)
         else:
             print("logout abort.")
     else:
@@ -146,6 +155,7 @@ def login(acct, dic, sett):
             prompt = input("this username is not registered. would you like to create a new account? (Y/n) ")
             if prompt == "n":
                 print("signup aborted.")
+                exit()
             else:
                 print("creating account...")
                 salt = gensalt(username, password)
@@ -156,6 +166,7 @@ def login(acct, dic, sett):
                 values
                     ('{username}', '{salt}', '{hpwd}', '{r"{}"}');
                 """)
+                acct["loggedin"] = True
         
         try:
             edic = account[3]
@@ -171,6 +182,9 @@ def login(acct, dic, sett):
         mydb.commit()
     
         toml.dump(acct, open('.account.toml', 'w'))
+        print()
+        if dic in ["none", None]:
+            dic = {}
         return dic
 
 def editacct(acct, det, new):
@@ -232,11 +246,16 @@ def removeacct(acct, dic, sett):
             cursor.execute(f"use {maindb};")
             cursor.execute("select * from accounts;")
             uname = acct["username"]
-            cursor.execute(f"delete from accounts where username == {uname}")
+            cursor.execute(f"delete from accounts where username = '{uname}'")
             print("account successfully deleted.")
             prompt = ("would you like to keep your data? (Y/n)")
             if prompt != "n":
-                logout(acct, dic, sett)
+                print("logging out...")
+                acct["loggedin"] = False
+                acct["username"] = ""
+                toml.dump(acct, open('.account.toml', 'w'))
+                json.dump(dic, open('stats.json', 'w'), default=str)
+                toml.dump(sett, open('config.toml', 'w'))
             else:
                 print("deleting local data...")
                 acct["loggedin"] = False
@@ -244,3 +263,5 @@ def removeacct(acct, dic, sett):
                 toml.dump({}, open('.account.toml', 'w'))
                 json.dump({}, open('stats.json', 'w'), default=str)
                 toml.dump({}, open('config.toml', 'w'))
+    else:
+        print("you are not logged in.")
