@@ -240,7 +240,15 @@ else:
                 case "login":
                     dic = acc.login(acct)
                 case "logout":
-                    dic = acc.logout(acct)
+                    acc.logout(acct)
+                case "edit":
+                    if len(sys.argv) < 4:
+                        print("not enough arguments.")
+                    else:
+                        acc.editacct(acct, *sys.argv[3:])
+                case "delete":
+                    acc.removeacct(acct)
+                    
         case "help":
             print(help)
         case "samplecolors":

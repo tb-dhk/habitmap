@@ -14,8 +14,8 @@ mydb = mysql.connector.connect(
     password = os.getenv("password"),
     port = os.getenv("port"),
 )
-
 cursor = mydb.cursor()
+
 try:
     dic = json.load(open('stats.json', 'r'))
 except:
@@ -99,19 +99,26 @@ def sync(user, dic, edic, con, econ):
     print("data synced successfully.")
 
 def logout(acct):
-    print("logging out...")
-    acct["loggedin"] = False
-    acct["username"] = ""
-    toml.dump(acct, open('.account.toml', 'w'))
-    json.dump(dic, open('stats.json', 'w'), default=str)
-    toml.dump(sett, open('config.toml', 'w'))
+    if acct["loggedin"]:
+        prompt = input("are you sure you would like to log out? (y/N) ")
+        if prompt == "y":
+            print("logging out...")
+            acct["loggedin"] = False
+            acct["username"] = ""
+            toml.dump(acct, open('.account.toml', 'w'))
+            json.dump(dic, open('stats.json', 'w'), default=str)
+            toml.dump(sett, open('config.toml', 'w'))
+        else:
+            print("logout abort.")
+    else:
+        print("you are already logged out.")
 
 def login(acct):
     print("logging in...")
     if acct["loggedin"]:
         prompt = input("you are already logged in. would you like to log out? (y/N) ")
         if prompt == "y":
-            logout()
+            logout(acct)
         else:
             print("logout abort.")
     else:
@@ -166,5 +173,68 @@ def login(acct):
         toml.dump(acct, open('.account.toml', 'w'))
         return dic
 
-def removeacct():
-    pass
+def editacct(acct, det, new):
+    if acct["loggedin"]:
+        result = cursor.fetchall()
+        fuser = False
+
+        for row in result:
+            if row[0] == acct["username"]:
+                fuser = True
+                account = row
+                break
+
+        if fuser:
+            if det in ["username", "password"]:
+                prompt = input(f"are you sure you would like to change {det} to {new}? (y/N)")
+                if prompt == "y":
+                    verify = input(f"enter your current {det}.")
+                    if det == "username":
+                        if verify == acct["username"]:
+                            print("username verified.")
+                            acct["username"] = True
+                            cursor.execute(f"""
+                                UPDATE
+                                    accounts
+                                SET
+                                    username = '{new}',
+                                WHERE
+                                    username = '{acct["username"]}';
+                            """)
+                            toml.dump(acct, open('.account.toml', 'w'))
+                            print(f"your username is now {new}.")
+                    elif det == "password":
+                        if hashlib.sha3_512((det + account[1]).encode()).hexdigest() == account[2]:
+                            print("password verified.")
+                            cursor.execute(f"""
+                                UPDATE
+                                    accounts
+                                SET
+                                    salt = '{gensalt(account[0], new)}',
+                                    password = '{hashlib.sha3_512((password + gensalt(account[0], new)).encode()).hexdigest()}',
+                                WHERE
+                                    username = '{acct["username"]}';
+                            """)
+                            print(f"your username is now {new}.")
+            else:
+                print("invalid credential.")
+    else:
+        print("please login first.")
+
+def removeacct(acct):
+    if acct["loggedin"]:
+        prompt = input("are you sure you would like to remove your account? (y/N) ")
+        if prompt == "y":
+            uname = acct["username"]
+            cursor.execute(f"delete from accounts where username == {uname}")
+            print("account successfully deleted.")
+            prompt = ("would you like to keep your data? (Y/n)")
+            if prompt != "n":
+                logout(acct)
+            else:
+                print("deleting local data...")
+                acct["loggedin"] = False
+                acct["username"] = ""
+                toml.dump({}, open('.account.toml', 'w'))
+                json.dump({}, open('stats.json', 'w'), default=str)
+                toml.dump({}, open('config.toml', 'w'))
