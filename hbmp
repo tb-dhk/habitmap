@@ -27,17 +27,21 @@ try:
 except:
     acct = {}
 
+print(dic)
+
 if sett == {}:
     sett["defcol"] = "#FFFFFF"
     sett["cols"] = []
+
+defcol = sett["defcol"]
+cols = sett["cols"]
 
 if acct == {}:
     acct["loggedin"] = False
     sett["username"] = ""
 
-defcol = sett["defcol"]
-cols = sett["cols"]
-
+loggedin = acct["loggedin"]
+username = acct["username"]
 
 comms = """
     usage: hbmp [command] ([subcommand] [parameters] ([options]))
@@ -148,7 +152,7 @@ help = """
         note that in printing heatmaps, all numbers will be converted to their 4-step equivalents.
 """
 
-if len(sys.argv) == 1 or (len(sys.argv) == 2 and sys.argv[1] not in ["help", "samplecolors"]):
+if len(sys.argv) == 1 or (len(sys.argv) == 2 and sys.argv[1] not in ["help", "samplecolors", "acc"]):
     print(comms)
 else:
     match sys.argv[1]:
@@ -236,9 +240,7 @@ else:
                 case _:
                     print("invalid command.")
         case "acc":
-            if len(sys.argv) < 2:
-                loggedin = acct["loggedin"]
-                username = acct["username"]
+            if len(sys.argv) <= 2:
                 if loggedin:
                     print(f"you are logged in as {username}.")
                 else:

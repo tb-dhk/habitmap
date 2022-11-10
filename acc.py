@@ -98,7 +98,7 @@ def sync(user, dic, edic, con, econ):
     mydb.commit()
     print("data synced successfully.")
 
-def logout(acct):
+def logout(acct, dic, sett):
     if acct["loggedin"]:
         prompt = input("are you sure you would like to log out? (y/N) ")
         if prompt == "y":
