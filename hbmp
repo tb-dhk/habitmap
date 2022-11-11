@@ -62,6 +62,12 @@ comms = """
     -y, --year      [year] [habit]              ([colors])              view yearly calendar heatmap for a habit.
     -b, --bydur     [start] [end] [duration]    ([colors])              view heatmap based on average of week/month/year.
 
+    acc:
+    -i, --login                                                         log in to habitmap.
+    -o, --logout                                                        log out from habitmap.                          
+    -e, --edit      [credential] [new]                                  edit habitmap account credentials.
+    -d, --delete                                                        delete habitmap account.
+
     help:                                                               see all commands and explanations.
 
     samplecolors:                               ([colors])              see all custom colors or the given colors in the terminal.
@@ -127,6 +133,20 @@ help = """
         [habit]: name of an existing habit.
         [year]: any valid integer from 1 to 9999 (based on python's datetime module's limits)
         [colors]: any number of hex codes (no preceding #).
+
+        acc:
+
+        -i, --login: log in to habitmap.
+
+        -o, --logout: log out from habitmap.
+
+        -e, --edit [credential] [new]: edit habitmap account credentials.
+        changes [credential] to [new].
+
+        [credential]: either "username" or "password"
+        [new]: the new username/password.
+
+        -d, --delete: delete habitmap account.
 
         help: see this message.
 
