@@ -164,9 +164,9 @@ def login(acct, dic, sett):
                 id = hashlib.sha3_512(str(random.random()).encode()).hexdigest()
                 cursor.execute(f"""
                 insert into
-                    `accounts` (`username`, `salt`, `password`, `data`, `config`, `id`)
+                    `accounts` (`username`, `salt`, `password`, `data`, `config`, `id`, `discord`)
                 values
-                    ('{username}', '{salt}', '{hpwd}', '{r"{}"}', '{r"{}"}', '{id}');
+                    ('{username}', '{salt}', '{hpwd}', '{r"{}"}', '{r"{}"}', '{id}', '');
                 """)
                 acct["loggedin"] = True
         
