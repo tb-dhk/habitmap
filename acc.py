@@ -50,7 +50,7 @@ def gensalt(uid, pwd):
 def sync(user, dic, edic, con, econ):
     print("syncing database...")
     edic = json.dumps(edic).replace(r"\\", "").strip(r"'\\").strip('"')
-    econ = toml.dumps(econ).replace(r"\\", "").strip(r"'\\").strip('"'))
+    econ = toml.dumps(econ).replace(r"\\", "").strip(r"'\\").strip('"')
     if (edic in [{}, "null", None] and econ in [{}, "null", None]) and (dic in [{}, "null", None] and con in [{}, "null", None]):
         print("you have no data to import or export. happy habit tracking!")
     elif (edic not in [{}, "null", None] or econ not in [{}, "null", None]) and (dic in [{}, "null", None] and con in [{}, "null", None]):
