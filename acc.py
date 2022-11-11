@@ -49,7 +49,7 @@ def gensalt(uid, pwd):
 
 def sync(user, dic, edic, con, econ):
     print("syncing database...")
-    edic = json.dumps(edic).replace(r"\\", "").strip(r"'\\").strip('"')
+    edic = json.dumps(edic).replace(r"\\", "").strip(r"'\\").strip('"').replace("'", "")
     print([econ])
     econ = toml.loads(econ.replace(r"\\", "").strip(r"'\\").strip('"'))
     if (edic in [{}, "null", None] and econ in [{}, "null", None]) and (dic in [{}, "null", None] and con in [{}, "null", None]):
