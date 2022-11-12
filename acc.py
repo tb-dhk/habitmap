@@ -207,7 +207,7 @@ def editacct(acct, det, new):
 
         if fuser:
             if det in ["username", "password"]:
-                prompt = input(f"are you sure you would like to change {det}? (y/N) ")
+                prompt = input(f"are you sure you would like to change your {det}? (y/N) ")
                 if prompt == "y":
                     verify = getpass.getpass(f"enter your current {det} to verify: ")
                     if det == "username":
