@@ -51,16 +51,17 @@ def sync(user, dic, edic, con, econ):
     print("syncing database...")
     edic = json.dumps(edic).replace(r"\\", "").strip(r"'\\").strip('"').replace("'", "")
     econ = toml.loads(econ.replace(r"\\", "").strip(r"'\\").strip('"'))
-    if (edic in [{}, "null", None] and econ in [{}, "null", None]) and (dic in [{}, "null", None] and con in [{}, "null", None]):
+    blanks = [{}, "null", None, ""]
+    if (edic in blanks and econ in blanks) and (dic in blanks and con in blanks):
         print("you have no data to import or export. happy habit tracking!")
-    elif (edic not in [{}, "null", None] or econ not in [{}, "null", None]) and (dic in [{}, "null", None] and con in [{}, "null", None]):
+    elif (edic not in blanks or econ not in blanks) and (dic in blanks and con in blanks):
         prompt = input("you have no data saved locally but you have data on the cloud. would you like to import from the cloud? (Y/n) ")
         if prompt == "n":
             print("import aborted.")
         else:
             dic = edic
             con = econ
-    elif (edic in [{}, "null", None] and econ in [{},"null",  None]) and (dic not in [{}, "null", None] or con not in [{}, "null", None]):
+    elif (edic in blanks and econ in [{},"null",  None]) and (dic not in blanks or con not in blanks):
         prompt = input("you have no data on the cloud but you have data saved locally. would you like to export to the cloud? (Y/n) ")
         if prompt == "n":
             print("export aborted.")
