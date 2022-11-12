@@ -50,7 +50,6 @@ def gensalt(uid, pwd):
 def sync(user, dic, edic, con, econ):
     print("syncing database...")
     edic = json.dumps(edic).replace(r"\\", "").strip(r"'\\").strip('"').replace("'", "")
-    print([econ])
     econ = toml.loads(econ.replace(r"\\", "").strip(r"'\\").strip('"'))
     if (edic in [{}, "null", None] and econ in [{}, "null", None]) and (dic in [{}, "null", None] and con in [{}, "null", None]):
         print("you have no data to import or export. happy habit tracking!")
@@ -84,23 +83,24 @@ def sync(user, dic, edic, con, econ):
                     print("invalid. try again")
         else:
             print("your data on the cloud and your data saved locally are identical. happy habit tracking!")
-    
-    edic = json.loads(json.dumps(edic).replace(r"\\", ""))
-    econ = toml.loads(toml.dumps(econ).replace(r"\\", ""))
+   
+    edic = json.dumps(edic).replace(r"\\", "")
+    econ = toml.dumps(econ).replace(r"\\", "")
     dic = json.loads(json.dumps(dic).replace(r"\\", ""))
     con = toml.loads(toml.dumps(con).replace(r"\\", ""))
     json.dump(dic, open('stats.json', 'w'), default=str)
     toml.dump(con, open('config.toml', 'w'))
     if edic == None:
-        edic = {}
+        edic = "" 
     if econ == None:
-        econ = {}
+        econ = ""
+
     cursor.execute(f"""
         UPDATE
             accounts
         SET
-            data = "{edic}",
-            config = "{econ}"
+            data = '{edic}',
+            config = '{econ}'
         WHERE
             username = '{user}';
     """)
@@ -167,25 +167,25 @@ def login(acct, dic, sett):
                 insert into
                     `accounts` (`username`, `salt`, `password`, `data`, `config`, `id`, `discord`)
                 values
-                    ('{username}', '{salt}', '{hpwd}', '{r"{}"}', '{r"{}"}', '{id}', '');
+                    ('{username}', '{salt}', '{hpwd}', '""', '""', '{id}', '');
                 """)
+                mydb.commit()
                 acct["loggedin"] = True
         
         try:
             edic = account[3]
         except:
-            edic = {}
+            edic = ""
 
         try:
             esett = account[4]
         except:
-            esett = {}
+            esett = ""
             
         sync(username, dic, edic, sett, esett)
         mydb.commit()
     
         toml.dump(acct, open('.account.toml', 'w'))
-        print()
         if dic in ["none", None]:
             dic = {}
         return dic
